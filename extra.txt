@@ -1,0 +1,92 @@
+@media (max-width: 991px){
+  .bar{
+    padding: 1rem 3%;
+  }
+
+  section{
+    padding: 10rem 3% 2rem;
+  }
+
+  .footer{
+    padding: 2rem 3%;
+  }
+}
+
+@media (max-width: 768px){
+  #menu-icon{
+    display: block;
+    position: absolute;
+    left: 90%;
+    top: 8%;
+  
+  }
+
+  #close-icon{
+    
+   position: absolute;
+    
+    font-size: 4.0rem;
+    display: block;
+  }
+ 
+ 
+  nav ul{
+    background: #181717;
+    position: fixed;
+    top: 0;
+    right: -200px;
+    width: 200px;
+    height: 100vh;
+    padding-top: 50px;
+    margin-left: 10px;
+    padding-left: none;
+  }
+
+  nav ul li{
+    display: block;
+    margin: 25px;
+   
+  }
+  .nav-links{
+   line-height: 3;
+   
+  }
+  nav ul .bx{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    cursor: pointer;
+  }
+
+   .bar a:hover{
+    color: #00F2DE;
+   }
+
+   
+
+   .logo{
+    position: relative;
+    padding-left: 0%;
+    padding-bottom: 1.5rem;
+    width: 30%;
+   }
+
+   nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background:#00F2DE;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+    
+   }
+  
+   nav ul li a:hover::after
+   {
+    width: 0;
+  }
+
+  
+}
