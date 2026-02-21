@@ -1,329 +1,817 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathikreet</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,
-400;0,700;0,900;1,300;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200&family=Poppins:wght@200;400;700&family=Sacramento&display=swap" rel="stylesheet">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://kit.fontawesome.com/66b0617e44.js" crossorigin="anonymous"></script>
-<script src="script.js" type="text/javascript"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pathikreet Chowdhury — ML Engineer, Data Engineer & AI Researcher. Building production-grade AI systems.">
+  <title>Pathikreet Chowdhury — ML Engineer &amp; AI Researcher</title>
+
+  <!-- Fonts: Space Grotesk + Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons: BoxIcons + Font Awesome (for Kaggle) -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-   <header class="header">
-    <nav class="bar" id="bar">
-        <img class="logo" src="assets/logo1.1-removebg-preview.png">  
-        
-        
-     <ul id="sidemenu">
-        <li> 
-     <a class="nav-links" href="#home">Home</a>         
-     <a class="nav-links" href="#about-me">About</a>
-     <a class="nav-links" href="#skills">Skills</a>
-     <a class="nav-links" href="#portfolio">Projects</a>
-     <a class="nav-links" href="#contact">Contact</a>
-     <i class='bx bx-x' id = "close-icon" onclick="closemenu()"></i>
-        </li>
-     </ul>
-     <i class='bx bx-menu' id="menu-icon" onclick="openmenu()"></i>
-    </nav>
-</header> 
-    <section class="home" id="home">
-    <div class="home-content">
-        <h1>Hello,</h1>
-        <h3>This is Pathikreet Chowdhury.</h3>
-        <h3>And I am a <span class="multiple-text"></span></h3>
-        <p>Eager to be a part of this change in technological era.</p>
 
-            <div class="social">
-                <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/"><i class='bx bxl-linkedin' ></i></a>
-                <a href="https://github.com/Vayuputra2401/"><i class='bx bxl-github' ></i></a>
-                <a href="https://www.instagram.com/pathikreet_24/"><i class='bx bxl-instagram'></i></a>
-            </div>
-            <a href="assets/resume_pathikreet_chowdhury.pdf" class="btn" download>Download CV</a>
-        </div>    
-    <div class="home-img">
-     <img class = "profile" src="assets/pathikreet profile.jpg">
+  <!-- Ambient glow blob -->
+  <div class="glow-blob-2" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════════════════════
+       NAVBAR
+       ════════════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-container">
+      <a href="#home" class="nav-logo">
+        <img src="assets/logo1.1-removebg-preview.png" alt="PC Logo">
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li class="nav-close">
+          <i class="bx bx-x" id="nav-close-btn" aria-label="Close menu"></i>
+        </li>
+        <li><a href="#home"       class="nav-link active">Home</a></li>
+        <li><a href="#about"      class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#research"   class="nav-link">Research</a></li>
+        <li><a href="#projects"   class="nav-link">Projects</a></li>
+        <li><a href="#skills"     class="nav-link">Skills</a></li>
+        <li><a href="#contact"    class="nav-link">Contact</a></li>
+      </ul>
+
+      <i class="bx bx-menu" id="nav-menu-btn" aria-label="Open menu"></i>
+    </nav>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════ -->
+  <section id="home" class="hero">
+
+    <div class="hero-content reveal reveal-left">
+      <div class="hero-badge">
+        <span class="mono">&lt; Available for Opportunities /&gt;</span>
+      </div>
+
+      <h1 class="hero-name">
+        Pathikreet <span class="accent">Chowdhury</span>
+      </h1>
+
+      <h2 class="hero-role">
+        I'm a <span class="typed-text"></span>
+      </h2>
+
+      <p class="hero-tagline">
+        Building AI systems at the intersection of research and production.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <button class="btn btn-ghost" data-modal="contact">
+          <i class="bx bx-envelope"></i> Get in Touch
+        </button>
+      </div>
+
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="bx bxl-linkedin"></i>
+        </a>
+        <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="bx bxl-github"></i>
+        </a>
+        <a href="https://www.kaggle.com/pathikreet" target="_blank" rel="noopener" aria-label="Kaggle">
+          <i class="fa-brands fa-kaggle"></i>
+        </a>
+        <a href="https://www.instagram.com/pathikreet_24/" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="bx bxl-instagram"></i>
+        </a>
+      </div>
     </div>
 
-    </section>
+    <div class="hero-image reveal reveal-right">
+      <div class="profile-ring">
+        <img
+          src="assets/about-pic4.png"
+          alt="Pathikreet Chowdhury"
+          class="profile-photo"
+        >
+      </div>
+    </div>
 
-    <section class="about-me" id="about-me">
-    
-        <div class="about-img">
-            <img class="about" src="assets/about-pic4.png">
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       ABOUT
+       ════════════════════════════════════════════════════════ -->
+  <section id="about" class="section about-section">
+
+    <div class="about-image reveal reveal-left">
+      <div class="about-img-wrapper">
+        <img src="assets/profile1-removebg-preview.png" alt="Pathikreet Chowdhury">
+      </div>
+    </div>
+
+    <div class="about-content reveal reveal-right">
+      <span class="section-label">Get to Know Me</span>
+      <h2 class="section-heading">About <span class="accent">Me</span></h2>
+      <div class="about-badge">ML Researcher &amp; Engineer</div>
+
+      <p class="about-bio">
+        As a postgraduate CSE engineer, I build production-grade AI systems that bridge
+        research and real-world impact. My work spans LLMs, federated learning, computer
+        vision, and large-scale data engineering — from academic publications to industry
+        deployments at companies like Flipkart and Siemens. I'm also the
+        <strong>Founder &amp; CEO of Artemis Pvt Ltd</strong>, building GenAI-powered
+        safety solutions.
+      </p>
+
+      <div class="about-stats reveal-stagger">
+        <div class="stat-card">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Publications</span>
         </div>
-        <div class="about-content">
-         <h2 class="heading">About <span>Me.</span></h2>  
-         <h3 class="tag">Web Developer and Machine Learning Engineer.</h3>
-         <p class="description">A third year undergrad studying Computer Science Engineering, I am a hardworking and career oriented person with a curious mind and love exploring new avenues and options. Currently honing my skills as an Android App Developer and Web Developer 
-            , Artificial Intelligence and Machine Learning and Coding. <br>I also love robotics , IoT and related electronics projects and am working on them to expand my knowledge base, having already built several small DIY robot projects. I am also an avid football and chess player 
-            having played several international chess tournaments; also a team member of my college football team. </p> 
-            <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" class="btn" id="abtn">Learn More</a>
+        <div class="stat-card">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Companies</span>
         </div>
-
-    </section>
-
-    <section class="skills" id="skills">
-        <div class="skills-content">
-            <h1 class = "skills">My <span>Skills.</span></h1>
-            <div class="skill-row">
-                <img class="right-img" src = "assets/html.png">
-                <p>Proficient in <span>HTML</span> , a basic requirement for all web developers.</p>
-            </div>
-            <div class="skill-row">
-                <img class="left-img" src = "assets/css.png">
-                <p>Proficient in <span>CSS and Bootstrap</span> , the go to tool for front end web development.</p>
-            </div>
-            <div class="skill-row">
-                <img class="right-img" src = "assets/javascript.png">
-                <p>Skilled in <span>Javascript</span> , the go to scripting tool for web development.</p>
-            </div>
-            <div class="skill-row">
-                <img class="left-img" src = "assets/atom.png">
-                <p>Proficient in <span>React</span> , a modern JS framework for seamless design.</p>
-            </div>
-            <div class="skill-row">
-                <img class="right-img" src = "assets/server.png">
-                <p>Familiar with backend frameworks such as <span>SQL,NodeJs,MongoDB</span>.</p>
-            </div>
-            <div class="skill-row">
-                <img class="left-img" src = "assets/programming-language.png">
-                <p><span>Python and C++</span> , languages highly proficient in.</p>
-            </div>
-            <div class="skill-row">
-                <img class="right-img" src = "assets/chip.png">
-                <p>Developed <span>multiple ML projects and research</span> , using ML and DL.</p>
-            </div>
-            <div class="skill-row">
-                <img class="left-img" src = "assets/machine-learning.png">
-                <p>Proficient and familiar with <span>multiple ML algorithms</span> and <span>frameworks</span> for ML development.</p>
-            </div>
+        <div class="stat-card">
+          <span class="stat-number">5+</span>
+          <span class="stat-label">Major Projects</span>
         </div>
-    </section>
+      </div>
 
-    <section class="portfolio" id="portfolio">
-        
-     <h1 class="heading">Let's dive into the <span>world of Machine Learning and AI.</span></h1>
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="assets/food.png">
-                <div class="layer-cap">
-                    <h4>Eir</h4>
-                </div>
-                <div class="portfolio-layer">
-                    <h4>End to end healthcare ML App</h4>
-                    <p>A end to end healthcare ML App built using multiple ML and DL models with data pipelining and MLOps using Dagshub and 
-                        MLFlow. The app is a complete healthcare solution for patients and doctors.
-                    </p>
+      <a
+        href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary"
+      >
+        Connect on LinkedIn
+      </a>
+    </div>
 
-                    <a href="https://github.com/Vayuputra2401/Eir"><i class='bx bx-link-external'></i></a>    
-                </div>
-                
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       EXPERIENCE
+       ════════════════════════════════════════════════════════ -->
+  <section id="experience" class="section">
+
+    <div class="section-header reveal">
+      <span class="section-label">Where I've Worked</span>
+      <h2 class="section-heading">Work <span class="accent">Experience</span></h2>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Flipkart / Cleartrip -->
+      <div class="timeline-item reveal reveal-left">
+        <div class="timeline-dot"></div>
+        <div class="glass-card timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Data Engineer</h3>
+              <div class="timeline-company">
+                <span class="company-name">Flipkart (Cleartrip)</span>
+                <span class="company-loc">Bangalore</span>
+              </div>
             </div>
-            
-            <div class="portfolio-box">
-                <img class = "fintech" src="assets/fintech.png">
-                <div class="layer-cap">
-                    <h4>NeuraTradePro</h4>
-                </div>
-                <div class="portfolio-layer">
-                    <h4>Stock and Trading ML App</h4>
-                    <p>Sophisticated algorithmic trading web app that leverages the power of neural networks and a diverse array of technical indicators to make informed trading decisions in the cryptocurrency and financial markets. 
-                        </p>
-
-                    <a href="https://github.com/Vayuputra2401/NeuraTradePro"><i class='bx bx-link-external'></i></a>    
-                </div>
-            </div>
-
-            <div class="portfolio-box">
-                <img class="pimg" src="assets/ecell.png">
-                <div class="layer-cap">
-                    <h4>SpamGuardML</h4>
-                </div>
-                <div class="portfolio-layer">
-                    <h4>Spam and toxicity classifer.</h4>
-                    <p>a spam classifier built using MLflow, incorporating NLP (Natural Language Processing) with CI/CD (Continuous Integration/Continuous Deployment) and MLOps (Machine Learning Operations) 
-                        practices for effective and automated management.</p>
-
-                    <a href="https://github.com/Vayuputra2401/SpamGuardML"><i class='bx bx-link-external'></i></a>    
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="assets/argus.png">
-                <div class="layer-cap">
-                    <h4>Voice EmoSense</h4>
-                </div>
-                <div class="portfolio-layer">
-                    <h4>Audio Emotion Classifier</h4>
-                    <p>an innovative project that harnesses state-of-the-art machine learning models to accurately detect and analyze emotions in users' voices. 
-                    </p>
-
-                    <a href="https://github.com/Vayuputra2401/VoiceEmoSense"><i class='bx bx-link-external'></i></a>    
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="assets/heart.png">
-                <div class="layer-cap">
-                    <h4>Dr.Chatter</h4>
-                </div>
-                <div class="portfolio-layer">
-                    <h4>LLM based medical chatbot</h4>
-                    <p>A LLM based health chatbot and medical reports Q&A system using quantized models and ctransformers.</p>
-
-                    <a href="https://github.com/Vayuputra2401/DrChatter"><i class='bx bx-link-external'></i></a>    
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="assets/alcohol.png">
-                <div class="layer-cap">
-                    <h4>Resume Guru</h4>
-                </div>
-                <div class="portfolio-layer">
-                    <h4>AI Resume Analyzer</h4>
-                    <p>An AI based resume analyzer and job recommender system using NLP, ML and Python built on a Streamlit Frontend
-                    </p>
-
-                    <a href="https://github.com/Vayuputra2401/ResumeGuru"><i class='bx bx-link-external'></i></a>    
-                </div>
-            </div>
+            <span class="timeline-badge cyan">Industry</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Architected scalable <strong>ETL pipelines</strong> with <strong>Apache Spark</strong> processing <strong>200+ TB</strong> of travel data; improved pipeline execution efficiency by <strong>30%</strong></li>
+            <li>Advanced <strong>BigQuery optimizations</strong> — partitioning &amp; clustering — achieved <strong>25% cost reduction</strong> and <strong>2× faster</strong> query performance</li>
+            <li>Reduced end-to-end <strong>data ingestion latency by 40%</strong>, enabling near real-time decision-making for Cleartrip's booking engine</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="tag">Apache Spark</span>
+            <span class="tag">BigQuery</span>
+            <span class="tag">GCP</span>
+            <span class="tag">Azkaban</span>
+            <span class="tag">ETL</span>
+          </div>
         </div>
+      </div>
 
-        <a href="https://github.com/Vayuputra2401/" class="btn" id="all-works">See all works</a>
-    </section>
-
-    <section class="portfolio" id="portfolio">
-        
-        <h1 class="heading">Unveiling the Code Symphony:<span> Dive into My Full Stack Creations!</span></h1>
-           <div class="portfolio-container">
-               <div class="portfolio-box">
-                   <img src="assets/food.png">
-                   <div class="layer-cap">
-                       <h4>AI Alchemist</h4>
-                   </div>
-                   <div class="portfolio-layer">
-                       <h4>My personal Blog Website</h4>
-                       <p>Built from scratch using Nextjs , MongoDB , Prisma and Express.</p>
-   
-                       <a href="https://ai-alchemist.vercel.app/"><i class='bx bx-link-external'></i></a>    
-                   </div>
-                   
-               </div>
-               
-               <div class="portfolio-box">
-                   <img class = "fintech" src="assets/fintech.png">
-                   <div class="layer-cap">
-                       <h4>Stylio Fit</h4>
-                   </div>
-                   <div class="portfolio-layer">
-                       <h4>Virtual shirt tryout</h4>
-                       <p>Virtual Shirt Tryout with MERN and Three.js "StylioFit" is an interactive website developed using the MERN stack (MongoDB, Express, React, Node.js) and enriched with Three.js capabilities. 
-                        This platform enables users to virtually experiment with diverse shirt designs in a dynamic 3D environment.
-                       </p>
-   
-                       <a href="https://github.com/Vayuputra2401/YourTreasury#readme"><i class='bx bx-link-external'></i></a>    
-                   </div>
-               </div>
-   
-               <div class="portfolio-box">
-                   <img class="pimg" src="assets/ecell.png">
-                   <div class="layer-cap">
-                       <h4>Hospital Buddies</h4>
-                   </div>
-                   <div class="portfolio-layer">
-                       <h4>A hospital paging and chat App</h4>
-                       <p>A full stack application built using React and Stream Chat allowing people to create channels , 
-                        talk to peple through DMs and also create groups for chatting.</p>
-   
-                       <a href="https://github.com/Vayuputra2401/Hospital-Buddies"><i class='bx bx-link-external'></i></a>    
-                   </div>
-               </div>
-               
-               
-           </div>
-   
-           <a href="https://github.com/Vayuputra2401/" class="btn" id="all-works">See all works</a>
-       </section>
-   
-    <section class="check-my-resume" id="contact">
-        <div class="resume-content">
-        <h2>Like what you see? Check out my <span>Resume.</span></h2>
-        </div>
-        <div class="resume-button">
-        <a href="assets/resume_pathikreet_chowdhury.pdf" class="hero-btn" id="rbtn" download>Resume </a>
-        </div>
-    </section>
-    <footer class="footer">
-
-        <h3>"BELIEVE IN YOURSELF AND ALL THAT YOU ARE. <br> THAT THERE IS SOMETHING INSIDE YOU THAT IS GREATER THAN ANY OBSTACLE."
-        </h3>
-        <h4>- STEVE JOBS</h4>
-    <div class="site-links">
-    <ul>
-        <li> 
-     <a class="nav-links" href="#home">Home</a>         
-     <a class="nav-links" href="#about-me">About</a>
-     <a class="nav-links" href="#skills">Skills</a>
-     <a class="nav-links" href="#portfolio">Projects</a>
-     <a class="nav-links" href="#contact">Contact</a>
-        </li>
-     </ul>
-     </div>
-        <div class="icons">
-            <a href = "https://www.instagram.com/pathikreet_24/"><i class="fa fa-instagram"></i></a>
-              <a href = "https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/"><i class="fa fa-linkedin"></i></a>
-              <a href = "https://github.com/Vayuputra2401"><i class="fa fa-github"></i></a>
-              
-        </div>
-        <p>Made and managed by Pathikreet Chowdhury | <i class="fa fa-copyright"></i> 2023 | All rights reserved</p>
-        <div class="top-icon">
-            <a href="#home" class="top"><i class='bx bx-up-arrow-alt'></i></a>
+      <!-- Siemens -->
+      <div class="timeline-item reveal reveal-right">
+        <div class="timeline-dot"></div>
+        <div class="glass-card timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Research Engineer</h3>
+              <div class="timeline-company">
+                <span class="company-name">Siemens AI</span>
+                <span class="company-loc">Bangalore · Foundational Technology Research</span>
+              </div>
             </div>
-    </footer>
-  
+            <span class="timeline-badge purple">Research</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Integrated <strong>Physics-Informed Neural Networks (PINNs)</strong> with Symbolic Regression; reduced outliers by <strong>52%</strong> on industrial datasets</li>
+            <li>Optimized <strong>Multi-Agent Symbolic Regression</strong> with <strong>LLMs in the loop</strong>; achieved <strong>12% inference time reduction</strong> with improved accuracy</li>
+            <li>Developed <strong>Neuro-Symbolic Agents</strong> combining NSR with GenAI for molecular optimization and enhanced hypothesis generation</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="tag">PINNs</span>
+            <span class="tag">LLMs</span>
+            <span class="tag">Symbolic Regression</span>
+            <span class="tag">GenAI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matrice.ai -->
+      <div class="timeline-item reveal reveal-left">
+        <div class="timeline-dot"></div>
+        <div class="glass-card timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Machine Learning Engineer</h3>
+              <div class="timeline-company">
+                <span class="company-name">Matrice.ai Inc.</span>
+              </div>
+            </div>
+            <span class="timeline-badge cyan">Industry</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Integrated foundation models <strong>(SAM, GroundingDINO, CLIP, YOLO World)</strong> for video analysis with <strong>30% accuracy improvement</strong></li>
+            <li>Key contributor to the official <strong>Matrice Python package on PyPI</strong>; designed core architecture and reduced onboarding time by <strong>45%</strong></li>
+            <li>Developed custom CV solutions including gas station monitoring with <strong>multi-object tracking</strong> and hotel room similarity assessment</li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">SAM</span>
+            <span class="tag">YOLO World</span>
+            <span class="tag">PyPI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- IIT Kanpur -->
+      <div class="timeline-item reveal reveal-right">
+        <div class="timeline-dot"></div>
+        <div class="glass-card timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">SURGE Researcher</h3>
+              <div class="timeline-company">
+                <span class="company-name">IIT Kanpur</span>
+                <span class="company-loc">Under Dr. Vipul Arora</span>
+              </div>
+            </div>
+            <span class="timeline-badge purple">Research</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Implemented <strong>Controllable Neural Symbolic Regression</strong> achieving <strong>78% accuracy</strong> on a dataset of 230M equations</li>
+            <li>Adaptive Refiner-Based <strong>few-shot font generation</strong> with Monotype Inc.; reduced generation time by <strong>40%</strong> while maintaining quality</li>
+            <li>Solved <strong>mode collapse</strong> in generative models with Normalizing Flows (RealNVP) and FAB; achieved <strong>72.5% replication score</strong></li>
+          </ul>
+          <div class="timeline-tags">
+            <span class="tag">Neural Symbolic Regression</span>
+            <span class="tag">Normalizing Flows</span>
+            <span class="tag">Generative Models</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       RESEARCH & PUBLICATIONS
+       ════════════════════════════════════════════════════════ -->
+  <section id="research" class="section">
+
+    <div class="section-header reveal">
+      <span class="section-label">Academic Contributions</span>
+      <h2 class="section-heading">Research &amp; <span class="accent">Publications</span></h2>
+    </div>
+
+    <div class="research-grid">
+
+      <!-- LAST -->
+      <div class="glass-card research-card reveal">
+        <div class="research-header">
+          <span class="conf-badge amber">ECCV 2026 &middot; Under Review</span>
+          <a href="https://github.com/Vayuputra2401/LAST" target="_blank" rel="noopener" class="research-link" aria-label="GitHub">
+            <i class="bx bxl-github"></i>
+          </a>
+        </div>
+        <h3 class="research-title">LAST: Lightweight Adaptive-Shift Transformer for Real-Time HAR</h3>
+        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
+        <ul class="research-bullets">
+          <li>"More with Less" HAR architecture — shifts from dense video to <strong>sparse skeletal representations</strong>, achieving SOTA performance on edge devices</li>
+          <li>Developed <strong>Adaptive Graph Convolutions (A-GCN)</strong> + <strong>Temporal Shift Modules (TSM)</strong> with <strong>O(N) linear attention</strong> and Knowledge Distillation via VideoMAE V2</li>
+        </ul>
+      </div>
+
+      <!-- ICPR 2024 -->
+      <div class="glass-card research-card reveal">
+        <div class="research-header">
+          <span class="conf-badge cyan">ICPR 2024 &middot; Published</span>
+          <a href="https://github.com/Vayuputra2401/ICPR-XAI-2024" target="_blank" rel="noopener" class="research-link" aria-label="GitHub">
+            <i class="bx bxl-github"></i>
+          </a>
+        </div>
+        <h3 class="research-title">Brain Tumor Classification &amp; Segmentation using Custom CNN and U-Net with XAI</h3>
+        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
+        <ul class="research-bullets">
+          <li>Custom CNN and U-Net for MRI diagnostics achieving <strong>99.6% accuracy</strong>; introduced novel metrics quantifying <strong>LIME-based</strong> explanations for neuro-oncology</li>
+          <li>Fused <strong>Grad-CAM</strong> visualizations with interpretability scores, reducing false-positive rates in automated tumor detection</li>
+        </ul>
+      </div>
+
+      <!-- ICIT 2025 -->
+      <div class="glass-card research-card reveal">
+        <div class="research-header">
+          <span class="conf-badge cyan">ICIT 2025 &middot; Published</span>
+          <a href="https://github.com/Vayuputra2401/FL-FaceRecognition-Privacy" target="_blank" rel="noopener" class="research-link" aria-label="GitHub">
+            <i class="bx bxl-github"></i>
+          </a>
+        </div>
+        <h3 class="research-title">Federated Learning Framework for Privacy-Preserving Face &amp; Activity Recognition</h3>
+        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
+        <ul class="research-bullets">
+          <li>FL architecture with adaptive aggregation; <strong>65% bandwidth reduction</strong> via model pruning &amp; quantization for decentralized surveillance networks</li>
+          <li><strong>Differential privacy</strong> + adversarial feature disentanglement ensuring robust resistance against membership inference attacks</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       PROJECTS
+       ════════════════════════════════════════════════════════ -->
+  <section id="projects" class="section">
+
+    <div class="section-header reveal">
+      <span class="section-label">What I've Built</span>
+      <h2 class="section-heading">Featured <span class="accent">Projects</span></h2>
+    </div>
+
+    <div class="filter-tabs reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ml">ML &amp; AI</button>
+      <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Eir -->
+      <div class="glass-card project-card reveal" data-category="ml">
+        <div class="project-img">
+          <img src="assets/food.png" alt="Eir — Federated Learning Healthcare Platform">
+          <div class="project-overlay">
+            <a href="https://github.com/Vayuputra2401/Eir" target="_blank" rel="noopener" class="overlay-link">
+              <i class="bx bx-link-external"></i> View Project
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Eir</h3>
+            <a href="https://github.com/Vayuputra2401/Eir" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+          <p class="project-desc">
+            End-to-end Federated Learning healthcare platform with advanced RAG pipelines;
+            LoRA-optimized SLMs achieving <strong>45% faster training</strong> with HIPAA compliance
+            and <strong>3.2× faster</strong> inference on edge devices.
+          </p>
+          <div class="project-tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">LoRA</span>
+            <span class="tag">CrewAI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LegalVoice.ai -->
+      <div class="glass-card project-card reveal" data-category="ml">
+        <div class="project-img">
+          <img src="assets/fintech.png" alt="LegalVoice.ai">
+          <div class="project-overlay">
+            <a href="https://github.com/Vayuputra2401/LegalVoice.ai" target="_blank" rel="noopener" class="overlay-link">
+              <i class="bx bx-link-external"></i> View Project
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">LegalVoice.ai</h3>
+            <a href="https://github.com/Vayuputra2401/LegalVoice.ai" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+          <p class="project-desc">
+            Multilingual voice-to-text legal assistant supporting 8 regional languages at
+            <strong>92% accuracy</strong>; QLoRA fine-tuning and AutoGen agentic workflows
+            reduced document processing time by <strong>73%</strong>.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Whisper</span>
+            <span class="tag">AutoGen</span>
+            <span class="tag">QLoRA</span>
+            <span class="tag">React</span>
+            <span class="tag">RAG</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artemis -->
+      <div class="glass-card project-card reveal" data-category="ml fullstack">
+        <div class="project-img">
+          <img src="assets/argus.png" alt="Artemis — GenAI Women Safety App">
+          <div class="project-overlay">
+            <a href="https://github.com/Vayuputra2401/Artemis" target="_blank" rel="noopener" class="overlay-link">
+              <i class="bx bx-link-external"></i> View Project
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Artemis</h3>
+            <a href="https://github.com/Vayuputra2401/Artemis" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+          <p class="project-desc">
+            GenAI women safety application with real-time threat detection at <strong>96% accuracy</strong>
+            and Graph RAG navigation generating routes with <strong>85% fewer high-risk areas</strong>.
+            Now an active funded startup.
+          </p>
+          <div class="project-tags">
+            <span class="tag">LangGraph</span>
+            <span class="tag">React Native</span>
+            <span class="tag">WebRTC</span>
+            <span class="tag">Whisper</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TransformoDocs -->
+      <div class="glass-card project-card reveal" data-category="ml">
+        <div class="project-img">
+          <img src="assets/alcohol.png" alt="TransformoDocs">
+          <div class="project-overlay">
+            <a href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener" class="overlay-link">
+              <i class="bx bx-link-external"></i> View Project
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">TransformoDocs</h3>
+            <a href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+          <p class="project-desc">
+            Machine-readable document converter with HyDE-based RAG pipelines; achieved
+            <strong>70% storage reduction</strong> and <strong>36% conversion efficiency improvement</strong>
+            via MLOps and agentic workflow optimization.
+          </p>
+          <div class="project-tags">
+            <span class="tag">CrewAI</span>
+            <span class="tag">MLFlow</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MoleculeForge -->
+      <div class="glass-card project-card reveal" data-category="ml">
+        <div class="project-img">
+          <img src="assets/heart.png" alt="MoleculeForge">
+          <div class="project-overlay">
+            <a href="https://github.com/Vayuputra2401/MoleculeForge" target="_blank" rel="noopener" class="overlay-link">
+              <i class="bx bx-link-external"></i> View Project
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">MoleculeForge</h3>
+            <a href="https://github.com/Vayuputra2401/MoleculeForge" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+          <p class="project-desc">
+            End-to-end molecular generation pipeline using fine-tuned Gemini models; reduced
+            drug discovery time by <strong>58%</strong> and achieved <strong>76% higher
+            validation success rate</strong> with self-reflective RAG on the ZINC dataset.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Gemini</span>
+            <span class="tag">VAE</span>
+            <span class="tag">GCNs</span>
+            <span class="tag">RDKit</span>
+            <span class="tag">AutoGen</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NeuraTradePro -->
+      <div class="glass-card project-card reveal" data-category="fullstack">
+        <div class="project-img">
+          <img src="assets/ecell.png" alt="NeuraTradePro">
+          <div class="project-overlay">
+            <a href="https://github.com/Vayuputra2401/NeuraTradePro" target="_blank" rel="noopener" class="overlay-link">
+              <i class="bx bx-link-external"></i> View Project
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">NeuraTradePro</h3>
+            <a href="https://github.com/Vayuputra2401/NeuraTradePro" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+          <p class="project-desc">
+            Sophisticated algorithmic trading platform leveraging neural networks and diverse
+            technical indicators for cryptocurrency and financial market decision-making — end-to-end
+            full stack application.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Neural Networks</span>
+            <span class="tag">React</span>
+            <span class="tag">Python</span>
+            <span class="tag">Trading APIs</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="projects-cta reveal">
+      <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener" class="btn btn-ghost">
+        <i class="bx bxl-github"></i> View All on GitHub
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       SKILLS
+       ════════════════════════════════════════════════════════ -->
+  <section id="skills" class="section">
+
+    <div class="section-header reveal">
+      <span class="section-label">My Arsenal</span>
+      <h2 class="section-heading">Technical <span class="accent">Skills</span></h2>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="glass-card skill-group reveal">
+        <div class="skill-group-header">
+          <i class="bx bx-code-alt skill-icon cyan"></i>
+          <h3 class="skill-category">Languages</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill cyan">Python</span>
+          <span class="skill-pill cyan">C/C++</span>
+          <span class="skill-pill cyan">JavaScript</span>
+          <span class="skill-pill cyan">TypeScript</span>
+          <span class="skill-pill cyan">Java</span>
+          <span class="skill-pill cyan">SQL</span>
+          <span class="skill-pill cyan">HTML5</span>
+          <span class="skill-pill cyan">CSS3</span>
+        </div>
+      </div>
+
+      <div class="glass-card skill-group reveal">
+        <div class="skill-group-header">
+          <i class="bx bx-brain skill-icon purple"></i>
+          <h3 class="skill-category">AI &amp; ML</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill purple">PyTorch</span>
+          <span class="skill-pill purple">TensorFlow</span>
+          <span class="skill-pill purple">LLM Optimization</span>
+          <span class="skill-pill purple">LoRA / QLoRA</span>
+          <span class="skill-pill purple">Hugging Face</span>
+          <span class="skill-pill purple">LangChain</span>
+          <span class="skill-pill purple">CrewAI</span>
+          <span class="skill-pill purple">Agentic RAG</span>
+          <span class="skill-pill purple">OpenCV</span>
+          <span class="skill-pill purple">LangSmith</span>
+        </div>
+      </div>
+
+      <div class="glass-card skill-group reveal">
+        <div class="skill-group-header">
+          <i class="bx bx-cloud skill-icon blue"></i>
+          <h3 class="skill-category">Data Eng &amp; Cloud</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill blue">Apache Spark</span>
+          <span class="skill-pill blue">BigQuery</span>
+          <span class="skill-pill blue">GCP</span>
+          <span class="skill-pill blue">ETL Pipelines</span>
+          <span class="skill-pill blue">MLOps</span>
+          <span class="skill-pill blue">Docker</span>
+          <span class="skill-pill blue">AWS SageMaker</span>
+          <span class="skill-pill blue">MCP Servers</span>
+          <span class="skill-pill blue">Azkaban</span>
+        </div>
+      </div>
+
+      <div class="glass-card skill-group reveal">
+        <div class="skill-group-header">
+          <i class="bx bx-wrench skill-icon green"></i>
+          <h3 class="skill-category">Dev &amp; Tools</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill green">React</span>
+          <span class="skill-pill green">Node.js</span>
+          <span class="skill-pill green">FastAPI</span>
+          <span class="skill-pill green">Flask</span>
+          <span class="skill-pill green">MongoDB</span>
+          <span class="skill-pill green">WebRTC</span>
+          <span class="skill-pill green">PowerBI</span>
+          <span class="skill-pill green">Git</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       LEADERSHIP
+       ════════════════════════════════════════════════════════ -->
+  <section id="leadership" class="section">
+
+    <div class="section-header reveal">
+      <span class="section-label">Beyond the Code</span>
+      <h2 class="section-heading">Leadership &amp; <span class="accent">Impact</span></h2>
+    </div>
+
+    <div class="leadership-grid">
+
+      <div class="glass-card leadership-card reveal">
+        <div class="leadership-icon">
+          <i class="bx bx-trophy"></i>
+        </div>
+        <h3 class="leadership-title">Team Lead</h3>
+        <p class="leadership-org">Smart India Hackathon &middot; 2024, 2025, 2026</p>
+        <p class="leadership-desc">
+          Led multi-disciplinary teams for 3 consecutive years developing AI-driven solutions
+          for national challenges — overseeing technical architecture, rapid prototyping, and final deployment.
+        </p>
+      </div>
+
+      <div class="glass-card leadership-card reveal">
+        <div class="leadership-icon">
+          <i class="bx bx-rocket"></i>
+        </div>
+        <h3 class="leadership-title">Founder &amp; CEO</h3>
+        <p class="leadership-org">Artemis Pvt Ltd &middot; Startup Operations</p>
+        <p class="leadership-desc">
+          Directing a 12-member team to build GenAI safety solutions; managing the full product
+          lifecycle and investor relations while scaling the MVP into a production-ready business model.
+        </p>
+      </div>
+
+      <div class="glass-card leadership-card reveal">
+        <div class="leadership-icon">
+          <i class="bx bx-group"></i>
+        </div>
+        <h3 class="leadership-title">Technical Head</h3>
+        <p class="leadership-org">E-CELL &middot; Campus Entrepreneurship Cell</p>
+        <p class="leadership-desc">
+          Leading a 20+ member tech team to automate summit registrations and optimize web
+          infrastructure; improved digital engagement and turnout for national-level flagship events.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       CONTACT
+       ════════════════════════════════════════════════════════ -->
+  <section id="contact" class="section contact-section">
+    <div class="contact-content reveal">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-heading">Let's Build Something <span class="accent">Together</span></h2>
+      <p class="contact-sub">
+        Open to research collaborations, ML engineering roles, and startup partnerships.
+        Drop me a message — I'd love to hear from you.
+      </p>
+
+      <button class="btn btn-primary contact-email" data-modal="contact">
+        <i class="bx bx-envelope"></i> Send Me a Message
+      </button>
+
+      <div class="contact-social">
+        <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="bx bxl-linkedin"></i>
+        </a>
+        <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="bx bxl-github"></i>
+        </a>
+        <a href="https://www.kaggle.com/pathikreet" target="_blank" rel="noopener" aria-label="Kaggle">
+          <i class="fa-brands fa-kaggle"></i>
+        </a>
+        <a href="https://www.instagram.com/pathikreet_24/" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="bx bxl-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <p>© 2025 Pathikreet Chowdhury &nbsp;·&nbsp; Crafted with <span class="accent">♥</span></p>
+    <a href="#home" class="footer-top" aria-label="Back to top">
+      <i class="bx bx-up-arrow-alt"></i>
+    </a>
+  </footer>
+
+  <!-- ════════════════════════════════════════════════════════
+       CONTACT MODAL
+       ════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+
+      <button class="modal-close" id="modal-close" aria-label="Close modal">
+        <i class="bx bx-x"></i>
+      </button>
+
+      <!-- Form body -->
+      <div id="form-body">
+        <h2 class="modal-title" id="modal-title">
+          Let's <span class="accent">Connect</span>
+        </h2>
+        <p class="modal-sub">
+          Have a project, opportunity, or idea? Fill out the form and I'll get back to you.
+        </p>
+
+        <form id="contact-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-name">Name</label>
+              <input type="text" id="modal-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="modal-email">Email</label>
+              <input type="email" id="modal-email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-subject">Subject</label>
+            <input type="text" id="modal-subject" name="subject" placeholder="What's this about?">
+          </div>
+
+          <div class="form-group">
+            <label for="modal-message">Message</label>
+            <textarea id="modal-message" name="message" placeholder="Tell me about your project, idea, or opportunity…" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            <i class="bx bx-send"></i> Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="form-success" id="form-success">
+        <span class="success-icon"><i class="bx bx-check-circle"></i></span>
+        <h3 class="success-title">Message Sent!</h3>
+        <p class="success-msg">
+          Thanks for reaching out — I'll get back to you as soon as possible.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Typed.js -->
+  <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Main JS -->
+  <script src="js/main.js"></script>
+
 </body>
-<script>
-var sidemenu = document.getElementById('sidemenu');
-
-function openmenu(){
-    sidemenu.style.right = '0';
-}
-
-function closemenu(){
-    sidemenu.style.right='-200px';
-}
-
-function navlinksclose()
-{
-    sidemenu.style.right = '-200px';
-}
-</script>
-<script>
-    ScrollReveal({ reset: true ,
-    distance: '80px',
-    duration: 2000 ,
-    delay: 200 });
-
-    ScrollReveal().reveal('.home-content, .heading, .skills', { origin: 'top'});
-    ScrollReveal().reveal('.home-img, .portfolio-box, .skill-row,  #all-works, #abtn', { origin: 'bottom'});
-    ScrollReveal().reveal('.description, .tag', { origin: 'right'});
-    ScrollReveal().reveal('.home-content h3, .about-img', { origin: 'left'});
-</script>
-<script>
-    const typed = new Typed('.multiple-text',{
-        strings: ['Web Developer.','ML Engineer.'],
-        typeSpeed: 100,
-        backSpeed: 100,
-        backDelay: 1000,
-        loop: true
-
-    });
-</script>
 </html>
