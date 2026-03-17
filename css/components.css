@@ -243,12 +243,14 @@
    RESEARCH & PUBLICATIONS
    ────────────────────────────────────────────────────────── */
 .research-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
 
 .research-card {
+  width: calc(33.333% - 16px);
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -642,7 +644,7 @@
    RESPONSIVE COMPONENTS
    ────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .research-grid  { grid-template-columns: 1fr; }
+  .research-card  { width: 100%; }
   .projects-grid  { grid-template-columns: repeat(2, 1fr); }
   .about-section  { gap: 48px; }
 }
@@ -707,7 +709,7 @@
   .projects-grid { grid-template-columns: 1fr; }
   .about-stats   { gap: 14px; }
   .stat-card     { padding: 16px 20px; min-width: 85px; }
-  .research-grid { grid-template-columns: 1fr; }
+  .research-card { width: 100%; }
   .filter-tabs   { gap: 8px; }
 }
 
