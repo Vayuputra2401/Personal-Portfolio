@@ -128,7 +128,38 @@ filterBtns.forEach(btn => {
   });
 });
 
-// ── 7. Smooth scroll for in-page anchors ────────────────────
+// ── 7. Building carousel ────────────────────────────────────
+const buildTrack    = document.getElementById('build-track');
+const buildDots     = document.querySelectorAll('.carousel-dot[data-index]');
+const buildCurrent  = document.querySelector('.carousel-current');
+const buildTotal    = buildTrack ? buildTrack.children.length : 0;
+let   buildIdx      = 0;
+
+function goToSlide(n) {
+  if (!buildTrack || !buildTotal) return;
+  buildIdx = ((n % buildTotal) + buildTotal) % buildTotal;
+  buildTrack.style.transform = `translateX(-${buildIdx * 100}%)`;
+  buildDots.forEach(d => d.classList.toggle('active', Number(d.dataset.index) === buildIdx));
+  if (buildCurrent) buildCurrent.textContent = String(buildIdx + 1).padStart(2, '0');
+}
+
+document.getElementById('build-prev')?.addEventListener('click', () => goToSlide(buildIdx - 1));
+document.getElementById('build-next')?.addEventListener('click', () => goToSlide(buildIdx + 1));
+buildDots.forEach(dot => dot.addEventListener('click', () => goToSlide(Number(dot.dataset.index))));
+
+// Touch / pointer swipe
+(function () {
+  const vp = document.querySelector('.carousel-viewport');
+  if (!vp) return;
+  let sx = 0;
+  vp.addEventListener('pointerdown', e => { sx = e.clientX; });
+  vp.addEventListener('pointerup',   e => {
+    const d = e.clientX - sx;
+    if (Math.abs(d) > 40) goToSlide(d > 0 ? buildIdx - 1 : buildIdx + 1);
+  });
+}());
+
+// ── 8. Smooth scroll for in-page anchors ─────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', e => {
     const target = document.querySelector(anchor.getAttribute('href'));

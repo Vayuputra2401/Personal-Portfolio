@@ -43,6 +43,7 @@
         <li><a href="#experience" class="nav-link">Experience</a></li>
         <li><a href="#research"   class="nav-link">Research</a></li>
         <li><a href="#projects"   class="nav-link">Projects</a></li>
+        <li><a href="#building"   class="nav-link">Building</a></li>
         <li><a href="#skills"     class="nav-link">Skills</a></li>
         <li><a href="#contact"    class="nav-link">Contact</a></li>
       </ul>
@@ -629,6 +630,208 @@
       </a>
     </div>
 
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       BUILDING
+       ════════════════════════════════════════════════════════ -->
+  <section id="building" class="section">
+
+    <div class="section-header reveal">
+      <span class="section-label">Currently Cooking</span>
+      <h2 class="section-heading">What I'm <span class="accent">Building</span></h2>
+    </div>
+
+    <div class="building-carousel reveal">
+
+      <!-- Carousel nav: counter + arrows -->
+      <div class="carousel-nav">
+        <div class="carousel-counter">
+          <span class="carousel-current">01</span>
+          <span class="carousel-sep"> / </span>
+          <span class="carousel-total">02</span>
+        </div>
+        <div class="carousel-arrows">
+          <button class="carousel-btn" id="build-prev" aria-label="Previous project">
+            <i class="bx bx-chevron-left"></i>
+          </button>
+          <button class="carousel-btn" id="build-next" aria-label="Next project">
+            <i class="bx bx-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Viewport + track -->
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="build-track">
+
+          <!-- ─── Slide 1: Chef.ai ─── -->
+          <div class="carousel-slide">
+            <div class="glass-card building-card">
+
+              <div class="building-card-top">
+                <div class="building-status">
+                  <span class="status-dot"></span>
+                  <span class="status-text">In Progress</span>
+                </div>
+                <div class="building-header-info">
+                  <h3 class="building-title">Chef<span class="accent">.ai</span></h3>
+                  <p class="building-tagline">AI cooking assistant that turns a photo of your fridge into a full meal plan</p>
+                </div>
+              </div>
+
+              <div class="building-body">
+                <div class="building-desc">
+                  <p>
+                    Scan your ingredients, pick a cooking mode — from <strong>"just survive"</strong> to
+                    <strong>"chef mode"</strong> — and get complete meals with drink pairings, freshness
+                    flags for ingredients expiring today, and step-by-step cooking guidance. A conversational
+                    chef (<strong>ChefGPT</strong>) adapts to your dietary preferences and skill level,
+                    remembers context across sessions, and responds naturally in whatever language you're
+                    cooking in.
+                  </p>
+                </div>
+
+                <div class="building-features">
+                  <div class="building-feature">
+                    <i class="bx bx-camera"></i>
+                    <div>
+                      <h4>Fridge-to-Meal Vision</h4>
+                      <p>YOLO object detection + Gemini Vision identifies ingredients from a single fridge photo</p>
+                    </div>
+                  </div>
+                  <div class="building-feature">
+                    <i class="bx bx-bot"></i>
+                    <div>
+                      <h4>ChefGPT — 3 Modes</h4>
+                      <p>Q&amp;A, step-by-step cooking, and autonomous agent with tool calling — Redis-backed cross-session memory</p>
+                    </div>
+                  </div>
+                  <div class="building-feature">
+                    <i class="bx bx-calendar"></i>
+                    <div>
+                      <h4>Live Meal Planner</h4>
+                      <p>Streams a full week's plan day-by-day into a live calendar via SSE + WebSocket chat</p>
+                    </div>
+                  </div>
+                  <div class="building-feature">
+                    <i class="bx bx-git-branch"></i>
+                    <div>
+                      <h4>6-Node LangGraph Pipeline</h4>
+                      <p>Parallel pgvector search across 485 recipes alongside live AI generation → single-pass LLM ranker → enhancement node</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="building-stack">
+                <span class="tag">Next.js 14</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">YOLO</span>
+                <span class="tag">Gemini 2.0 Flash</span>
+                <span class="tag">pgvector</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Redis</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">SSE</span>
+                <span class="tag">WebSocket</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ─── Slide 2: Artemis ─── -->
+          <div class="carousel-slide">
+            <div class="glass-card building-card building-card--purple">
+
+              <div class="building-card-top">
+                <div class="building-status building-status--amber">
+                  <span class="status-dot status-dot--amber"></span>
+                  <span class="status-text">Active Startup</span>
+                </div>
+                <div class="building-header-info">
+                  <h3 class="building-title">Artemis</h3>
+                  <p class="building-tagline">Voice-first personal safety intelligence platform — your phone as an AI bodyguard</p>
+                </div>
+              </div>
+
+              <div class="building-body">
+                <div class="building-desc">
+                  <p>
+                    Built for urban India, Artemis delivers real-time threat awareness through a live
+                    incident heatmap from crowdsourced reports, scores walking and driving routes against
+                    actual crime data, and activates a full SOS protocol the moment something goes wrong —
+                    broadcasting live GPS to trusted contacts every 10 seconds, sharing location via
+                    WhatsApp, and connecting to emergency services. <strong>Tribes</strong> lets private
+                    groups share live location in real time. A conversational AI agent (Phase 3) will let
+                    users report incidents, request route guidance, and trigger SOS entirely by voice —
+                    no screen interaction required.
+                  </p>
+                </div>
+
+                <div class="building-features">
+                  <div class="building-feature building-feature--purple">
+                    <i class="bx bx-map-alt"></i>
+                    <div>
+                      <h4>Live Safety Heatmap</h4>
+                      <p>Client-side grid scoring — weighted incident density, severity normalisation, age decay (1.0→0.15 / 30 days), time-of-day lighting factor</p>
+                    </div>
+                  </div>
+                  <div class="building-feature building-feature--purple">
+                    <i class="bx bx-directions"></i>
+                    <div>
+                      <h4>Smart Route Scoring</h4>
+                      <p>SAFEST / FASTEST / BALANCED profiles via λ-cost function over Google Directions API, scored against live Supabase incident data</p>
+                    </div>
+                  </div>
+                  <div class="building-feature building-feature--purple">
+                    <i class="bx bx-alarm-exclamation"></i>
+                    <div>
+                      <h4>SOS Engine</h4>
+                      <p>GPS polled every 10s, live broadcast + WhatsApp share + push notifications, ETA-based trip check-in with overdue detection</p>
+                    </div>
+                  </div>
+                  <div class="building-feature building-feature--purple">
+                    <i class="bx bx-group"></i>
+                    <div>
+                      <h4>Tribes</h4>
+                      <p>Private safety groups with Supabase Realtime live location subscriptions and row-level security isolation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="building-stack">
+                <span class="tag">Expo 55</span>
+                <span class="tag">React Native 0.83</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Node.js 18</span>
+                <span class="tag">Express</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">JWT + Zod</span>
+                <span class="tag">Google Directions API</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Render</span>
+                <span class="tag">Vercel</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dot indicators -->
+      <div class="carousel-dots">
+        <button class="carousel-dot active" data-index="0" aria-label="Chef.ai"></button>
+        <button class="carousel-dot" data-index="1" aria-label="Artemis"></button>
+      </div>
+
+    </div>
   </section>
 
   <!-- ════════════════════════════════════════════════════════
