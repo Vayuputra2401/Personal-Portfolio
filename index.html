@@ -6,6 +6,18 @@
   <meta name="description" content="Pathikreet Chowdhury — ML Engineer, Data Engineer & AI Researcher. Building production-grade AI systems.">
   <title>Pathikreet Chowdhury — ML Engineer &amp; AI Researcher</title>
 
+  <!-- Canonical & Open Graph -->
+  <link rel="canonical" href="https://vayuputra2401.github.io/Personal-Portfolio/">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Pathikreet Chowdhury — ML Engineer & AI Researcher">
+  <meta property="og:description" content="ML Engineer, Data Engineer & AI Researcher. Building production-grade AI systems.">
+  <meta property="og:url"         content="https://vayuputra2401.github.io/Personal-Portfolio/">
+  <meta property="og:image"       content="https://vayuputra2401.github.io/Personal-Portfolio/assets/about-pic4.png">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Pathikreet Chowdhury — ML Engineer & AI Researcher">
+  <meta name="twitter:description" content="ML Engineer, Data Engineer & AI Researcher. Building production-grade AI systems.">
+  <meta name="twitter:image"       content="https://vayuputra2401.github.io/Personal-Portfolio/assets/about-pic4.png">
+
   <!-- Fonts: Space Grotesk + Fira Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +33,9 @@
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
+
+  <!-- Page scroll progress -->
+  <div id="scroll-progress" aria-hidden="true"></div>
 
   <!-- Ambient glow blob -->
   <div class="glow-blob-2" aria-hidden="true"></div>
@@ -43,9 +58,9 @@
         <li><a href="#experience" class="nav-link">Experience</a></li>
         <li><a href="#research"   class="nav-link">Research</a></li>
         <li><a href="#projects"   class="nav-link">Projects</a></li>
-        <li><a href="#building"   class="nav-link">Building</a></li>
-        <li><a href="#skills"     class="nav-link">Skills</a></li>
-        <li><a href="#contact"    class="nav-link">Contact</a></li>
+        <li><a href="#skills"        class="nav-link">Skills</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#contact"      class="nav-link">Contact</a></li>
       </ul>
 
       <i class="bx bx-menu" id="nav-menu-btn" aria-label="Open menu"></i>
@@ -76,22 +91,22 @@
 
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">View My Work</a>
-        <button class="btn btn-ghost" data-modal="contact">
+        <button class="btn btn-ghost" data-modal="contact" aria-haspopup="dialog">
           <i class="bx bx-envelope"></i> Get in Touch
         </button>
       </div>
 
       <div class="hero-social">
-        <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <i class="bx bxl-linkedin"></i>
         </a>
-        <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener" aria-label="GitHub">
+        <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <i class="bx bxl-github"></i>
         </a>
-        <a href="https://www.kaggle.com/pathikreet" target="_blank" rel="noopener" aria-label="Kaggle">
+        <a href="https://www.kaggle.com/pathikreet" target="_blank" rel="noopener noreferrer" aria-label="Kaggle">
           <i class="fa-brands fa-kaggle"></i>
         </a>
-        <a href="https://www.instagram.com/pathikreet_24/" target="_blank" rel="noopener" aria-label="Instagram">
+        <a href="https://www.instagram.com/pathikreet_24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i class="bx bxl-instagram"></i>
         </a>
       </div>
@@ -116,13 +131,13 @@
 
     <div class="about-image reveal reveal-left">
       <div class="about-img-wrapper">
-        <img src="assets/profile1-removebg-preview.png" alt="Pathikreet Chowdhury">
+        <img src="assets/profile1-removebg-preview.png" alt="Pathikreet Chowdhury" loading="lazy">
       </div>
     </div>
 
     <div class="about-content reveal reveal-right">
       <span class="section-label">Get to Know Me</span>
-      <h2 class="section-heading">About <span class="accent">Me</span></h2>
+      <h2 class="section-heading">About <span class="accent">Me</span><button class="section-anchor" data-href="#about" aria-label="Copy link to About section"><i class="bx bx-link"></i></button></h2>
       <div class="about-badge">ML Researcher &amp; Engineer</div>
 
       <p class="about-bio">
@@ -137,15 +152,18 @@
 
       <div class="about-stats reveal-stagger">
         <div class="stat-card">
-          <span class="stat-number">3</span>
+          <i class="bx bx-book stat-icon"></i>
+          <span class="stat-number" data-target="3" data-suffix="">3</span>
           <span class="stat-label">Publications</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">4</span>
+          <i class="bx bx-buildings stat-icon"></i>
+          <span class="stat-number" data-target="4" data-suffix="">4</span>
           <span class="stat-label">Companies</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">5+</span>
+          <i class="bx bx-code-block stat-icon"></i>
+          <span class="stat-number" data-target="5" data-suffix="+">5+</span>
           <span class="stat-label">Major Projects</span>
         </div>
       </div>
@@ -153,7 +171,7 @@
       <a
         href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         class="btn btn-primary"
       >
         Connect on LinkedIn
@@ -165,467 +183,561 @@
   <!-- ════════════════════════════════════════════════════════
        EXPERIENCE
        ════════════════════════════════════════════════════════ -->
-  <section id="experience" class="section">
+  <section id="experience" class="section exp-section">
 
-    <div class="section-header reveal">
-      <span class="section-label">Where I've Worked</span>
-      <h2 class="section-heading">Work <span class="accent">Experience</span></h2>
+    <!-- Tall wrapper — scroll locks the sticky frame inside -->
+    <div class="exp-sticky-wrapper">
+      <div class="exp-sticky">
+
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <!-- Heading — always visible inside the locked frame -->
+        <div class="exp-sticky-heading">
+          <span class="section-label">Where I've Worked</span>
+          <h2 class="section-heading">Work <span class="accent">Experience</span><button class="section-anchor" data-href="#experience" aria-label="Copy link to Experience section"><i class="bx bx-link"></i></button></h2>
+        </div>
+
+        <!-- Row that holds panels + nav -->
+        <div class="exp-body">
+
+        <!-- Left: detail panels (swap on scroll) -->
+        <div class="exp-content">
+
+          <div class="exp-panel active" data-index="0">
+            <span class="timeline-badge cyan">Industry</span>
+            <h3 class="exp-role">Data Engineer</h3>
+            <div class="exp-meta">
+              <span class="company-name">Flipkart (Cleartrip)</span>
+              <span class="company-loc">Bangalore</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Architected scalable <strong>ETL pipelines</strong> with <strong>Apache Spark</strong> processing <strong>200+ TB</strong> of travel data; improved pipeline execution efficiency by <strong>30%</strong></li>
+              <li>Advanced <strong>BigQuery optimizations</strong> — partitioning &amp; clustering — achieved <strong>25% cost reduction</strong> and <strong>2× faster</strong> query performance</li>
+              <li>Reduced end-to-end <strong>data ingestion latency by 40%</strong>, enabling near real-time decision-making for Cleartrip's booking engine</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Apache Spark</span>
+              <span class="tag">BigQuery</span>
+              <span class="tag">GCP</span>
+              <span class="tag">Azkaban</span>
+              <span class="tag">ETL</span>
+            </div>
+          </div>
+
+          <div class="exp-panel" data-index="1">
+            <span class="timeline-badge purple">Research</span>
+            <h3 class="exp-role">Research Engineer</h3>
+            <div class="exp-meta">
+              <span class="company-name">Siemens AI</span>
+              <span class="company-loc">Bangalore · Foundational Technology Research</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Integrated <strong>Physics-Informed Neural Networks (PINNs)</strong> with Symbolic Regression; reduced outliers by <strong>52%</strong> on industrial datasets</li>
+              <li>Optimized <strong>Multi-Agent Symbolic Regression</strong> with <strong>LLMs in the loop</strong>; achieved <strong>12% inference time reduction</strong> with improved accuracy</li>
+              <li>Developed <strong>Neuro-Symbolic Agents</strong> combining NSR with GenAI for molecular optimization and enhanced hypothesis generation</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">PINNs</span>
+              <span class="tag">LLMs</span>
+              <span class="tag">Symbolic Regression</span>
+              <span class="tag">GenAI</span>
+            </div>
+          </div>
+
+          <div class="exp-panel" data-index="2">
+            <span class="timeline-badge cyan">Industry</span>
+            <h3 class="exp-role">Machine Learning Engineer</h3>
+            <div class="exp-meta">
+              <span class="company-name">Matrice.ai Inc.</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Integrated foundation models <strong>(SAM, GroundingDINO, CLIP, YOLO World)</strong> for video analysis with <strong>30% accuracy improvement</strong></li>
+              <li>Key contributor to the official <strong>Matrice Python package on PyPI</strong>; designed core architecture and reduced onboarding time by <strong>45%</strong></li>
+              <li>Developed custom CV solutions including gas station monitoring with <strong>multi-object tracking</strong> and hotel room similarity assessment</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Computer Vision</span>
+              <span class="tag">SAM</span>
+              <span class="tag">YOLO World</span>
+              <span class="tag">PyPI</span>
+            </div>
+          </div>
+
+          <div class="exp-panel" data-index="3">
+            <span class="timeline-badge purple">Research</span>
+            <h3 class="exp-role">SURGE Researcher</h3>
+            <div class="exp-meta">
+              <span class="company-name">IIT Kanpur</span>
+              <span class="company-loc">Under Dr. Vipul Arora</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Implemented <strong>Controllable Neural Symbolic Regression</strong> achieving <strong>78% accuracy</strong> on a dataset of 230M equations</li>
+              <li>Adaptive Refiner-Based <strong>few-shot font generation</strong> with Monotype Inc.; reduced generation time by <strong>40%</strong> while maintaining quality</li>
+              <li>Solved <strong>mode collapse</strong> in generative models with Normalizing Flows (RealNVP) and FAB; achieved <strong>72.5% replication score</strong></li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Neural Symbolic Regression</span>
+              <span class="tag">Normalizing Flows</span>
+              <span class="tag">Generative Models</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: company nav list -->
+        <div class="exp-nav">
+          <div class="exp-nav-item active" data-index="0">
+            <div class="exp-nav-dot"></div>
+            <div class="exp-nav-info">
+              <span class="exp-nav-role">Data Engineer</span>
+              <span class="exp-nav-company">Flipkart (Cleartrip)</span>
+            </div>
+          </div>
+          <div class="exp-nav-item" data-index="1">
+            <div class="exp-nav-dot"></div>
+            <div class="exp-nav-info">
+              <span class="exp-nav-role">Research Engineer</span>
+              <span class="exp-nav-company">Siemens AI</span>
+            </div>
+          </div>
+          <div class="exp-nav-item" data-index="2">
+            <div class="exp-nav-dot"></div>
+            <div class="exp-nav-info">
+              <span class="exp-nav-role">ML Engineer</span>
+              <span class="exp-nav-company">Matrice.ai Inc.</span>
+            </div>
+          </div>
+          <div class="exp-nav-item" data-index="3">
+            <div class="exp-nav-dot"></div>
+            <div class="exp-nav-info">
+              <span class="exp-nav-role">SURGE Researcher</span>
+              <span class="exp-nav-company">IIT Kanpur</span>
+            </div>
+          </div>
+        </div>
+
+        </div><!-- /.exp-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">04</span>
+        </div>
+
+      </div>
     </div>
 
-    <div class="timeline">
-
-      <!-- Flipkart / Cleartrip -->
-      <div class="timeline-item reveal reveal-left">
-        <div class="timeline-dot"></div>
-        <div class="glass-card timeline-card">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Data Engineer</h3>
-              <div class="timeline-company">
-                <span class="company-name">Flipkart (Cleartrip)</span>
-                <span class="company-loc">Bangalore</span>
-              </div>
-            </div>
-            <span class="timeline-badge cyan">Industry</span>
-          </div>
-          <ul class="timeline-bullets">
-            <li>Architected scalable <strong>ETL pipelines</strong> with <strong>Apache Spark</strong> processing <strong>200+ TB</strong> of travel data; improved pipeline execution efficiency by <strong>30%</strong></li>
-            <li>Advanced <strong>BigQuery optimizations</strong> — partitioning &amp; clustering — achieved <strong>25% cost reduction</strong> and <strong>2× faster</strong> query performance</li>
-            <li>Reduced end-to-end <strong>data ingestion latency by 40%</strong>, enabling near real-time decision-making for Cleartrip's booking engine</li>
-          </ul>
-          <div class="timeline-tags">
-            <span class="tag">Apache Spark</span>
-            <span class="tag">BigQuery</span>
-            <span class="tag">GCP</span>
-            <span class="tag">Azkaban</span>
-            <span class="tag">ETL</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Siemens -->
-      <div class="timeline-item reveal reveal-right">
-        <div class="timeline-dot"></div>
-        <div class="glass-card timeline-card">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Research Engineer</h3>
-              <div class="timeline-company">
-                <span class="company-name">Siemens AI</span>
-                <span class="company-loc">Bangalore · Foundational Technology Research</span>
-              </div>
-            </div>
-            <span class="timeline-badge purple">Research</span>
-          </div>
-          <ul class="timeline-bullets">
-            <li>Integrated <strong>Physics-Informed Neural Networks (PINNs)</strong> with Symbolic Regression; reduced outliers by <strong>52%</strong> on industrial datasets</li>
-            <li>Optimized <strong>Multi-Agent Symbolic Regression</strong> with <strong>LLMs in the loop</strong>; achieved <strong>12% inference time reduction</strong> with improved accuracy</li>
-            <li>Developed <strong>Neuro-Symbolic Agents</strong> combining NSR with GenAI for molecular optimization and enhanced hypothesis generation</li>
-          </ul>
-          <div class="timeline-tags">
-            <span class="tag">PINNs</span>
-            <span class="tag">LLMs</span>
-            <span class="tag">Symbolic Regression</span>
-            <span class="tag">GenAI</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Matrice.ai -->
-      <div class="timeline-item reveal reveal-left">
-        <div class="timeline-dot"></div>
-        <div class="glass-card timeline-card">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Machine Learning Engineer</h3>
-              <div class="timeline-company">
-                <span class="company-name">Matrice.ai Inc.</span>
-              </div>
-            </div>
-            <span class="timeline-badge cyan">Industry</span>
-          </div>
-          <ul class="timeline-bullets">
-            <li>Integrated foundation models <strong>(SAM, GroundingDINO, CLIP, YOLO World)</strong> for video analysis with <strong>30% accuracy improvement</strong></li>
-            <li>Key contributor to the official <strong>Matrice Python package on PyPI</strong>; designed core architecture and reduced onboarding time by <strong>45%</strong></li>
-            <li>Developed custom CV solutions including gas station monitoring with <strong>multi-object tracking</strong> and hotel room similarity assessment</li>
-          </ul>
-          <div class="timeline-tags">
-            <span class="tag">Computer Vision</span>
-            <span class="tag">SAM</span>
-            <span class="tag">YOLO World</span>
-            <span class="tag">PyPI</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- IIT Kanpur -->
-      <div class="timeline-item reveal reveal-right">
-        <div class="timeline-dot"></div>
-        <div class="glass-card timeline-card">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">SURGE Researcher</h3>
-              <div class="timeline-company">
-                <span class="company-name">IIT Kanpur</span>
-                <span class="company-loc">Under Dr. Vipul Arora</span>
-              </div>
-            </div>
-            <span class="timeline-badge purple">Research</span>
-          </div>
-          <ul class="timeline-bullets">
-            <li>Implemented <strong>Controllable Neural Symbolic Regression</strong> achieving <strong>78% accuracy</strong> on a dataset of 230M equations</li>
-            <li>Adaptive Refiner-Based <strong>few-shot font generation</strong> with Monotype Inc.; reduced generation time by <strong>40%</strong> while maintaining quality</li>
-            <li>Solved <strong>mode collapse</strong> in generative models with Normalizing Flows (RealNVP) and FAB; achieved <strong>72.5% replication score</strong></li>
-          </ul>
-          <div class="timeline-tags">
-            <span class="tag">Neural Symbolic Regression</span>
-            <span class="tag">Normalizing Flows</span>
-            <span class="tag">Generative Models</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </section>
 
   <!-- ════════════════════════════════════════════════════════
        RESEARCH & PUBLICATIONS
        ════════════════════════════════════════════════════════ -->
-  <section id="research" class="section">
+  <section id="research" class="section ssw-section">
 
-    <div class="section-header reveal">
-      <span class="section-label">Academic Contributions &amp; IP</span>
-      <h2 class="section-heading">Research, Patents &amp; <span class="accent">Publications</span></h2>
-    </div>
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
 
-    <div class="research-grid">
+        <div class="ssw-heading">
+          <span class="section-label">Academic Contributions</span>
+          <h2 class="section-heading">Research &amp; <span class="accent">Publications</span><button class="section-anchor" data-href="#research" aria-label="Copy link to Research section"><i class="bx bx-link"></i></button></h2>
+        </div>
 
-      <!-- Patent: Automated PINN -->
-      <div class="glass-card research-card reveal" style="width: 100%; border: 1px solid var(--accent, #00f0ff); box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1); background: rgba(0, 240, 255, 0.03);">
-        <div class="research-header">
-          <span class="conf-badge purple" style="font-size: 0.95rem; padding: 0.4rem 0.8rem;"><i class="bx bx-award"></i> Patent &middot; Issued Nov 8, 2025</span>
-          <div class="research-link">
-            <i class="bx bx-bulb" style="font-size: 1.5rem; color: var(--accent, #00f0ff);"></i>
+        <div class="ssw-body">
+        <div class="ssw-content">
+
+          <div class="ssw-panel active" data-index="0">
+            <span class="conf-badge amber">ACCM 2026 &middot; Under Review</span>
+            <h3 class="research-panel-title">LAST: Lightweight Adaptive-Shift Transformer for Real-Time Human Activity Recognition</h3>
+            <p class="research-panel-advisor">Advisor: Dr. Gargi Srivastava</p>
+            <ul class="research-bullets">
+              <li>"More with Less" HAR architecture — shifts from dense video to <strong>sparse skeletal representations</strong>, achieving SOTA on edge devices</li>
+              <li>Developed <strong>Adaptive Graph Convolutions (A-GCN)</strong> + <strong>Temporal Shift Modules (TSM)</strong> with <strong>O(N) linear attention</strong> and Knowledge Distillation via VideoMAE V2</li>
+            </ul>
+            <a href="https://github.com/Vayuputra2401/LAST" target="_blank" rel="noopener noreferrer" class="research-panel-link">
+              <i class="bx bxl-github"></i> View on GitHub
+            </a>
+          </div>
+
+          <div class="ssw-panel" data-index="1">
+            <span class="conf-badge cyan">ICPR 2024 &middot; Published</span>
+            <h3 class="research-panel-title">Brain Tumor Classification &amp; Segmentation using Custom CNN and U-Net with XAI</h3>
+            <p class="research-panel-advisor">Advisor: Dr. Gargi Srivastava</p>
+            <ul class="research-bullets">
+              <li>Custom CNN and U-Net for MRI diagnostics achieving <strong>99.6% accuracy</strong>; introduced novel metrics quantifying <strong>LIME-based</strong> explanations for neuro-oncology</li>
+              <li>Fused <strong>Grad-CAM</strong> visualizations with interpretability scores, reducing false-positive rates in automated tumor detection</li>
+            </ul>
+            <a href="https://github.com/Vayuputra2401/ICPR-XAI-2024" target="_blank" rel="noopener noreferrer" class="research-panel-link">
+              <i class="bx bxl-github"></i> View on GitHub
+            </a>
+          </div>
+
+          <div class="ssw-panel" data-index="2">
+            <span class="conf-badge cyan">ICIT 2025 &middot; Published</span>
+            <h3 class="research-panel-title">Federated Learning Framework for Privacy-Preserving Face &amp; Activity Recognition</h3>
+            <p class="research-panel-advisor">Advisor: Dr. Gargi Srivastava</p>
+            <ul class="research-bullets">
+              <li>FL architecture with adaptive aggregation; <strong>65% bandwidth reduction</strong> via model pruning &amp; quantization for decentralized surveillance networks</li>
+              <li><strong>Differential privacy</strong> + adversarial feature disentanglement ensuring robust resistance against membership inference attacks</li>
+            </ul>
+            <a href="https://github.com/Vayuputra2401/FL-Face" target="_blank" rel="noopener noreferrer" class="research-panel-link">
+              <i class="bx bxl-github"></i> View on GitHub
+            </a>
+          </div>
+
+          <div class="ssw-panel" data-index="3">
+            <span class="conf-badge cyan">Research Project</span>
+            <h3 class="research-panel-title">An Efficient Machine Intelligence Framework for Detection of Heart Arrhythmia Disease using Cleveland Heart Dataset</h3>
+            <p class="research-panel-advisor">Advisor: Late Dr. Rahul Kumar</p>
+            <ul class="research-bullets">
+              <li>Evaluated and integrated an ensemble of ML models after applying <strong>PCA and RFE</strong>, achieving <strong>98.6% accuracy</strong> on test data.</li>
+            </ul>
+          </div>
+
+          <div class="ssw-panel" data-index="4">
+            <span class="conf-badge cyan">BTP 2023</span>
+            <h3 class="research-panel-title">GestureCraft: A Novel Approach to ASL Sign Language Detection using CNN, LSTM and MediaPipe</h3>
+            <p class="research-panel-advisor">Advisor: Dr. Nirbhay Kumar</p>
+            <ul class="research-bullets">
+              <li>Designed an efficient ASL detection system using Innovative Dataset Capture Techniques, achieving <strong>98% accuracy</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="ssw-panel" data-index="5">
+            <span class="conf-badge cyan">BTP 2024</span>
+            <h3 class="research-panel-title">Efficient In-Painting Using an Ensemble of DDPMs and GANs on Kaggle Little Images Dataset</h3>
+            <p class="research-panel-advisor">Advisor: Dr. Nirbhay Kumar</p>
+            <ul class="research-bullets">
+              <li>Enhanced image restoration quality by <strong>22%</strong> and minimized in-painting time by <strong>30%</strong> using an ensemble of DDPMs and GANs.</li>
+            </ul>
+          </div>
+
+          <div class="ssw-panel" data-index="6">
+            <span class="conf-badge amber">Ongoing</span>
+            <h3 class="research-panel-title">Integrated Agentic Architecture with XAI for 3D Medical Scans Detection and Segmentation using BRaTS and LiTS</h3>
+            <p class="research-panel-advisor">Advisor: Dr. Gargi Srivastava</p>
+            <ul class="research-bullets">
+              <li>Improved 3D medical scan segmentation speed and real-time inference by <strong>25%</strong> with UNET++ and LLMs, enhancing transparency with <strong>XAI</strong>.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="ssw-nav">
+          <div class="ssw-nav-item active" data-index="0">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">LAST: HAR Transformer</span>
+              <span class="ssw-nav-sub">ACCM 2026</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="1">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">Brain Tumor XAI</span>
+              <span class="ssw-nav-sub">ICPR 2024</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="2">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">FL Face &amp; Activity</span>
+              <span class="ssw-nav-sub">ICIT 2025</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="3">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">Heart Arrhythmia Detection</span>
+              <span class="ssw-nav-sub">Research Project</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="4">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">GestureCraft ASL</span>
+              <span class="ssw-nav-sub">BTP 2023</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="5">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">In-Painting: DDPMs + GANs</span>
+              <span class="ssw-nav-sub">BTP 2024</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="6">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">3D Medical Scan XAI</span>
+              <span class="ssw-nav-sub">Ongoing</span>
+            </div>
           </div>
         </div>
-        <h3 class="research-title" style="font-size: 1.4rem;">Automated Physically Informed Neural Network Enhanced by Symbolic Regression and Large Language Models with balanced Loss Optimization</h3>
-        <p class="research-advisor">Patent No: 2025E09468 IN</p>
-        <ul class="research-bullets">
-          <li>Invented a novel neuro-symbolic architecture integrating <strong>PINNs, Symbolic Regression, and LLMs</strong> for enhanced physical system modeling.</li>
-          <li>Engineered a <strong>balanced Loss Optimization</strong> strategy to efficiently unify physical constraints and data-driven accuracy.</li>
-        </ul>
-      </div>
 
-      <!-- LAST -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge amber">ACCM 2026 &middot; Under Review</span>
-          <a href="https://github.com/Vayuputra2401/LAST" target="_blank" rel="noopener" class="research-link" aria-label="GitHub">
-            <i class="bx bxl-github"></i>
-          </a>
+        </div><!-- /.ssw-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">07</span>
         </div>
-        <h3 class="research-title">LAST: Lightweight Adaptive-Shift Transformer for Real-Time HAR</h3>
-        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
-        <ul class="research-bullets">
-          <li>"More with Less" HAR architecture — shifts from dense video to <strong>sparse skeletal representations</strong>, achieving SOTA performance on edge devices</li>
-          <li>Developed <strong>Adaptive Graph Convolutions (A-GCN)</strong> + <strong>Temporal Shift Modules (TSM)</strong> with <strong>O(N) linear attention</strong> and Knowledge Distillation via VideoMAE V2</li>
-        </ul>
-      </div>
 
-      <!-- ICPR 2024 -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge cyan">ICPR 2024 &middot; Published</span>
-          <a href="https://github.com/Vayuputra2401/ICPR-XAI-2024" target="_blank" rel="noopener" class="research-link" aria-label="GitHub">
-            <i class="bx bxl-github"></i>
-          </a>
-        </div>
-        <h3 class="research-title">Brain Tumor Classification &amp; Segmentation using Custom CNN and U-Net with XAI</h3>
-        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
-        <ul class="research-bullets">
-          <li>Custom CNN and U-Net for MRI diagnostics achieving <strong>99.6% accuracy</strong>; introduced novel metrics quantifying <strong>LIME-based</strong> explanations for neuro-oncology</li>
-          <li>Fused <strong>Grad-CAM</strong> visualizations with interpretability scores, reducing false-positive rates in automated tumor detection</li>
-        </ul>
       </div>
-
-      <!-- ICIT 2025 -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge cyan">ICIT 2025 &middot; Published</span>
-          <a href="https://github.com/Vayuputra2401/FL-Face" target="_blank" rel="noopener" class="research-link" aria-label="GitHub">
-            <i class="bx bxl-github"></i>
-          </a>
-        </div>
-        <h3 class="research-title">Federated Learning Framework for Privacy-Preserving Face &amp; Activity Recognition</h3>
-        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
-        <ul class="research-bullets">
-          <li>FL architecture with adaptive aggregation; <strong>65% bandwidth reduction</strong> via model pruning &amp; quantization for decentralized surveillance networks</li>
-          <li><strong>Differential privacy</strong> + adversarial feature disentanglement ensuring robust resistance against membership inference attacks</li>
-        </ul>
-      </div>
-
-      <!-- Heart Arrhythmia -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge cyan">Research Project</span>
-        </div>
-        <h3 class="research-title">An Efficient Machine Intelligence Framework for Detection of Heart Arrhythmia Disease using Cleveland Heart Dataset</h3>
-        <p class="research-advisor">Advisor: Late Dr. Rahul Kumar</p>
-        <ul class="research-bullets">
-          <li>Evaluated and integrated an ensemble of ML models after applying <strong>PCA and RFE</strong>, achieving <strong>98.6% accuracy</strong> on test data.</li>
-        </ul>
-      </div>
-
-      <!-- GestureCraft -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge cyan">BTP 2023</span>
-        </div>
-        <h3 class="research-title">GestureCraft: A Novel Approach to ASL Sign Language Detection using CNN, LSTM and MediaPipe</h3>
-        <p class="research-advisor">Advisor: Dr. Nirbhay Kumar</p>
-        <ul class="research-bullets">
-          <li>Designed an efficient ASL detection system utilizing Innovative Dataset Capture Techniques, achieving <strong>98% accuracy</strong>.</li>
-        </ul>
-      </div>
-
-      <!-- In-Painting -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge cyan">BTP 2024</span>
-        </div>
-        <h3 class="research-title">Efficient In-Painting Method Using an Ensemble of Generative Models - DDPMs and GANs using Kaggle Little Images Dataset</h3>
-        <p class="research-advisor">Advisor: Dr. Nirbhay Kumar</p>
-        <ul class="research-bullets">
-          <li>Enhanced image restoration quality by <strong>22%</strong> and minimized in-painting time by <strong>30%</strong> using an ensemble of DDPMs and GANs.</li>
-        </ul>
-      </div>
-
-      <!-- Medical Scans -->
-      <div class="glass-card research-card reveal">
-        <div class="research-header">
-          <span class="conf-badge amber">Ongoing</span>
-        </div>
-        <h3 class="research-title">Integrated Agentic Architecture with XAI for 3D Medical Scans Detection and Segmentation using BRaTS and LiTS Datasets</h3>
-        <p class="research-advisor">Advisor: Dr. Gargi Srivastava</p>
-        <ul class="research-bullets">
-          <li>Improved 3D medical scan segmentation and detection speed and real-time inference by <strong>25%</strong> with UNET++ and LLMs, enhancing model transparency with <strong>XAI</strong>.</li>
-        </ul>
-      </div>
-
     </div>
+
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════
+       PATENT
+       ════════════════════════════════════════════════════════ -->
+  <section id="patent" class="section ssw-section">
+
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <div class="ssw-heading">
+          <span class="section-label">Intellectual Property</span>
+          <h2 class="section-heading">Patent <span class="accent">Grant</span></h2>
+        </div>
+
+        <div class="ssw-body">
+          <div class="ssw-content">
+
+            <div class="ssw-panel active" data-index="0">
+              <div class="patent-card">
+                <div class="patent-card-top">
+                  <span class="patent-status-badge"><i class="bx bx-award"></i> Granted &middot; Nov 8, 2025</span>
+                  <span class="patent-number mono">2025E09468 IN</span>
+                </div>
+                <h3 class="patent-title">Automated Physically Informed Neural Network Enhanced by Symbolic Regression and LLMs with Balanced Loss Optimization</h3>
+                <div class="patent-divider"></div>
+                <ul class="patent-bullets">
+                  <li>Invented a novel neuro-symbolic architecture integrating <strong>PINNs, Symbolic Regression, and LLMs</strong> for enhanced physical system modeling</li>
+                  <li>Engineered a <strong>Balanced Loss Optimization</strong> strategy to efficiently unify physical constraints and data-driven accuracy across complex dynamical systems</li>
+                </ul>
+                <div class="patent-tags">
+                  <span class="tag">PINNs</span>
+                  <span class="tag">Symbolic Regression</span>
+                  <span class="tag">LLMs</span>
+                  <span class="tag">Neuro-Symbolic AI</span>
+                  <span class="tag">Loss Optimization</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.ssw-content — no nav for single panel -->
+        </div><!-- /.ssw-body -->
+
+      </div>
+    </div>
+
   </section>
 
   <!-- ════════════════════════════════════════════════════════
        PROJECTS
        ════════════════════════════════════════════════════════ -->
-  <section id="projects" class="section">
+  <section id="projects" class="section ssw-section">
 
-    <div class="section-header reveal">
-      <span class="section-label">What I've Built</span>
-      <h2 class="section-heading">Featured <span class="accent">Projects</span></h2>
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <div class="ssw-heading">
+          <span class="section-label">What I've Built</span>
+          <h2 class="section-heading">Featured <span class="accent">Projects</span><button class="section-anchor" data-href="#projects" aria-label="Copy link to Projects section"><i class="bx bx-link"></i></button></h2>
+        </div>
+
+        <div class="ssw-body">
+          <div class="ssw-content">
+
+            <!-- Eir -->
+            <div class="ssw-panel active" data-index="0">
+              <div class="project-panel-cat"><span class="timeline-badge cyan">ML &amp; AI</span></div>
+              <h3 class="project-panel-title">Eir</h3>
+              <p class="project-panel-desc">
+                End-to-end Federated Learning healthcare platform with advanced RAG pipelines;
+                LoRA-optimized SLMs achieving <strong>45% faster training</strong> with HIPAA compliance
+                and <strong>3.2× faster</strong> inference on edge devices.
+              </p>
+              <div class="project-tags">
+                <span class="tag">TensorFlow</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">LoRA</span>
+                <span class="tag">CrewAI</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/Eir" target="_blank" rel="noopener noreferrer" class="project-panel-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+            <!-- LegalVoice.ai -->
+            <div class="ssw-panel" data-index="1">
+              <div class="project-panel-cat"><span class="timeline-badge cyan">ML &amp; AI</span></div>
+              <h3 class="project-panel-title">LegalVoice<span class="accent">.ai</span></h3>
+              <p class="project-panel-desc">
+                Multilingual voice-to-text legal assistant supporting 8 regional languages at
+                <strong>92% accuracy</strong>; QLoRA fine-tuning and AutoGen agentic workflows
+                reduced document processing time by <strong>73%</strong>.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Whisper</span>
+                <span class="tag">AutoGen</span>
+                <span class="tag">QLoRA</span>
+                <span class="tag">React</span>
+                <span class="tag">RAG</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/LegalVoice.ai" target="_blank" rel="noopener noreferrer" class="project-panel-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+            <!-- Artemis -->
+            <div class="ssw-panel" data-index="2">
+              <div class="project-panel-cat">
+                <span class="timeline-badge cyan">ML &amp; AI</span>
+                <span class="timeline-badge purple">Full Stack</span>
+              </div>
+              <h3 class="project-panel-title">Artemis</h3>
+              <p class="project-panel-desc">
+                GenAI women safety application with real-time threat detection at <strong>96% accuracy</strong>
+                and Graph RAG navigation generating routes with <strong>85% fewer high-risk areas</strong>.
+                Now an active funded startup.
+              </p>
+              <div class="project-tags">
+                <span class="tag">LangGraph</span>
+                <span class="tag">React Native</span>
+                <span class="tag">WebRTC</span>
+                <span class="tag">Whisper</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/Artemis" target="_blank" rel="noopener noreferrer" class="project-panel-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+            <!-- TransformoDocs -->
+            <div class="ssw-panel" data-index="3">
+              <div class="project-panel-cat"><span class="timeline-badge cyan">ML &amp; AI</span></div>
+              <h3 class="project-panel-title">TransformoDocs</h3>
+              <p class="project-panel-desc">
+                Machine-readable document converter with HyDE-based RAG pipelines; achieved
+                <strong>70% storage reduction</strong> and <strong>36% conversion efficiency improvement</strong>
+                via MLOps and agentic workflow optimization.
+              </p>
+              <div class="project-tags">
+                <span class="tag">CrewAI</span>
+                <span class="tag">MLFlow</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">Streamlit</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener noreferrer" class="project-panel-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+            <!-- MoleculeForge -->
+            <div class="ssw-panel" data-index="4">
+              <div class="project-panel-cat"><span class="timeline-badge cyan">ML &amp; AI</span></div>
+              <h3 class="project-panel-title">MoleculeForge</h3>
+              <p class="project-panel-desc">
+                End-to-end molecular generation pipeline using fine-tuned Gemini models; reduced
+                drug discovery time by <strong>58%</strong> and achieved <strong>76% higher
+                validation success rate</strong> with self-reflective RAG on the ZINC dataset.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Gemini</span>
+                <span class="tag">VAE</span>
+                <span class="tag">GCNs</span>
+                <span class="tag">RDKit</span>
+                <span class="tag">AutoGen</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/MoleculeForge" target="_blank" rel="noopener noreferrer" class="project-panel-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+            <!-- NeuraTradePro -->
+            <div class="ssw-panel" data-index="5">
+              <div class="project-panel-cat"><span class="timeline-badge purple">Full Stack</span></div>
+              <h3 class="project-panel-title">NeuraTradePro</h3>
+              <p class="project-panel-desc">
+                Sophisticated algorithmic trading platform leveraging neural networks and diverse
+                technical indicators for cryptocurrency and financial market decision-making — end-to-end
+                full stack application.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Neural Networks</span>
+                <span class="tag">React</span>
+                <span class="tag">Python</span>
+                <span class="tag">Trading APIs</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/NeuraTradePro" target="_blank" rel="noopener noreferrer" class="project-panel-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+          </div><!-- /.ssw-content -->
+
+          <div class="ssw-nav">
+            <div class="ssw-nav-item active" data-index="0">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Eir</span>
+                <span class="ssw-nav-sub">Federated Learning</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="1">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">LegalVoice.ai</span>
+                <span class="ssw-nav-sub">Multilingual Legal AI</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="2">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Artemis</span>
+                <span class="ssw-nav-sub">GenAI Safety Startup</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="3">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">TransformoDocs</span>
+                <span class="ssw-nav-sub">HyDE RAG Pipelines</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="4">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">MoleculeForge</span>
+                <span class="ssw-nav-sub">Molecular Generation</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="5">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">NeuraTradePro</span>
+                <span class="ssw-nav-sub">Algo Trading Platform</span>
+              </div>
+            </div>
+          </div><!-- /.ssw-nav -->
+
+        </div><!-- /.ssw-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">06</span>
+        </div>
+
+      </div>
     </div>
 
-    <div class="filter-tabs reveal">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="ml">ML &amp; AI</button>
-      <button class="filter-btn" data-filter="fullstack">Full Stack</button>
-    </div>
-
-    <div class="projects-grid">
-
-      <!-- Eir -->
-      <div class="glass-card project-card reveal" data-category="ml">
-        <div class="project-img">
-          <img src="assets/svg_eir.png" alt="Eir — Federated Learning Healthcare Platform">
-          <div class="project-overlay">
-            <a href="https://github.com/Vayuputra2401/Eir" target="_blank" rel="noopener" class="overlay-link">
-              <i class="bx bx-link-external"></i> View Project
-            </a>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Eir</h3>
-            <a href="https://github.com/Vayuputra2401/Eir" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
-              <i class="bx bxl-github"></i>
-            </a>
-          </div>
-          <p class="project-desc">
-            End-to-end Federated Learning healthcare platform with advanced RAG pipelines;
-            LoRA-optimized SLMs achieving <strong>45% faster training</strong> with HIPAA compliance
-            and <strong>3.2× faster</strong> inference on edge devices.
-          </p>
-          <div class="project-tags">
-            <span class="tag">TensorFlow</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">LoRA</span>
-            <span class="tag">CrewAI</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- LegalVoice.ai -->
-      <div class="glass-card project-card reveal" data-category="ml">
-        <div class="project-img">
-          <img src="assets/svg_legalvoice.png" alt="LegalVoice.ai">
-          <div class="project-overlay">
-            <a href="https://github.com/Vayuputra2401/LegalVoice.ai" target="_blank" rel="noopener" class="overlay-link">
-              <i class="bx bx-link-external"></i> View Project
-            </a>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">LegalVoice.ai</h3>
-            <a href="https://github.com/Vayuputra2401/LegalVoice.ai" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
-              <i class="bx bxl-github"></i>
-            </a>
-          </div>
-          <p class="project-desc">
-            Multilingual voice-to-text legal assistant supporting 8 regional languages at
-            <strong>92% accuracy</strong>; QLoRA fine-tuning and AutoGen agentic workflows
-            reduced document processing time by <strong>73%</strong>.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Whisper</span>
-            <span class="tag">AutoGen</span>
-            <span class="tag">QLoRA</span>
-            <span class="tag">React</span>
-            <span class="tag">RAG</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Artemis -->
-      <div class="glass-card project-card reveal" data-category="ml fullstack">
-        <div class="project-img">
-          <img src="assets/svg_artemis.png" alt="Artemis — GenAI Women Safety App">
-          <div class="project-overlay">
-            <a href="https://github.com/Vayuputra2401/Artemis" target="_blank" rel="noopener" class="overlay-link">
-              <i class="bx bx-link-external"></i> View Project
-            </a>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Artemis</h3>
-            <a href="https://github.com/Vayuputra2401/Artemis" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
-              <i class="bx bxl-github"></i>
-            </a>
-          </div>
-          <p class="project-desc">
-            GenAI women safety application with real-time threat detection at <strong>96% accuracy</strong>
-            and Graph RAG navigation generating routes with <strong>85% fewer high-risk areas</strong>.
-            Now an active funded startup.
-          </p>
-          <div class="project-tags">
-            <span class="tag">LangGraph</span>
-            <span class="tag">React Native</span>
-            <span class="tag">WebRTC</span>
-            <span class="tag">Whisper</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- TransformoDocs -->
-      <div class="glass-card project-card reveal" data-category="ml">
-        <div class="project-img">
-          <img src="assets/svg_transformodocs.png" alt="TransformoDocs">
-          <div class="project-overlay">
-            <a href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener" class="overlay-link">
-              <i class="bx bx-link-external"></i> View Project
-            </a>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">TransformoDocs</h3>
-            <a href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
-              <i class="bx bxl-github"></i>
-            </a>
-          </div>
-          <p class="project-desc">
-            Machine-readable document converter with HyDE-based RAG pipelines; achieved
-            <strong>70% storage reduction</strong> and <strong>36% conversion efficiency improvement</strong>
-            via MLOps and agentic workflow optimization.
-          </p>
-          <div class="project-tags">
-            <span class="tag">CrewAI</span>
-            <span class="tag">MLFlow</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">Streamlit</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- MoleculeForge -->
-      <div class="glass-card project-card reveal" data-category="ml">
-        <div class="project-img">
-          <img src="assets/svg_moleculeforge.png" alt="MoleculeForge">
-          <div class="project-overlay">
-            <a href="https://github.com/Vayuputra2401/MoleculeForge" target="_blank" rel="noopener" class="overlay-link">
-              <i class="bx bx-link-external"></i> View Project
-            </a>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">MoleculeForge</h3>
-            <a href="https://github.com/Vayuputra2401/MoleculeForge" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
-              <i class="bx bxl-github"></i>
-            </a>
-          </div>
-          <p class="project-desc">
-            End-to-end molecular generation pipeline using fine-tuned Gemini models; reduced
-            drug discovery time by <strong>58%</strong> and achieved <strong>76% higher
-            validation success rate</strong> with self-reflective RAG on the ZINC dataset.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Gemini</span>
-            <span class="tag">VAE</span>
-            <span class="tag">GCNs</span>
-            <span class="tag">RDKit</span>
-            <span class="tag">AutoGen</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- NeuraTradePro -->
-      <div class="glass-card project-card reveal" data-category="fullstack">
-        <div class="project-img">
-          <img src="assets/svg_neuratrade.png" alt="NeuraTradePro">
-          <div class="project-overlay">
-            <a href="https://github.com/Vayuputra2401/NeuraTradePro" target="_blank" rel="noopener" class="overlay-link">
-              <i class="bx bx-link-external"></i> View Project
-            </a>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">NeuraTradePro</h3>
-            <a href="https://github.com/Vayuputra2401/NeuraTradePro" target="_blank" rel="noopener" class="project-github" aria-label="GitHub">
-              <i class="bx bxl-github"></i>
-            </a>
-          </div>
-          <p class="project-desc">
-            Sophisticated algorithmic trading platform leveraging neural networks and diverse
-            technical indicators for cryptocurrency and financial market decision-making — end-to-end
-            full stack application.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Neural Networks</span>
-            <span class="tag">React</span>
-            <span class="tag">Python</span>
-            <span class="tag">Trading APIs</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="projects-cta reveal">
-      <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener" class="btn btn-ghost">
+    <div class="projects-cta">
+      <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
         <i class="bx bxl-github"></i> View All on GitHub
       </a>
     </div>
@@ -635,340 +747,519 @@
   <!-- ════════════════════════════════════════════════════════
        BUILDING
        ════════════════════════════════════════════════════════ -->
-  <section id="building" class="section">
+  <section id="building" class="section ssw-section">
 
-    <div class="section-header reveal">
-      <span class="section-label">Currently Cooking</span>
-      <h2 class="section-heading">What I'm <span class="accent">Building</span></h2>
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <div class="ssw-heading">
+          <span class="section-label">Currently Cooking</span>
+          <h2 class="section-heading">What I'm <span class="accent">Building</span></h2>
+        </div>
+
+        <div class="ssw-body">
+          <div class="ssw-content">
+
+            <!-- ─── Panel 1: Chef.ai ─── -->
+            <div class="ssw-panel active" data-index="0">
+              <div class="build-panel">
+
+                <div class="build-panel-head">
+                  <div class="build-panel-status-row">
+                    <div class="building-status">
+                      <span class="status-dot"></span>
+                      <span class="status-text">In Progress</span>
+                    </div>
+                  </div>
+                  <h3 class="build-panel-title">Chef<span class="accent">.ai</span></h3>
+                  <p class="build-panel-tagline">AI cooking assistant that turns a photo of your fridge into a full meal plan</p>
+                </div>
+
+                <div class="build-panel-body">
+                  <div class="build-panel-left">
+                    <p class="build-panel-desc">
+                      Scan your ingredients, pick a cooking mode — from <strong>"just survive"</strong> to
+                      <strong>"chef mode"</strong> — and get complete meals with drink pairings, freshness
+                      flags for ingredients expiring today, and step-by-step cooking guidance. A conversational
+                      chef (<strong>ChefGPT</strong>) adapts to your dietary preferences and skill level,
+                      remembers context across sessions, and responds naturally in whatever language you're cooking in.
+                    </p>
+                    <div class="build-panel-stack">
+                      <span class="tag">Next.js 14</span>
+                      <span class="tag">FastAPI</span>
+                      <span class="tag">LangGraph</span>
+                      <span class="tag">YOLO</span>
+                      <span class="tag">Gemini 2.0 Flash</span>
+                      <span class="tag">pgvector</span>
+                      <span class="tag">Redis</span>
+                    </div>
+                  </div>
+
+                  <div class="build-panel-features">
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon"><i class="bx bx-camera"></i></div>
+                      <div>
+                        <h4>Fridge-to-Meal Vision</h4>
+                        <p>YOLO + Gemini Vision identifies ingredients from a single fridge photo</p>
+                      </div>
+                    </div>
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon"><i class="bx bx-bot"></i></div>
+                      <div>
+                        <h4>ChefGPT — 3 Modes</h4>
+                        <p>Q&amp;A, step-by-step cooking, and autonomous agent — Redis cross-session memory</p>
+                      </div>
+                    </div>
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon"><i class="bx bx-calendar"></i></div>
+                      <div>
+                        <h4>Live Meal Planner</h4>
+                        <p>Streams a full week's plan day-by-day via SSE + WebSocket chat</p>
+                      </div>
+                    </div>
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon"><i class="bx bx-git-branch"></i></div>
+                      <div>
+                        <h4>6-Node LangGraph Pipeline</h4>
+                        <p>Parallel pgvector search + live AI generation → LLM ranker → enhancement node</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ─── Panel 2: Artemis ─── -->
+            <div class="ssw-panel" data-index="1">
+              <div class="build-panel build-panel--purple">
+
+                <div class="build-panel-head">
+                  <div class="build-panel-status-row">
+                    <div class="building-status building-status--amber">
+                      <span class="status-dot status-dot--amber"></span>
+                      <span class="status-text">Active Startup</span>
+                    </div>
+                  </div>
+                  <h3 class="build-panel-title">Artemis</h3>
+                  <p class="build-panel-tagline">Voice-first personal safety intelligence platform — your phone as an AI bodyguard</p>
+                </div>
+
+                <div class="build-panel-body">
+                  <div class="build-panel-left">
+                    <p class="build-panel-desc">
+                      Built for urban India — real-time threat awareness via a live incident heatmap,
+                      route scoring against actual crime data, and a full SOS protocol that broadcasts
+                      live GPS to trusted contacts every 10 seconds, shares location via WhatsApp, and
+                      connects to emergency services. <strong>Tribes</strong> lets private groups share
+                      live location in real time. Phase 3 adds a voice AI agent for hands-free SOS and route guidance.
+                    </p>
+                    <div class="build-panel-stack">
+                      <span class="tag">React Native</span>
+                      <span class="tag">TypeScript</span>
+                      <span class="tag">Supabase</span>
+                      <span class="tag">LangGraph</span>
+                      <span class="tag">Gemini</span>
+                      <span class="tag">Google Directions API</span>
+                      <span class="tag">FastAPI</span>
+                    </div>
+                  </div>
+
+                  <div class="build-panel-features">
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon build-feature-icon--purple"><i class="bx bx-map-alt"></i></div>
+                      <div>
+                        <h4>Live Safety Heatmap</h4>
+                        <p>Weighted incident density with age decay (1.0→0.15 / 30 days) and time-of-day factor</p>
+                      </div>
+                    </div>
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon build-feature-icon--purple"><i class="bx bx-directions"></i></div>
+                      <div>
+                        <h4>Smart Route Scoring</h4>
+                        <p>SAFEST / FASTEST / BALANCED via λ-cost function over Google Directions API</p>
+                      </div>
+                    </div>
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon build-feature-icon--purple"><i class="bx bx-alarm-exclamation"></i></div>
+                      <div>
+                        <h4>SOS Engine</h4>
+                        <p>GPS polled every 10s, live broadcast + WhatsApp share + ETA-based trip check-in</p>
+                      </div>
+                    </div>
+                    <div class="build-feature-item">
+                      <div class="build-feature-icon build-feature-icon--purple"><i class="bx bx-group"></i></div>
+                      <div>
+                        <h4>Tribes</h4>
+                        <p>Private safety groups with Supabase Realtime + row-level security isolation</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- /.ssw-content -->
+
+          <div class="ssw-nav">
+            <div class="ssw-nav-item active" data-index="0">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Chef.ai</span>
+                <span class="ssw-nav-sub">In Progress</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="1">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Artemis</span>
+                <span class="ssw-nav-sub">Active Startup</span>
+              </div>
+            </div>
+          </div><!-- /.ssw-nav -->
+
+        </div><!-- /.ssw-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">02</span>
+        </div>
+
+      </div>
     </div>
 
-    <div class="building-carousel reveal">
-
-      <!-- Carousel nav: counter + arrows -->
-      <div class="carousel-nav">
-        <div class="carousel-counter">
-          <span class="carousel-current">01</span>
-          <span class="carousel-sep"> / </span>
-          <span class="carousel-total">02</span>
-        </div>
-        <div class="carousel-arrows">
-          <button class="carousel-btn" id="build-prev" aria-label="Previous project">
-            <i class="bx bx-chevron-left"></i>
-          </button>
-          <button class="carousel-btn" id="build-next" aria-label="Next project">
-            <i class="bx bx-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Viewport + track -->
-      <div class="carousel-viewport">
-        <div class="carousel-track" id="build-track">
-
-          <!-- ─── Slide 1: Chef.ai ─── -->
-          <div class="carousel-slide">
-            <div class="glass-card building-card">
-
-              <div class="building-card-top">
-                <div class="building-status">
-                  <span class="status-dot"></span>
-                  <span class="status-text">In Progress</span>
-                </div>
-                <div class="building-header-info">
-                  <h3 class="building-title">Chef<span class="accent">.ai</span></h3>
-                  <p class="building-tagline">AI cooking assistant that turns a photo of your fridge into a full meal plan</p>
-                </div>
-              </div>
-
-              <div class="building-body">
-                <div class="building-desc">
-                  <p>
-                    Scan your ingredients, pick a cooking mode — from <strong>"just survive"</strong> to
-                    <strong>"chef mode"</strong> — and get complete meals with drink pairings, freshness
-                    flags for ingredients expiring today, and step-by-step cooking guidance. A conversational
-                    chef (<strong>ChefGPT</strong>) adapts to your dietary preferences and skill level,
-                    remembers context across sessions, and responds naturally in whatever language you're
-                    cooking in.
-                  </p>
-                </div>
-
-                <div class="building-features">
-                  <div class="building-feature">
-                    <i class="bx bx-camera"></i>
-                    <div>
-                      <h4>Fridge-to-Meal Vision</h4>
-                      <p>YOLO object detection + Gemini Vision identifies ingredients from a single fridge photo</p>
-                    </div>
-                  </div>
-                  <div class="building-feature">
-                    <i class="bx bx-bot"></i>
-                    <div>
-                      <h4>ChefGPT — 3 Modes</h4>
-                      <p>Q&amp;A, step-by-step cooking, and autonomous agent with tool calling — Redis-backed cross-session memory</p>
-                    </div>
-                  </div>
-                  <div class="building-feature">
-                    <i class="bx bx-calendar"></i>
-                    <div>
-                      <h4>Live Meal Planner</h4>
-                      <p>Streams a full week's plan day-by-day into a live calendar via SSE + WebSocket chat</p>
-                    </div>
-                  </div>
-                  <div class="building-feature">
-                    <i class="bx bx-git-branch"></i>
-                    <div>
-                      <h4>6-Node LangGraph Pipeline</h4>
-                      <p>Parallel pgvector search across 485 recipes alongside live AI generation → single-pass LLM ranker → enhancement node</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="building-stack">
-                <span class="tag">Next.js 14</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">LangGraph</span>
-                <span class="tag">YOLO</span>
-                <span class="tag">Gemini 2.0 Flash</span>
-                <span class="tag">pgvector</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">Redis</span>
-                <span class="tag">Supabase</span>
-                <span class="tag">SSE</span>
-                <span class="tag">WebSocket</span>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- ─── Slide 2: Artemis ─── -->
-          <div class="carousel-slide">
-            <div class="glass-card building-card building-card--purple">
-
-              <div class="building-card-top">
-                <div class="building-status building-status--amber">
-                  <span class="status-dot status-dot--amber"></span>
-                  <span class="status-text">Active Startup</span>
-                </div>
-                <div class="building-header-info">
-                  <h3 class="building-title">Artemis</h3>
-                  <p class="building-tagline">Voice-first personal safety intelligence platform — your phone as an AI bodyguard</p>
-                </div>
-              </div>
-
-              <div class="building-body">
-                <div class="building-desc">
-                  <p>
-                    Built for urban India, Artemis delivers real-time threat awareness through a live
-                    incident heatmap from crowdsourced reports, scores walking and driving routes against
-                    actual crime data, and activates a full SOS protocol the moment something goes wrong —
-                    broadcasting live GPS to trusted contacts every 10 seconds, sharing location via
-                    WhatsApp, and connecting to emergency services. <strong>Tribes</strong> lets private
-                    groups share live location in real time. A conversational AI agent (Phase 3) will let
-                    users report incidents, request route guidance, and trigger SOS entirely by voice —
-                    no screen interaction required.
-                  </p>
-                </div>
-
-                <div class="building-features">
-                  <div class="building-feature building-feature--purple">
-                    <i class="bx bx-map-alt"></i>
-                    <div>
-                      <h4>Live Safety Heatmap</h4>
-                      <p>Client-side grid scoring — weighted incident density, severity normalisation, age decay (1.0→0.15 / 30 days), time-of-day lighting factor</p>
-                    </div>
-                  </div>
-                  <div class="building-feature building-feature--purple">
-                    <i class="bx bx-directions"></i>
-                    <div>
-                      <h4>Smart Route Scoring</h4>
-                      <p>SAFEST / FASTEST / BALANCED profiles via λ-cost function over Google Directions API, scored against live Supabase incident data</p>
-                    </div>
-                  </div>
-                  <div class="building-feature building-feature--purple">
-                    <i class="bx bx-alarm-exclamation"></i>
-                    <div>
-                      <h4>SOS Engine</h4>
-                      <p>GPS polled every 10s, live broadcast + WhatsApp share + push notifications, ETA-based trip check-in with overdue detection</p>
-                    </div>
-                  </div>
-                  <div class="building-feature building-feature--purple">
-                    <i class="bx bx-group"></i>
-                    <div>
-                      <h4>Tribes</h4>
-                      <p>Private safety groups with Supabase Realtime live location subscriptions and row-level security isolation</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="building-stack">
-                <span class="tag">Expo 55</span>
-                <span class="tag">React Native 0.83</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Node.js 18</span>
-                <span class="tag">Express</span>
-                <span class="tag">Supabase</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">JWT + Zod</span>
-                <span class="tag">Google Directions API</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">LangGraph</span>
-                <span class="tag">Gemini</span>
-                <span class="tag">Render</span>
-                <span class="tag">Vercel</span>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Dot indicators -->
-      <div class="carousel-dots">
-        <button class="carousel-dot active" data-index="0" aria-label="Chef.ai"></button>
-        <button class="carousel-dot" data-index="1" aria-label="Artemis"></button>
-      </div>
-
-    </div>
   </section>
 
   <!-- ════════════════════════════════════════════════════════
        SKILLS
        ════════════════════════════════════════════════════════ -->
-  <section id="skills" class="section">
+  <section id="skills" class="section ssw-section">
 
-    <div class="section-header reveal">
-      <span class="section-label">My Arsenal</span>
-      <h2 class="section-heading">Technical <span class="accent">Skills</span></h2>
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <div class="ssw-heading">
+          <span class="section-label">My Arsenal</span>
+          <h2 class="section-heading">Technical <span class="accent">Skills</span><button class="section-anchor" data-href="#skills" aria-label="Copy link to Skills section"><i class="bx bx-link"></i></button></h2>
+        </div>
+
+        <div class="ssw-body">
+        <div class="ssw-content">
+
+          <div class="ssw-panel active" data-index="0">
+            <div class="skills-panel-header">
+              <i class="bx bx-code-alt skills-panel-icon skill-icon cyan"></i>
+              <h3 class="skills-panel-title">Languages</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill cyan">Python</span>
+              <span class="skill-pill cyan">C/C++</span>
+              <span class="skill-pill cyan">JavaScript</span>
+              <span class="skill-pill cyan">TypeScript</span>
+              <span class="skill-pill cyan">Java</span>
+              <span class="skill-pill cyan">SQL</span>
+              <span class="skill-pill cyan">HTML5</span>
+              <span class="skill-pill cyan">CSS3</span>
+            </div>
+          </div>
+
+          <div class="ssw-panel" data-index="1">
+            <div class="skills-panel-header">
+              <i class="bx bx-brain skills-panel-icon skill-icon purple"></i>
+              <h3 class="skills-panel-title">AI &amp; ML</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill purple">PyTorch</span>
+              <span class="skill-pill purple">TensorFlow</span>
+              <span class="skill-pill purple">LLM Optimization</span>
+              <span class="skill-pill purple">LoRA / QLoRA</span>
+              <span class="skill-pill purple">Hugging Face</span>
+              <span class="skill-pill purple">LangChain</span>
+              <span class="skill-pill purple">CrewAI</span>
+              <span class="skill-pill purple">Agentic RAG</span>
+              <span class="skill-pill purple">OpenCV</span>
+              <span class="skill-pill purple">LangSmith</span>
+            </div>
+          </div>
+
+          <div class="ssw-panel" data-index="2">
+            <div class="skills-panel-header">
+              <i class="bx bx-cloud skills-panel-icon skill-icon blue"></i>
+              <h3 class="skills-panel-title">Data Eng &amp; Cloud</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill blue">Apache Spark</span>
+              <span class="skill-pill blue">BigQuery</span>
+              <span class="skill-pill blue">GCP</span>
+              <span class="skill-pill blue">ETL Pipelines</span>
+              <span class="skill-pill blue">MLOps</span>
+              <span class="skill-pill blue">Docker</span>
+              <span class="skill-pill blue">AWS SageMaker</span>
+              <span class="skill-pill blue">MCP Servers</span>
+              <span class="skill-pill blue">Azkaban</span>
+            </div>
+          </div>
+
+          <div class="ssw-panel" data-index="3">
+            <div class="skills-panel-header">
+              <i class="bx bx-wrench skills-panel-icon skill-icon green"></i>
+              <h3 class="skills-panel-title">Dev &amp; Tools</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill green">React</span>
+              <span class="skill-pill green">Node.js</span>
+              <span class="skill-pill green">FastAPI</span>
+              <span class="skill-pill green">Flask</span>
+              <span class="skill-pill green">MongoDB</span>
+              <span class="skill-pill green">WebRTC</span>
+              <span class="skill-pill green">PowerBI</span>
+              <span class="skill-pill green">Git</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ssw-nav">
+          <div class="ssw-nav-item active" data-index="0">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">Languages</span>
+              <span class="ssw-nav-sub">Python · C++ · JS · TS</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="1">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">AI &amp; ML</span>
+              <span class="ssw-nav-sub">PyTorch · LangChain · RAG</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="2">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">Data Eng &amp; Cloud</span>
+              <span class="ssw-nav-sub">Spark · BigQuery · GCP</span>
+            </div>
+          </div>
+          <div class="ssw-nav-item" data-index="3">
+            <div class="ssw-nav-dot"></div>
+            <div class="ssw-nav-texts">
+              <span class="ssw-nav-label">Dev &amp; Tools</span>
+              <span class="ssw-nav-sub">React · FastAPI · Node.js</span>
+            </div>
+          </div>
+        </div>
+
+        </div><!-- /.ssw-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">04</span>
+        </div>
+
+      </div>
     </div>
 
-    <div class="skills-grid">
-
-      <div class="glass-card skill-group reveal">
-        <div class="skill-group-header">
-          <i class="bx bx-code-alt skill-icon cyan"></i>
-          <h3 class="skill-category">Languages</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="skill-pill cyan">Python</span>
-          <span class="skill-pill cyan">C/C++</span>
-          <span class="skill-pill cyan">JavaScript</span>
-          <span class="skill-pill cyan">TypeScript</span>
-          <span class="skill-pill cyan">Java</span>
-          <span class="skill-pill cyan">SQL</span>
-          <span class="skill-pill cyan">HTML5</span>
-          <span class="skill-pill cyan">CSS3</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-group reveal">
-        <div class="skill-group-header">
-          <i class="bx bx-brain skill-icon purple"></i>
-          <h3 class="skill-category">AI &amp; ML</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="skill-pill purple">PyTorch</span>
-          <span class="skill-pill purple">TensorFlow</span>
-          <span class="skill-pill purple">LLM Optimization</span>
-          <span class="skill-pill purple">LoRA / QLoRA</span>
-          <span class="skill-pill purple">Hugging Face</span>
-          <span class="skill-pill purple">LangChain</span>
-          <span class="skill-pill purple">CrewAI</span>
-          <span class="skill-pill purple">Agentic RAG</span>
-          <span class="skill-pill purple">OpenCV</span>
-          <span class="skill-pill purple">LangSmith</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-group reveal">
-        <div class="skill-group-header">
-          <i class="bx bx-cloud skill-icon blue"></i>
-          <h3 class="skill-category">Data Eng &amp; Cloud</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="skill-pill blue">Apache Spark</span>
-          <span class="skill-pill blue">BigQuery</span>
-          <span class="skill-pill blue">GCP</span>
-          <span class="skill-pill blue">ETL Pipelines</span>
-          <span class="skill-pill blue">MLOps</span>
-          <span class="skill-pill blue">Docker</span>
-          <span class="skill-pill blue">AWS SageMaker</span>
-          <span class="skill-pill blue">MCP Servers</span>
-          <span class="skill-pill blue">Azkaban</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-group reveal">
-        <div class="skill-group-header">
-          <i class="bx bx-wrench skill-icon green"></i>
-          <h3 class="skill-category">Dev &amp; Tools</h3>
-        </div>
-        <div class="skill-pills">
-          <span class="skill-pill green">React</span>
-          <span class="skill-pill green">Node.js</span>
-          <span class="skill-pill green">FastAPI</span>
-          <span class="skill-pill green">Flask</span>
-          <span class="skill-pill green">MongoDB</span>
-          <span class="skill-pill green">WebRTC</span>
-          <span class="skill-pill green">PowerBI</span>
-          <span class="skill-pill green">Git</span>
-        </div>
-      </div>
-
-    </div>
   </section>
 
   <!-- ════════════════════════════════════════════════════════
        LEADERSHIP
        ════════════════════════════════════════════════════════ -->
-  <section id="leadership" class="section">
+  <section id="leadership" class="section ssw-section">
 
-    <div class="section-header reveal">
-      <span class="section-label">Beyond the Code</span>
-      <h2 class="section-heading">Leadership &amp; <span class="accent">Impact</span></h2>
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <div class="ssw-heading">
+          <span class="section-label">Beyond the Code</span>
+          <h2 class="section-heading">Leadership &amp; <span class="accent">Impact</span></h2>
+        </div>
+
+        <div class="ssw-body">
+          <div class="ssw-content">
+
+            <div class="ssw-panel active" data-index="0">
+              <div class="leadership-panel-icon"><i class="bx bx-trophy"></i></div>
+              <h3 class="leadership-panel-title">Team Lead</h3>
+              <p class="leadership-panel-org">Smart India Hackathon &middot; 2023, 2024, 2025</p>
+              <p class="leadership-panel-desc">
+                Led multi-disciplinary teams for 3 consecutive years developing AI-driven solutions
+                for national challenges — overseeing technical architecture, rapid prototyping, and final deployment.
+              </p>
+            </div>
+
+            <div class="ssw-panel" data-index="1">
+              <div class="leadership-panel-icon"><i class="bx bx-rocket"></i></div>
+              <h3 class="leadership-panel-title">Founder &amp; CEO</h3>
+              <p class="leadership-panel-org">Artemis Pvt Ltd &middot; Startup Operations</p>
+              <p class="leadership-panel-desc">
+                Directing a 12-member team to build GenAI safety solutions; managing the full product
+                lifecycle and investor relations while scaling the MVP into a production-ready business model.
+              </p>
+            </div>
+
+            <div class="ssw-panel" data-index="2">
+              <div class="leadership-panel-icon"><i class="bx bx-group"></i></div>
+              <h3 class="leadership-panel-title">Technical Head</h3>
+              <p class="leadership-panel-org">E-CELL &middot; Campus Entrepreneurship Cell</p>
+              <p class="leadership-panel-desc">
+                Leading a 20+ member tech team to automate summit registrations and optimize web
+                infrastructure; improved digital engagement and turnout for national-level flagship events.
+              </p>
+            </div>
+
+          </div><!-- /.ssw-content -->
+
+          <div class="ssw-nav">
+            <div class="ssw-nav-item active" data-index="0">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Team Lead</span>
+                <span class="ssw-nav-sub">Smart India Hackathon</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="1">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Founder &amp; CEO</span>
+                <span class="ssw-nav-sub">Artemis Pvt Ltd</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="2">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">Technical Head</span>
+                <span class="ssw-nav-sub">E-CELL</span>
+              </div>
+            </div>
+          </div><!-- /.ssw-nav -->
+
+        </div><!-- /.ssw-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">03</span>
+        </div>
+
+      </div>
     </div>
 
-    <div class="leadership-grid">
+  </section>
 
-      <div class="glass-card leadership-card reveal">
-        <div class="leadership-icon">
-          <i class="bx bx-trophy"></i>
+  <!-- ════════════════════════════════════════════════════════
+       ACHIEVEMENTS
+       ════════════════════════════════════════════════════════ -->
+  <section id="achievements" class="section ssw-section">
+
+    <div class="ssw-wrapper">
+      <div class="ssw-frame">
+        <div class="ssw-progress"><div class="ssw-progress-bar"></div></div>
+
+        <div class="ssw-heading">
+          <span class="section-label">Competitive Excellence</span>
+          <h2 class="section-heading">Hackathon <span class="accent">Achievements</span><button class="section-anchor" data-href="#achievements" aria-label="Copy link to Achievements section"><i class="bx bx-link"></i></button></h2>
         </div>
-        <h3 class="leadership-title">Team Lead</h3>
-        <p class="leadership-org">Smart India Hackathon &middot; 2023, 2024, 2025</p>
-        <p class="leadership-desc">
-          Led multi-disciplinary teams for 3 consecutive years developing AI-driven solutions
-          for national challenges — overseeing technical architecture, rapid prototyping, and final deployment.
-        </p>
-      </div>
 
-      <div class="glass-card leadership-card reveal">
-        <div class="leadership-icon">
-          <i class="bx bx-rocket"></i>
+        <div class="ssw-body">
+          <div class="ssw-content">
+
+            <div class="ssw-panel active" data-index="0">
+              <div class="achievement-accent-line achievement-accent-line--amber"></div>
+              <div class="achievement-card-top">
+                <div class="achievement-icon achievement-icon--amber"><i class="bx bx-medal"></i></div>
+                <div class="achievement-rank">
+                  <span class="achievement-rank-num">Top 100</span>
+                  <span class="achievement-rank-of">of 75,000 Teams</span>
+                </div>
+              </div>
+              <h3 class="achievement-title">AP Clerk — Financial Multi-Agent RL System</h3>
+              <p class="achievement-org"><i class="bx bxl-meta"></i> Meta PyTorch OpenEnv &times; Scaler Hackathon</p>
+              <p class="achievement-desc">
+                Built <strong>AP Clerk</strong> — an LLM-powered AP Clerk agent handling enterprise Accounts Payable workflows via GRPO (Group Relative Policy Optimization). Trained Qwen2.5 using a live FastAPI reward server across 24 synthetic financial tasks including duplicate invoice detection, policy violation escalation, and PO/GRN reasoning.
+              </p>
+              <div class="achievement-stats">
+                <div class="achievement-stat"><span class="achievement-stat-val">94.9%</span><span class="achievement-stat-label">Format Accuracy</span></div>
+                <div class="achievement-stat"><span class="achievement-stat-val">0.72</span><span class="achievement-stat-label">Mean Reward</span></div>
+                <div class="achievement-stat"><span class="achievement-stat-val">24</span><span class="achievement-stat-label">Financial Tasks</span></div>
+              </div>
+              <div class="achievement-tags">
+                <span class="tag">GRPO</span>
+                <span class="tag">Qwen2.5</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Multi-Agent RL</span>
+                <span class="tag">TRL</span>
+                <span class="tag">Hugging Face</span>
+              </div>
+              <a href="https://github.com/Vayuputra2401/AP-Clerk-Financial-Agent" target="_blank" rel="noopener noreferrer" class="achievement-link">
+                <i class="bx bxl-github"></i> View on GitHub
+              </a>
+            </div>
+
+            <div class="ssw-panel" data-index="1">
+              <div class="achievement-accent-line achievement-accent-line--purple"></div>
+              <div class="achievement-card-top">
+                <div class="achievement-icon achievement-icon--purple"><i class="bx bx-shield-quarter"></i></div>
+                <div class="achievement-rank">
+                  <span class="achievement-rank-num">National Finalist</span>
+                  <span class="achievement-rank-of">Smart India Hackathon 2024</span>
+                </div>
+              </div>
+              <h3 class="achievement-title">TransformoDocs — Agentic Document Intelligence</h3>
+              <p class="achievement-org"><i class="bx bx-flag"></i> SIH 2024 &middot; National Level</p>
+              <p class="achievement-desc">
+                Built <strong>TransformoDocs</strong> — a machine-readable document converter with HyDE-based RAG pipelines and agentic MLOps workflows. Competed against thousands of teams across India and reached the national finals, presenting to an expert judging panel.
+              </p>
+              <div class="achievement-stats">
+                <div class="achievement-stat"><span class="achievement-stat-val">70%</span><span class="achievement-stat-label">Storage Reduction</span></div>
+                <div class="achievement-stat"><span class="achievement-stat-val">36%</span><span class="achievement-stat-label">Efficiency Gain</span></div>
+                <div class="achievement-stat"><span class="achievement-stat-val">National</span><span class="achievement-stat-label">Finals</span></div>
+              </div>
+              <div class="achievement-tags">
+                <span class="tag">CrewAI</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">HyDE RAG</span>
+                <span class="tag">MLFlow</span>
+                <span class="tag">Streamlit</span>
+              </div>
+            </div>
+
+          </div><!-- /.ssw-content -->
+
+          <div class="ssw-nav">
+            <div class="ssw-nav-item active" data-index="0">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">AP Clerk Agent</span>
+                <span class="ssw-nav-sub">Meta × Scaler Top 100</span>
+              </div>
+            </div>
+            <div class="ssw-nav-item" data-index="1">
+              <div class="ssw-nav-dot"></div>
+              <div class="ssw-nav-texts">
+                <span class="ssw-nav-label">TransformoDocs</span>
+                <span class="ssw-nav-sub">SIH 2024 National Finalist</span>
+              </div>
+            </div>
+          </div><!-- /.ssw-nav -->
+
+        </div><!-- /.ssw-body -->
+
+        <div class="ssw-counter">
+          <span class="ssw-counter-current">01</span>
+          <span class="ssw-counter-sep"> / </span>
+          <span class="ssw-counter-total">02</span>
         </div>
-        <h3 class="leadership-title">Founder &amp; CEO</h3>
-        <p class="leadership-org">Artemis Pvt Ltd &middot; Startup Operations</p>
-        <p class="leadership-desc">
-          Directing a 12-member team to build GenAI safety solutions; managing the full product
-          lifecycle and investor relations while scaling the MVP into a production-ready business model.
-        </p>
-      </div>
 
-      <div class="glass-card leadership-card reveal">
-        <div class="leadership-icon">
-          <i class="bx bx-group"></i>
-        </div>
-        <h3 class="leadership-title">Technical Head</h3>
-        <p class="leadership-org">E-CELL &middot; Campus Entrepreneurship Cell</p>
-        <p class="leadership-desc">
-          Leading a 20+ member tech team to automate summit registrations and optimize web
-          infrastructure; improved digital engagement and turnout for national-level flagship events.
-        </p>
       </div>
-
     </div>
+
   </section>
 
   <!-- ════════════════════════════════════════════════════════
@@ -983,21 +1274,21 @@
         Drop me a message — I'd love to hear from you.
       </p>
 
-      <button class="btn btn-primary contact-email" data-modal="contact">
+      <button class="btn btn-primary contact-email" data-modal="contact" aria-haspopup="dialog">
         <i class="bx bx-envelope"></i> Send Me a Message
       </button>
 
       <div class="contact-social">
-        <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <i class="bx bxl-linkedin"></i>
         </a>
-        <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener" aria-label="GitHub">
+        <a href="https://github.com/Vayuputra2401" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <i class="bx bxl-github"></i>
         </a>
-        <a href="https://www.kaggle.com/pathikreet" target="_blank" rel="noopener" aria-label="Kaggle">
+        <a href="https://www.kaggle.com/pathikreet" target="_blank" rel="noopener noreferrer" aria-label="Kaggle">
           <i class="fa-brands fa-kaggle"></i>
         </a>
-        <a href="https://www.instagram.com/pathikreet_24/" target="_blank" rel="noopener" aria-label="Instagram">
+        <a href="https://www.instagram.com/pathikreet_24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i class="bx bxl-instagram"></i>
         </a>
       </div>

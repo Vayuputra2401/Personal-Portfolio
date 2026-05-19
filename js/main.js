@@ -4,13 +4,18 @@
 
 'use strict';
 
-// ── 1. Navbar: scroll effect ────────────────────────────────
+// ── 1. Navbar: scroll effect + scroll progress ──────────────
 const navbar = document.getElementById('navbar');
+const scrollProgressBar = document.getElementById('scroll-progress');
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 20);
   updateActiveNav();
-});
+  // Update page scroll progress
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+  scrollProgressBar.style.width = pct + '%';
+}, { passive: true });
 
 // ── 2. Active nav link (IntersectionObserver) ───────────────
 const sections  = Array.from(document.querySelectorAll('section[id]'));
@@ -84,6 +89,35 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// ── 5a. Stat counter animation ───────────────────────────────
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const startTime = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.8 });
+
+document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+  counterObserver.observe(el);
+});
+
 // ── 5. Scroll reveal (IntersectionObserver) ─────────────────
 const revealObserver = new IntersectionObserver(
   entries => {
@@ -128,36 +162,106 @@ filterBtns.forEach(btn => {
   });
 });
 
-// ── 7. Building carousel ────────────────────────────────────
-const buildTrack    = document.getElementById('build-track');
-const buildDots     = document.querySelectorAll('.carousel-dot[data-index]');
-const buildCurrent  = document.querySelector('.carousel-current');
-const buildTotal    = buildTrack ? buildTrack.children.length : 0;
-let   buildIdx      = 0;
+// ── 7. Sticky scroll sections ───────────────────────────────
 
-function goToSlide(n) {
-  if (!buildTrack || !buildTotal) return;
-  buildIdx = ((n % buildTotal) + buildTotal) % buildTotal;
-  buildTrack.style.transform = `translateX(-${buildIdx * 100}%)`;
-  buildDots.forEach(d => d.classList.toggle('active', Number(d.dataset.index) === buildIdx));
-  if (buildCurrent) buildCurrent.textContent = String(buildIdx + 1).padStart(2, '0');
+// Generic factory used by Experience, Research, and Skills
+function initStickySection(wrapper, panelScrollH) {
+  const panels   = wrapper.querySelectorAll('.exp-panel, .ssw-panel');
+  const navItems = wrapper.querySelectorAll('.exp-nav-item, .ssw-nav-item');
+  const counter  = wrapper.querySelector('.ssw-counter-current');
+  const bar      = wrapper.querySelector('.ssw-progress-bar');
+  if (!panels.length) return;
+
+  const total = panels.length;
+  let   prev  = -1;
+
+  function setActive(idx) {
+    if (idx === prev) return;
+
+    if (prev >= 0 && panels[prev]) {
+      const old = panels[prev];
+      old.classList.remove('active');
+      old.classList.add('leaving');
+      setTimeout(() => old.classList.remove('leaving'), 520);
+    }
+
+    // Remove any stale .leaving before making active (handles fast reverse-scroll)
+    panels[idx].classList.remove('leaving');
+    panels[idx].classList.add('active');
+    navItems.forEach((n, i) => n.classList.toggle('active', i === idx));
+
+    if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
+    if (bar)     bar.style.width = `${((idx + 1) / total) * 100}%`;
+
+    prev = idx;
+  }
+
+  function onScroll() {
+    const top = wrapper.getBoundingClientRect().top;
+    if (top > 0) { setActive(0); return; }
+    const idx = Math.min(total - 1, Math.floor(-top / panelScrollH));
+    setActive(idx);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Click nav to jump
+  navItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      const wrapperTop = wrapper.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: wrapperTop + i * panelScrollH, behavior: 'smooth' });
+    });
+  });
 }
 
-document.getElementById('build-prev')?.addEventListener('click', () => goToSlide(buildIdx - 1));
-document.getElementById('build-next')?.addEventListener('click', () => goToSlide(buildIdx + 1));
-buildDots.forEach(dot => dot.addEventListener('click', () => goToSlide(Number(dot.dataset.index))));
+// Experience: 1 full viewport per panel  (wrapper = 4 × 100vh + 100vh = 500vh)
+const expWrapper = document.querySelector('.exp-sticky-wrapper');
+if (expWrapper) initStickySection(expWrapper, window.innerHeight);
 
-// Touch / pointer swipe
-(function () {
-  const vp = document.querySelector('.carousel-viewport');
-  if (!vp) return;
-  let sx = 0;
-  vp.addEventListener('pointerdown', e => { sx = e.clientX; });
-  vp.addEventListener('pointerup',   e => {
-    const d = e.clientX - sx;
-    if (Math.abs(d) > 40) goToSlide(d > 0 ? buildIdx - 1 : buildIdx + 1);
+// Research: 70vh per panel  (wrapper = 8 × 70vh + 100vh = 660vh)
+const rschWrapper = document.querySelector('#research .ssw-wrapper');
+if (rschWrapper) initStickySection(rschWrapper, window.innerHeight * 0.7);
+
+// Skills: 80vh per panel  (wrapper = 4 × 80vh + 100vh = 420vh)
+const sklWrapper = document.querySelector('#skills .ssw-wrapper');
+if (sklWrapper) initStickySection(sklWrapper, window.innerHeight * 0.8);
+
+// Projects: 80vh per panel  (wrapper = 6 × 80vh + 100vh = 580vh)
+const projWrapper = document.querySelector('#projects .ssw-wrapper');
+if (projWrapper) initStickySection(projWrapper, window.innerHeight * 0.8);
+
+// Leadership: 80vh per panel  (wrapper = 3 × 80vh + 100vh = 340vh)
+const leadWrapper = document.querySelector('#leadership .ssw-wrapper');
+if (leadWrapper) initStickySection(leadWrapper, window.innerHeight * 0.8);
+
+// Building: 80vh per panel  (wrapper = 2 × 80vh + 100vh = 260vh)
+const buildWrapper = document.querySelector('#building .ssw-wrapper');
+if (buildWrapper) initStickySection(buildWrapper, window.innerHeight * 0.8);
+
+// Patent: 1 panel, 100vh per panel  (wrapper = 1 × 100vh + 100vh = 200vh)
+const patentWrapper = document.querySelector('#patent .ssw-wrapper');
+if (patentWrapper) initStickySection(patentWrapper, window.innerHeight);
+
+// Achievements: 2 panels, 80vh per panel  (wrapper = 2 × 80vh + 100vh = 260vh)
+const achievWrapper = document.querySelector('#achievements .ssw-wrapper');
+if (achievWrapper) initStickySection(achievWrapper, window.innerHeight * 0.8);
+
+// ── 8a. Section anchor copy-to-clipboard ────────────────────
+document.querySelectorAll('.section-anchor').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const hash = btn.dataset.href;
+    const url = `${location.origin}${location.pathname}${hash}`;
+    navigator.clipboard?.writeText(url).then(() => {
+      btn.innerHTML = '<i class="bx bx-check"></i>';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = '<i class="bx bx-link"></i>';
+        btn.classList.remove('copied');
+      }, 1600);
+    });
   });
-}());
+});
 
 // ── 8. Smooth scroll for in-page anchors ─────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -180,14 +284,35 @@ const formBody      = document.getElementById('form-body');
 const formSuccess   = document.getElementById('form-success');
 const contactForm   = document.getElementById('contact-form');
 
+const FOCUSABLE = 'button, input, textarea, select, a[href], [tabindex]:not([tabindex="-1"])';
+let _trapFn = null;
+let _lastFocus = null;
+
 function openModal() {
+  _lastFocus = document.activeElement;
   modalOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  const els = Array.from(modalOverlay.querySelectorAll(FOCUSABLE));
+  const first = els[0];
+  const last  = els[els.length - 1];
+  setTimeout(() => first?.focus(), 60);
+
+  _trapFn = e => {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    }
+  };
+  modalOverlay.addEventListener('keydown', _trapFn);
 }
 
 function closeModal() {
   modalOverlay.classList.remove('open');
   document.body.style.overflow = '';
+  if (_trapFn) { modalOverlay.removeEventListener('keydown', _trapFn); _trapFn = null; }
+  _lastFocus?.focus();
 }
 
 modalOpenBtns.forEach(btn => btn.addEventListener('click', e => {
