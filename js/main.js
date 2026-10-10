@@ -1,5 +1,5 @@
 /* Page behaviour: nav, scroll progress, reveals, and the small interactive
-   pieces (incident replay, recipe graph, route cost, work accordion,
+   pieces (incident replay, recipe graph, paper chart, work accordion,
    project filter, command menu, contact form). No framework. */
 (function () {
   "use strict";
@@ -230,40 +230,6 @@
     };
     buttons.forEach((b) => b.addEventListener("click", () => select(+b.dataset.node)));
     select(0);
-  }
-
-  // ── Artemis: live-trip deviation alerts (75 m / 300 m) ─────────────────
-  const route = $("[data-route]");
-  if (route) {
-    const slider = $("[data-route-dev]", route);
-    const out = $("[data-route-out]", route);
-    const line = $(".route-line", route);
-    const you = $("[data-you]", route);
-    const tether = $("[data-tether]", route);
-    const near = $('[data-band="75"]', route);
-    const far = $('[data-band="300"]', route);
-    const L = line.getTotalLength();
-    const at = line.getPointAtLength(L * 0.55);
-    const ahead = line.getPointAtLength(L * 0.55 + 1);
-    // unit normal to the route at the marker
-    let nx = -(ahead.y - at.y), ny = ahead.x - at.x;
-    const n = Math.hypot(nx, ny) || 1;
-    nx /= n; ny /= n;
-    const PX_PER_M = 0.12; // 400 m ≈ 48 px on this map
-    near.style.strokeWidth = String(75 * PX_PER_M * 2);
-    far.style.strokeWidth = String(300 * PX_PER_M * 2);
-    const update = () => {
-      const m = +slider.value;
-      const x = at.x + nx * m * PX_PER_M, y = at.y + ny * m * PX_PER_M;
-      you.setAttribute("cx", x); you.setAttribute("cy", y);
-      tether.setAttribute("x1", at.x); tether.setAttribute("y1", at.y);
-      tether.setAttribute("x2", x); tether.setAttribute("y2", y);
-      const state = m >= 300 ? "alert" : m >= 75 ? "warn" : "ok";
-      route.dataset.state = state;
-      out.textContent = `${m} m off route → ${state === "alert" ? "deviation alert to trusted contacts" : state === "warn" ? "check-in prompt" : "all quiet"}`;
-    };
-    slider.addEventListener("input", update);
-    update();
   }
 
   // ── Aligned but Inert: causal control vs Dice ──────────────────────────

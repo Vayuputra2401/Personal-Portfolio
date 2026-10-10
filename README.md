@@ -10,7 +10,7 @@ Static site: `index.html`, `css/site.css`, `js/*.js`. No build step; GitHub Page
 |---|---|
 | `js/fluid.js` | Hero background. A stable-fluids solver (Stam 1999) on raw WebGL2, drawn over ThreeUI's "Fluid Field" shader (MIT, Meng To). Wind gusts in from the left on its own; the cursor or a tap stirs it. Pauses off-screen; reduced motion draws one settled frame; no WebGL2 means a plain ink background. |
 | `js/graph3d.js` | A few-KB 3D renderer on Canvas 2D (no three.js). Draws the Anatomy is Free skeleton (bones, BRASP's fixed left/right shifts, body regions) and a caffeine molecule for MoleculeForge. Drag or arrow keys to orbit. |
-| `js/main.js` | GSAP + ScrollTrigger + SplitText motion (masked line reveals, count-ups, scroll-linked 3D orbit), with an IntersectionObserver fallback. Also the Akasha incident replay, the Chef.ai recipe graph, the Artemis route-cost slider, the work accordion, project filter, ⌘K / `/` command menu and the EmailJS contact form. |
+| `js/main.js` | GSAP + ScrollTrigger + SplitText motion (masked line reveals, count-ups, scroll-linked 3D orbit), with an IntersectionObserver fallback. Also the Akasha incident replay, the Chef.ai recipe graph, the "Aligned but Inert" chart, the work accordion, project filter, ⌘K / `/` command menu and the EmailJS contact form. |
 | `js/hero-model.js` | Hero 3D model: a point cloud that morphs (GSAP) between the Anatomy is Free skeleton, caffeine (MoleculeForge), an edge camera (Akasha) and a steaming bowl (Chef.ai). Leans toward the cursor, parts around it, drag to spin, click for the next shape. |
 
 ## Design rules

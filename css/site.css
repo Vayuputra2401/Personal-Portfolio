@@ -326,27 +326,6 @@ kbd { font: 500 0.7rem/1 var(--font-mono); opacity: 0.8; }
 .dag button[aria-pressed="true"] .mono { color: var(--ember-soft); }
 .dag-detail { margin: 0; min-height: 3.2em; font-size: 0.95rem; color: #d9d0c3; }
 
-/* Artemis route */
-.route { border: 1px solid var(--ink-line); border-radius: var(--radius); padding: 1.25rem; background: var(--ink-2); }
-.route-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
-.route-head .kicker { margin: 0; }
-.route-head output { font-size: 0.82rem; color: var(--on-ink); }
-.route-map { width: 100%; height: auto; display: block; margin: 0.5rem 0 1rem; }
-.route-band { fill: none; stroke-linecap: round; transition: stroke-opacity .25s; }
-.route-band--far { stroke: var(--ember); stroke-opacity: 0.05; }
-.route-band--near { stroke: var(--on-ink); stroke-opacity: 0.06; }
-.route[data-state="warn"] .route-band--near { stroke-opacity: 0.14; }
-.route[data-state="alert"] .route-band--far { stroke-opacity: 0.14; }
-.route-line { fill: none; stroke: var(--on-ink); stroke-width: 3; stroke-linecap: round; }
-.route-tether { stroke: var(--on-ink-muted); stroke-width: 1; stroke-dasharray: 2 3; }
-.route-you { fill: var(--on-ink); stroke: var(--ink-2); stroke-width: 3; transition: fill .2s; }
-.route[data-state="warn"] .route-you { fill: var(--ochre); }
-.route[data-state="alert"] .route-you { fill: var(--ember); }
-.route-end { fill: var(--on-ink); }
-.route-label { font: 500 11px var(--font-mono); fill: var(--on-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; }
-.route input[type="range"] { width: 100%; accent-color: var(--ember); }
-.route-scale { display: flex; justify-content: space-between; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-ink-muted); }
-
 /* ── work ─────────────────────────────────────────────────────────────── */
 .jobs { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
 .job { border-top: 1px solid var(--line); }

@@ -231,24 +231,6 @@
             and live-trip deviation alerts. I lead a 12-person team taking it from MVP to a business.
           </p>
 
-          <div class="route" data-route>
-            <div class="route-head">
-              <label for="deviation" class="kicker kicker--light">Live trip · drag off the route</label>
-              <output class="mono" data-route-out for="deviation"></output>
-            </div>
-            <svg class="route-map" viewBox="0 0 400 210" role="img" aria-label="A planned route with a marker showing how far you are from it, and the 75 m and 300 m alert bands">
-              <path class="route-band route-band--far" data-band="300" d="M30 160 C 120 150, 230 110, 370 50"/>
-              <path class="route-band route-band--near" data-band="75" d="M30 160 C 120 150, 230 110, 370 50"/>
-              <path class="route-line" d="M30 160 C 120 150, 230 110, 370 50"/>
-              <circle class="route-end" cx="30" cy="160" r="5"/><circle class="route-end" cx="370" cy="50" r="5"/>
-              <line class="route-tether" data-tether x1="0" y1="0" x2="0" y2="0"/>
-              <circle class="route-you" data-you r="7" cx="0" cy="0"/>
-              <text x="30" y="182" class="route-label">Start</text><text x="352" y="36" class="route-label">Home</text>
-            </svg>
-            <input id="deviation" type="range" min="0" max="400" step="5" value="40" data-route-dev>
-            <div class="route-scale mono" aria-hidden="true"><span>On route</span><span>75 m</span><span>300 m</span></div>
-          </div>
-
           <p class="stack mono">React Native (Expo) · TypeScript · ONNX Runtime · Silero VAD · YAMNet · ECAPA-TDNN · FastAPI · LangGraph · Supabase · Twilio · Gemini 2.5 Flash</p>
           <p class="stack mono">TypeScript and Python scoring engines pinned to 36 shared parity vectors across 56 tests, so edge and cloud never drift.</p>
         </div>
