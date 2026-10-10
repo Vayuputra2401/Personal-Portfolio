@@ -1,380 +1,460 @@
-/* ============================================================
-   MAIN.JS — Portfolio JavaScript
-   ============================================================ */
+/* Page behaviour: nav, scroll progress, reveals, and the small interactive
+   pieces (incident replay, recipe graph, route cost, work accordion,
+   project filter, command menu, contact form). No framework. */
+(function () {
+  "use strict";
 
-'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const EMAIL = "pathikreetofficial@gmail.com";
 
-// ── 1. Navbar: scroll effect + scroll progress ──────────────
-const navbar = document.getElementById('navbar');
-const scrollProgressBar = document.getElementById('scroll-progress');
+  // ── toast ───────────────────────────────────────────────────────────────
+  const toastEl = $(".toast");
+  let toastTimer = 0;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("is-on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 1800);
+  }
 
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-  updateActiveNav();
-  // Update page scroll progress
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-  scrollProgressBar.style.width = pct + '%';
-}, { passive: true });
-
-// ── 2. Active nav link (IntersectionObserver) ───────────────
-const sections  = Array.from(document.querySelectorAll('section[id]'));
-const navLinks  = Array.from(document.querySelectorAll('.nav-link'));
-
-function updateActiveNav() {
-  const scrollMid = window.scrollY + window.innerHeight / 2;
-
-  sections.forEach(section => {
-    const top    = section.offsetTop;
-    const bottom = top + section.offsetHeight;
-
-    if (scrollMid >= top && scrollMid < bottom) {
-      navLinks.forEach(link => {
-        link.classList.toggle(
-          'active',
-          link.getAttribute('href') === `#${section.id}`
-        );
-      });
+  async function copy(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      return false;
     }
-  });
-}
-
-// Run once on load
-updateActiveNav();
-
-// ── 3. Mobile menu ──────────────────────────────────────────
-const menuBtn  = document.getElementById('nav-menu-btn');
-const closeBtn = document.getElementById('nav-close-btn');
-const navMenu  = document.getElementById('nav-links');
-
-function openMenu()  { navMenu.classList.add('open'); }
-function closeMenu() { navMenu.classList.remove('open'); }
-
-if (menuBtn)  menuBtn.addEventListener('click', openMenu);
-if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-
-// Close when a nav link is clicked
-navLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-// Close on outside click
-document.addEventListener('click', e => {
-  if (
-    navMenu.classList.contains('open') &&
-    !navMenu.contains(e.target) &&
-    e.target !== menuBtn
-  ) {
-    closeMenu();
-  }
-});
-
-// ── 4. Typed.js ─────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const typedEl = document.querySelector('.typed-text');
-  if (typedEl && typeof Typed !== 'undefined') {
-    new Typed('.typed-text', {
-      strings: [
-        'ML Engineer.',
-        'Data Engineer.',
-        'Research Engineer.',
-        'Full Stack Developer.',
-      ],
-      typeSpeed:  75,
-      backSpeed:  45,
-      backDelay:  2000,
-      startDelay: 400,
-      loop:       true,
-      showCursor: true,
-      cursorChar: '|',
-    });
-  }
-});
-
-// ── 5a. Stat counter animation ───────────────────────────────
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const suffix = el.dataset.suffix || '';
-  const duration = 1400;
-  const startTime = performance.now();
-
-  function tick(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target) + suffix;
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.8 });
-
-document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-  counterObserver.observe(el);
-});
-
-// ── 5. Scroll reveal (IntersectionObserver) ─────────────────
-const revealObserver = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Don't unobserve — keeps .visible stable on re-scroll
-      }
-    });
-  },
-  { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-);
-
-document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
-  revealObserver.observe(el);
-});
-
-// ── 6. Project filter tabs ──────────────────────────────────
-const filterBtns   = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Update active state
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    projectCards.forEach(card => {
-      const cats = (card.dataset.category || '').split(' ');
-      const show  = filter === 'all' || cats.includes(filter);
-
-      if (show) {
-        card.classList.remove('hidden');
-        card.style.animation = 'fadeInUp 0.4s ease forwards';
-      } else {
-        card.classList.add('hidden');
-        card.style.animation = '';
-      }
-    });
-  });
-});
-
-// ── 7. Sticky scroll sections ───────────────────────────────
-
-// Generic factory used by Experience, Research, and Skills
-function initStickySection(wrapper, panelScrollH) {
-  const panels   = wrapper.querySelectorAll('.exp-panel, .ssw-panel');
-  const navItems = wrapper.querySelectorAll('.exp-nav-item, .ssw-nav-item');
-  const counter  = wrapper.querySelector('.ssw-counter-current');
-  const bar      = wrapper.querySelector('.ssw-progress-bar');
-  if (!panels.length) return;
-
-  const total = panels.length;
-  let   prev  = -1;
-
-  function setActive(idx) {
-    if (idx === prev) return;
-
-    if (prev >= 0 && panels[prev]) {
-      const old = panels[prev];
-      old.classList.remove('active');
-      old.classList.add('leaving');
-      setTimeout(() => old.classList.remove('leaving'), 520);
-    }
-
-    // Remove any stale .leaving before making active (handles fast reverse-scroll)
-    panels[idx].classList.remove('leaving');
-    panels[idx].classList.add('active');
-    navItems.forEach((n, i) => n.classList.toggle('active', i === idx));
-
-    if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
-    if (bar)     bar.style.width = `${((idx + 1) / total) * 100}%`;
-
-    prev = idx;
   }
 
+  // ── nav + progress ─────────────────────────────────────────────────────
+  const nav = $("#nav");
+  const hero = $("#home");
+  const bar = $(".progress span");
   function onScroll() {
-    const top = wrapper.getBoundingClientRect().top;
-    if (top > 0) { setActive(0); return; }
-    const idx = Math.min(total - 1, Math.floor(-top / panelScrollH));
-    setActive(idx);
+    const y = window.scrollY;
+    nav.classList.toggle("is-solid", y > hero.offsetHeight - 80);
+    if (typeof ScrollTrigger === "undefined") {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    }
   }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Click nav to jump
-  navItems.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      const wrapperTop = wrapper.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: wrapperTop + i * panelScrollH, behavior: 'smooth' });
+  // Scroll-spy: highlight the section most in view.
+  const links = $$(".nav-links a");
+  const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => a.classList.remove("is-active"));
+      byId.get(e.target.id)?.classList.add("is-active");
     });
-  });
-}
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  byId.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
 
-// Experience: 1 full viewport per panel  (wrapper = 4 × 100vh + 100vh = 500vh)
-const expWrapper = document.querySelector('.exp-sticky-wrapper');
-if (expWrapper) initStickySection(expWrapper, window.innerHeight);
+  // ── motion: GSAP (ScrollTrigger + SplitText), IntersectionObserver fallback
+  const hasGsap = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+  const release = () => document.documentElement.classList.remove("intro");
 
-// Research: 70vh per panel  (wrapper = 8 × 70vh + 100vh = 660vh)
-const rschWrapper = document.querySelector('#research .ssw-wrapper');
-if (rschWrapper) initStickySection(rschWrapper, window.innerHeight * 0.7);
+  if (!reduceMotion && hasGsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    const canSplit = typeof SplitText !== "undefined";
+    if (canSplit) gsap.registerPlugin(SplitText);
+    const ease = "power3.out";
 
-// Skills: 80vh per panel  (wrapper = 4 × 80vh + 100vh = 420vh)
-const sklWrapper = document.querySelector('#skills .ssw-wrapper');
-if (sklWrapper) initStickySection(sklWrapper, window.innerHeight * 0.8);
-
-// Projects: 80vh per panel  (wrapper = 6 × 80vh + 100vh = 580vh)
-const projWrapper = document.querySelector('#projects .ssw-wrapper');
-if (projWrapper) initStickySection(projWrapper, window.innerHeight * 0.8);
-
-// Leadership: 80vh per panel  (wrapper = 3 × 80vh + 100vh = 340vh)
-const leadWrapper = document.querySelector('#leadership .ssw-wrapper');
-if (leadWrapper) initStickySection(leadWrapper, window.innerHeight * 0.8);
-
-// Building: 80vh per panel  (wrapper = 2 × 80vh + 100vh = 260vh)
-const buildWrapper = document.querySelector('#building .ssw-wrapper');
-if (buildWrapper) initStickySection(buildWrapper, window.innerHeight * 0.8);
-
-// Patent: 1 panel, 100vh per panel  (wrapper = 1 × 100vh + 100vh = 200vh)
-const patentWrapper = document.querySelector('#patent .ssw-wrapper');
-if (patentWrapper) initStickySection(patentWrapper, window.innerHeight);
-
-// Achievements: 2 panels, 80vh per panel  (wrapper = 2 × 80vh + 100vh = 260vh)
-const achievWrapper = document.querySelector('#achievements .ssw-wrapper');
-if (achievWrapper) initStickySection(achievWrapper, window.innerHeight * 0.8);
-
-// ── 8a. Section anchor copy-to-clipboard ────────────────────
-document.querySelectorAll('.section-anchor').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const hash = btn.dataset.href;
-    const url = `${location.origin}${location.pathname}${hash}`;
-    navigator.clipboard?.writeText(url).then(() => {
-      btn.innerHTML = '<i class="bx bx-check"></i>';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.innerHTML = '<i class="bx bx-link"></i>';
-        btn.classList.remove('copied');
-      }, 1600);
-    });
-  });
-});
-
-// ── 8. Smooth scroll for in-page anchors ─────────────────────
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', e => {
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      const offset = navbar ? navbar.offsetHeight : 68;
-      const top    = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  });
-});
-
-// ── 8. Contact modal ─────────────────────────────────────────
-const modalOverlay  = document.getElementById('contact-modal');
-const modalOpenBtns = document.querySelectorAll('[data-modal="contact"]');
-const modalCloseBtn = document.getElementById('modal-close');
-const formBody      = document.getElementById('form-body');
-const formSuccess   = document.getElementById('form-success');
-const contactForm   = document.getElementById('contact-form');
-
-const FOCUSABLE = 'button, input, textarea, select, a[href], [tabindex]:not([tabindex="-1"])';
-let _trapFn = null;
-let _lastFocus = null;
-
-function openModal() {
-  _lastFocus = document.activeElement;
-  modalOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  const els = Array.from(modalOverlay.querySelectorAll(FOCUSABLE));
-  const first = els[0];
-  const last  = els[els.length - 1];
-  setTimeout(() => first?.focus(), 60);
-
-  _trapFn = e => {
-    if (e.key !== 'Tab') return;
-    if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
-      e.preventDefault();
-      (e.shiftKey ? last : first).focus();
-    }
-  };
-  modalOverlay.addEventListener('keydown', _trapFn);
-}
-
-function closeModal() {
-  modalOverlay.classList.remove('open');
-  document.body.style.overflow = '';
-  if (_trapFn) { modalOverlay.removeEventListener('keydown', _trapFn); _trapFn = null; }
-  _lastFocus?.focus();
-}
-
-modalOpenBtns.forEach(btn => btn.addEventListener('click', e => {
-  e.preventDefault();
-  openModal();
-}));
-
-if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-
-// Click outside modal box to close
-modalOverlay?.addEventListener('click', e => {
-  if (e.target === modalOverlay) closeModal();
-});
-
-// ESC key closes modal
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modalOverlay?.classList.contains('open')) closeModal();
-});
-
-// ── 9. Contact form — EmailJS ────────────────────────────────
-//
-//  One-time setup (free, 200 emails/month):
-//  1. Sign up at https://emailjs.com
-//  2. Add a Gmail service → copy your SERVICE_ID below
-//  3. Create an email template with these variables:
-//       {{from_name}}  {{from_email}}  {{subject}}  {{message}}
-//     Copy your TEMPLATE_ID below
-//  4. Account → API Keys → copy your PUBLIC_KEY below
-//
-const EMAILJS_PUBLIC_KEY  = '7BZGP-ZYoJd0QYkxL';
-const EMAILJS_SERVICE_ID  = 'service_1q0rd5c';
-const EMAILJS_TEMPLATE_ID = 'template_0qjnf3l';
-
-if (typeof emailjs !== 'undefined') {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
-
-if (contactForm) {
-  contactForm.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    const submitBtn = contactForm.querySelector('.form-submit');
-    const origHTML  = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Sending…';
-    submitBtn.disabled  = true;
-
-    const templateParams = {
-      from_name:  contactForm.querySelector('[name="name"]').value.trim(),
-      from_email: contactForm.querySelector('[name="email"]').value.trim(),
-      subject:    contactForm.querySelector('[name="subject"]').value.trim() || 'Portfolio Contact',
-      message:    contactForm.querySelector('[name="message"]').value.trim(),
+    // Lines rise out of a mask. Re-splits on resize so line breaks stay true.
+    const riseLines = (el, vars) => {
+      if (!canSplit) return gsap.from(el, { autoAlpha: 0, y: 24, duration: 0.9, ease, ...vars });
+      SplitText.create(el, {
+        type: "lines",
+        mask: "lines",
+        autoSplit: true,
+        onSplit: (self) => gsap.from(self.lines, { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.08, ...vars }),
+      });
     };
 
-    try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-      formBody.style.display = 'none';
-      formSuccess.classList.add('show');
-    } catch (err) {
-      console.error('EmailJS error:', err);
-      submitBtn.innerHTML = origHTML;
-      submitBtn.disabled  = false;
-      alert('Something went wrong. Please email me directly at pathikreetofficial@gmail.com');
+    // Hero intro
+    release();
+    const intro = gsap.timeline({ defaults: { ease } });
+    intro.from(".hero .kicker", { autoAlpha: 0, y: 10, duration: 0.6 });
+    if (canSplit) {
+      SplitText.create(".hero-title", {
+        type: "chars,lines",
+        mask: "lines",
+        onSplit: (self) => intro.from(self.chars, { yPercent: 115, duration: 1.1, ease: "power4.out", stagger: 0.025 }, 0.1),
+      });
+    } else {
+      intro.from(".hero-title", { autoAlpha: 0, y: 30, duration: 1 }, 0.1);
+    }
+    intro.from(".hero-model-ui", { autoAlpha: 0, y: 12, duration: 0.8 }, 1.4);
+    intro.from(".hero-lede", { autoAlpha: 0, y: 16, duration: 0.8 }, 0.6)
+      .from(".hero-actions > *", { autoAlpha: 0, y: 12, duration: 0.6, stagger: 0.08 }, 0.8)
+      .from(".hero-hint", { autoAlpha: 0, duration: 1 }, 1.1);
+
+    // The hero copy drifts up and fades as you leave it.
+    gsap.to(".hero-inner", {
+      yPercent: -12, autoAlpha: 0.15, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+    });
+
+    // Facts: count up the leading number.
+    $$(".fact-num").forEach((el) => {
+      const m = el.textContent.match(/^(\D*)(\d+)(.*)$/);
+      if (!m) return;
+      const n = { v: 0 };
+      gsap.to(n, {
+        v: +m[2], duration: 1.4, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 90%", once: true },
+        onUpdate: () => { el.textContent = m[1] + Math.round(n.v) + m[3]; },
+      });
+    });
+
+    // Section titles and the contact headline.
+    $$(".section-title, .contact-title").forEach((el) =>
+      riseLines(el, { scrollTrigger: { trigger: el, start: "top 85%", once: true } }));
+
+    // Kickers, rows and blocks: a short rise, staggered within each batch.
+    ScrollTrigger.batch(".section-head .kicker, .venture-meta, .venture-body > *, .job, .paper, .project, .about-photo, .about-text > p, .skills > div, .contact-sub, .contact-actions, .socials", {
+      start: "top 88%",
+      once: true,
+      onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 28, duration: 0.9, ease, stagger: 0.08 }),
+    });
+
+    // Venture names slide on a slight horizontal parallax while their block scrolls.
+    $$(".venture-name").forEach((el) => {
+      gsap.fromTo(el, { xPercent: -4 }, {
+        xPercent: 4, ease: "none",
+        scrollTrigger: { trigger: el.closest(".venture"), start: "top bottom", end: "bottom top", scrub: true },
+      });
+    });
+
+    // Akasha: the incident replays itself the first time it scrolls into view.
+    const simRun = $("[data-sim-run]");
+    if (simRun) ScrollTrigger.create({ trigger: "[data-sim]", start: "top 70%", once: true, onEnter: () => simRun.click() });
+
+    // 3D figures turn with the scroll on top of their own orbit.
+    $$("canvas[data-scene]").forEach((c) => {
+      ScrollTrigger.create({
+        trigger: c, start: "top bottom", end: "bottom top", scrub: 0.6,
+        onUpdate: (self) => c.setScrollYaw?.((self.progress - 0.5) * Math.PI),
+      });
+    });
+
+    // Web fonts change line heights after these triggers are measured.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
+    // Scroll progress hairline, scrubbed.
+    gsap.to(".progress span", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
+  } else if (!reduceMotion && "IntersectionObserver" in window) {
+    release();
+    const targets = $$(".section-head, .venture, .job, .paper, .project, .about-photo, .about-text, .fact, .contact .wrap > *");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    targets.forEach((el) => { el.classList.add("reveal"); io.observe(el); });
+  } else {
+    release();
+  }
+
+  // ── Akasha: incident replay ────────────────────────────────────────────
+  const sim = $("[data-sim]");
+  if (sim) {
+    const steps = $$(".sim-steps li", sim);
+    const clock = $("[data-sim-clock]", sim);
+    const out = $("[data-sim-event]", sim);
+    const runBtn = $("[data-sim-run]", sim);
+    const SPEED = 4;
+    const END = 17.8;
+    const events = [
+      { at: 0, json: { source: "cam-14", zone: "sector-4", transport: "rtsp", model: "yolo-trt" } },
+      { at: 2.4, json: { type: "FIRE_DETECTED", schema: "v1", zone_id: "sector-4", confidence: 0.94, shift: "B", ts: "02:41:07" } },
+      { at: 3.1, json: { entity: "zone/sector-4", supervisor: "R. Iyer", incidents_14d: 2, query_ms: 80 } },
+      { at: 4.0, json: { agent: "fire_incident_response", trigger: "FIRE_DETECTED", status: "running" } },
+      { at: 9.5, json: { report: "incident-0412.pdf", languages: ["en", "hi"], severity_trend: "rising" } },
+      { at: 17.8, json: { whatsapp: "delivered", pdf: "filed", memory: "written", humans_involved: 0 } },
+    ];
+    let raf = 0;
+
+    function show(t) {
+      clock.textContent = `${t.toFixed(1).padStart(4, "0")} s`;
+      steps.forEach((li) => li.classList.toggle("is-on", t >= parseFloat(li.dataset.at)));
+      const current = events.filter((e) => t >= e.at).pop();
+      if (current) out.textContent = JSON.stringify(current.json, null, 2);
+    }
+
+    runBtn.addEventListener("click", () => {
+      cancelAnimationFrame(raf);
+      runBtn.textContent = "Replaying…";
+      runBtn.disabled = true;
+      if (reduceMotion) {
+        show(END);
+        runBtn.textContent = "Run it again";
+        runBtn.disabled = false;
+        return;
+      }
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(((now - start) / 1000) * SPEED, END);
+        show(t);
+        if (t < END) raf = requestAnimationFrame(tick);
+        else { runBtn.textContent = "Run it again"; runBtn.disabled = false; }
+      };
+      raf = requestAnimationFrame(tick);
+    });
+  }
+
+  // ── Chef.ai: recipe graph ──────────────────────────────────────────────
+  const dag = $("[data-dag]");
+  if (dag) {
+    const detail = $("[data-dag-detail]", dag);
+    const NODES = [
+      "Ingredient analyst — takes what YOLO-Seg found in the photo and Gemini enriches it: freshness, family, what's about to expire.",
+      "Cuisine matcher — decides which cuisines these ingredients actually suit, so a fridge of paneer and peas doesn't get pasta.",
+      "Retrieval — 3072-dim embeddings searched with an HNSW index over a 7,300-recipe corpus in pgvector. Runs in parallel with 3b.",
+      "Generation — Gemini writes fresh recipes for gaps the corpus can't cover. Runs in parallel with 3a.",
+      "Ranker — an LLM ranks the merged candidates against your mode, skill and dietary rules.",
+      "Validator — rejects anything that needs ingredients you don't have or breaks a constraint.",
+      "Enhancer — adds drink pairings, freshness flags and the step-by-step guide ChefGPT cooks from.",
+    ];
+    const buttons = $$("button[data-node]", dag);
+    const select = (i) => {
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.node === String(i))));
+      detail.textContent = NODES[i];
+    };
+    buttons.forEach((b) => b.addEventListener("click", () => select(+b.dataset.node)));
+    select(0);
+  }
+
+  // ── Artemis: route cost ────────────────────────────────────────────────
+  const route = $("[data-route]");
+  if (route) {
+    const slider = $("[data-route-lambda]", route);
+    const out = $("[data-route-out]", route);
+    const paths = $$("path[data-path]", route);
+    // minutes, normalised risk exposure along the route
+    const ROUTES = [
+      { name: "FASTEST", min: 14, risk: 0.8 },
+      { name: "BALANCED", min: 18, risk: 0.4 },
+      { name: "SAFEST", min: 25, risk: 0.1 },
+    ];
+    const update = () => {
+      const l = parseFloat(slider.value);
+      const costs = ROUTES.map((r) => r.min + l * r.risk * 30);
+      const best = costs.indexOf(Math.min(...costs));
+      paths.forEach((p, i) => p.classList.toggle("is-best", i === best));
+      const r = ROUTES[best];
+      out.textContent = `λ ${l.toFixed(2)} → ${r.name} · ${r.min} min · risk ${r.risk.toFixed(1)}`;
+    };
+    slider.addEventListener("input", update);
+    update();
+  }
+
+  // ── work accordion ─────────────────────────────────────────────────────
+  $$(".job-row").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+  });
+
+  // ── project filter ─────────────────────────────────────────────────────
+  const filterBtns = $$("[data-filter]");
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const f = btn.dataset.filter;
+      filterBtns.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      $$(".project").forEach((p) => {
+        p.hidden = f !== "all" && !p.dataset.tags.split(" ").includes(f);
+      });
+    });
+  });
+
+  // ── copy email ─────────────────────────────────────────────────────────
+  $$("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      if (await copy(btn.dataset.copy)) {
+        toast("Email copied");
+        const label = $("[data-copy-label]", btn);
+        if (label) { label.textContent = "Copied"; setTimeout(() => (label.textContent = "Copy"), 1800); }
+      } else {
+        window.location.href = `mailto:${btn.dataset.copy}`;
+      }
+    });
+  });
+
+  // ── dialogs (shared focus handling) ────────────────────────────────────
+  let lastFocus = null;
+  function openDialog(el, focusEl) {
+    lastFocus = document.activeElement;
+    el.hidden = false;
+    document.body.style.overflow = "hidden";
+    (focusEl || el.querySelector("input, button"))?.focus();
+  }
+  function closeDialog(el) {
+    el.hidden = true;
+    document.body.style.overflow = "";
+    lastFocus?.focus?.();
+  }
+  function trapTab(el, e) {
+    if (e.key !== "Tab") return;
+    const f = $$("a, button, input, textarea, [tabindex]:not([tabindex='-1'])", el).filter((n) => !n.disabled && n.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  // ── command palette ────────────────────────────────────────────────────
+  const palette = $("#palette");
+  const input = $(".palette-input", palette);
+  const list = $(".palette-list", palette);
+  const go = (id) => () => document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  const COMMANDS = [
+    { label: "What I'm building", hint: "Section", run: go("building") },
+    { label: "Akasha.ai", hint: "Venture", run: go("akasha") },
+    { label: "Chef.ai", hint: "Venture", run: go("chefai") },
+    { label: "Artemis", hint: "Venture", run: go("artemis") },
+    { label: "Work experience", hint: "Section", run: go("work") },
+    { label: "Research & papers", hint: "Section", run: go("research") },
+    { label: "Patent", hint: "Research", run: go("patent") },
+    { label: "Projects", hint: "Section", run: go("projects") },
+    { label: "About me", hint: "Section", run: go("about") },
+    { label: "Contact", hint: "Section", run: go("contact") },
+    { label: "Copy email address", hint: "Action", run: async () => toast((await copy(EMAIL)) ? "Email copied" : EMAIL) },
+    { label: "Write me a message", hint: "Action", run: () => openModal() },
+    { label: "Toggle light / dark", hint: "Theme", run: toggleTheme },
+    { label: "GitHub", hint: "Link", run: () => window.open("https://github.com/Vayuputra2401", "_blank", "noopener") },
+    { label: "LinkedIn", hint: "Link", run: () => window.open("https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/", "_blank", "noopener") },
+  ];
+  let filtered = COMMANDS;
+  let sel = 0;
+
+  function renderPalette() {
+    const q = input.value.trim().toLowerCase();
+    filtered = COMMANDS.filter((c) => (c.label + " " + c.hint).toLowerCase().includes(q));
+    sel = Math.min(sel, Math.max(0, filtered.length - 1));
+    list.innerHTML = "";
+    if (!filtered.length) {
+      const li = document.createElement("li");
+      li.className = "empty";
+      li.textContent = "Nothing matches.";
+      list.appendChild(li);
+      return;
+    }
+    filtered.forEach((c, i) => {
+      const li = document.createElement("li");
+      li.setAttribute("role", "option");
+      li.setAttribute("aria-selected", String(i === sel));
+      li.innerHTML = `<span></span><span class="mono"></span>`;
+      li.firstChild.textContent = c.label;
+      li.lastChild.textContent = c.hint;
+      li.addEventListener("mousemove", () => { if (sel !== i) { sel = i; renderPalette(); } });
+      li.addEventListener("click", () => runCommand(i));
+      list.appendChild(li);
+    });
+    list.children[sel]?.scrollIntoView({ block: "nearest" });
+  }
+  function runCommand(i) {
+    const c = filtered[i];
+    if (!c) return;
+    closeDialog(palette);
+    c.run();
+  }
+  function openPalette() {
+    input.value = "";
+    sel = 0;
+    renderPalette();
+    openDialog(palette, input);
+  }
+
+  $$("[data-palette-open]").forEach((b) => b.addEventListener("click", openPalette));
+  input.addEventListener("input", () => { sel = 0; renderPalette(); });
+  palette.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); sel = (sel + 1) % Math.max(1, filtered.length); renderPalette(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); sel = (sel - 1 + filtered.length) % Math.max(1, filtered.length); renderPalette(); }
+    else if (e.key === "Enter") { e.preventDefault(); runCommand(sel); }
+    else trapTab(palette, e);
+  });
+  palette.addEventListener("click", (e) => { if (e.target === palette) closeDialog(palette); });
+
+  document.addEventListener("keydown", (e) => {
+    const typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || "");
+    if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !typing)) {
+      e.preventDefault();
+      if (palette.hidden) openPalette(); else closeDialog(palette);
+    } else if (e.key === "Escape") {
+      if (!palette.hidden) closeDialog(palette);
+      else if (!modal.hidden) closeDialog(modal);
     }
   });
-}
+
+  // ── theme ──────────────────────────────────────────────────────────────
+  function toggleTheme() {
+    const root = document.documentElement;
+    const dark = root.dataset.theme
+      ? root.dataset.theme === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+    window.dispatchEvent(new Event("themechange"));
+    toast(dark ? "Light theme" : "Dark theme");
+  }
+
+  // ── contact modal (EmailJS) ────────────────────────────────────────────
+  const EMAILJS_PUBLIC_KEY = "7BZGP-ZYoJd0QYkxL";
+  const EMAILJS_SERVICE_ID = "service_1q0rd5c";
+  const EMAILJS_TEMPLATE_ID = "template_0qjnf3l";
+
+  const modal = $("#contact-modal");
+  const form = $("#contact-form");
+  const formBody = $("[data-form-body]", modal);
+  const formDone = $("[data-form-done]", modal);
+  const formError = $("[data-form-error]", modal);
+
+  function openModal() {
+    formBody.hidden = false;
+    formDone.hidden = true;
+    formError.textContent = "";
+    openDialog(modal, form.querySelector("input"));
+  }
+  $$("[data-modal-open]").forEach((b) => b.addEventListener("click", openModal));
+  $$("[data-modal-close]").forEach((b) => b.addEventListener("click", () => closeDialog(modal)));
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeDialog(modal); });
+  modal.addEventListener("keydown", (e) => trapTab(modal, e));
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formError.textContent = "";
+    const data = {
+      from_name: form.name.value.trim(),
+      from_email: form.email.value.trim(),
+      subject: form.subject.value.trim() || "Portfolio contact",
+      message: form.message.value.trim(),
+    };
+    if (!data.from_name || !data.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.from_email)) {
+      formError.textContent = "Add your name, a valid email and a message.";
+      return;
+    }
+    const btn = form.querySelector("[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    try {
+      if (typeof emailjs === "undefined") throw new Error("EmailJS not loaded");
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
+      form.reset();
+      formBody.hidden = true;
+      formDone.hidden = false;
+    } catch (err) {
+      formError.textContent = `That didn't send. Email me directly at ${EMAIL}.`;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Send";
+    }
+  });
+})();
