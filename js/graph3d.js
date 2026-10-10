@@ -3,9 +3,9 @@
  * drag to orbit. No three.js; the whole thing is a few KB.
  *
  * Two scenes use it:
- *   - [data-scene="skeleton"]  the LAST paper: a 21-joint skeleton with the
- *     physical bones, the adaptive (learned) edges an A-GCN adds, and the
- *     neighbouring frames a Temporal Shift Module mixes in.
+ *   - [data-scene="skeleton"]  "Anatomy is Free" (ShiftFuse-Zero): a 21-joint
+ *     skeleton with the physical bones, BRASP's fixed left/right shifts, and
+ *     the body regions those shifts are built from.
  *   - [data-scene="molecule"]  MoleculeForge: caffeine, heavy atoms only.
  *
  * Every loop pauses off-screen. Reduced motion: no auto-orbit, no animation,
@@ -31,7 +31,7 @@
   // (towards +x when sign=1) and swung forward (+z) by `fwd`.
   const segment = (side, fwd, sign) => rotX(rotZ([0, -1, 0], side * sign), -fwd);
 
-  // ── skeleton (LAST) ─────────────────────────────────────────────────────
+  // ── skeleton (Anatomy is Free) ─────────────────────────────────────────────────────
   // 0 pelvis 1 spine 2 chest 3 neck 4 head
   // 5-8 left shoulder/elbow/wrist/hand   9-12 right
   // 13-16 left hip/knee/ankle/foot       17-20 right
@@ -43,13 +43,12 @@
     [0, 17], [17, 18], [18, 19], [19, 20],
   ];
 
-  // The edges an adaptive graph convolution learns on top of the body graph.
-  // Weights are per action: illustrative, chosen to show *that* they change.
-  const ADAPTIVE = {
-    wave: [[12, 4, 1], [12, 2, 0.7], [8, 12, 0.35], [12, 0, 0.3]],
-    walk: [[8, 20, 1], [12, 16, 1], [16, 20, 0.6], [8, 12, 0.4]],
-    squat: [[8, 14, 0.9], [12, 18, 0.9], [0, 4, 0.7], [16, 20, 0.35]],
-  };
+  // BRASP: fixed gather permutations between bilateral joints. Left and right
+  // wrists are 10+ hops apart in the graph; one index lookup puts them together.
+  // These are integer buffers, not weights, so they never change with the action.
+  const BRASP = [[12, 8], [11, 7], [10, 6], [20, 16], [19, 15], [18, 14]];
+  // Body regions the shifts are grouped by: torso, arms, legs.
+  const region = (j) => (j <= 4 ? "torso" : j <= 12 ? "arm" : "leg");
 
   function arm(shoulder, sign, upSide, upFwd, foreSide, foreFwd) {
     const elbow = add(shoulder, mul(segment(upSide, upFwd, sign), 0.28));
@@ -159,8 +158,8 @@
     let dragging = false;
     let last = null;
     let action = "wave";
-    let showAdaptive = true;
-    let showShift = false;
+    let showBrasp = true;
+    let showRegions = false;
     let t = 0;
     let w = 0, h = 0, dpr = 1;
 
@@ -218,12 +217,6 @@
     const depthAlpha = (z) => 0.45 + 0.55 * Math.max(0, Math.min(1, (z + 1.2) / 2.4));
 
     function drawSkeleton() {
-      if (showShift) {
-        for (const off of [-0.16, 0.16]) {
-          const ghost = pose(action, t + off).map(project);
-          for (const [i, j] of BONES) line(ghost[i], ghost[j], C.muted, 1, 0.35);
-        }
-      }
       const P = pose(action, t).map(project);
       // floor ring
       ctx.globalAlpha = 0.25;
@@ -238,17 +231,23 @@
       }
       ctx.stroke();
 
-      if (showAdaptive) {
-        const pulse = reduceMotion ? 1 : 0.75 + 0.25 * Math.sin(t * 3);
-        for (const [i, j, wgt] of ADAPTIVE[action]) {
-          line(P[i], P[j], C.accent, 1 + wgt * 1.2, 0.25 + 0.6 * wgt * pulse, [4, 4]);
+      const tone = (j) => (!showRegions ? C.ink : region(j) === "arm" ? C.accent : region(j) === "leg" ? C.ochre : C.ink);
+
+      if (showBrasp) {
+        for (const [i, j] of BRASP) {
+          line(P[i], P[j], C.accent, 1.4, 0.7, [4, 4]);
+          // a feature travelling along the shift: right side → left side
+          if (!reduceMotion) {
+            const k = (t * 0.7 + i * 0.13) % 1;
+            dot({ x: P[i].x + (P[j].x - P[i].x) * k, y: P[i].y + (P[j].y - P[i].y) * k }, 2.6, C.accent, 0.9);
+          }
         }
       }
       const order = BONES.map((b) => [b, (P[b[0]].z + P[b[1]].z) / 2]).sort((a, b) => a[1] - b[1]);
-      for (const [[i, j], z] of order) line(P[i], P[j], C.ink, 2.2, depthAlpha(z));
+      for (const [[i, j], z] of order) line(P[i], P[j], tone(j), 2.2, depthAlpha(z));
       P.map((p, i) => [p, i]).sort((a, b) => a[0].z - b[0].z).forEach(([p, i]) => {
         const r = i === 4 ? 7 : 3.2;
-        dot(p, r * p.s * 0.85, i === 4 ? C.ink : C.ink, depthAlpha(p.z));
+        dot(p, r * p.s * 0.85, tone(i), depthAlpha(p.z));
       });
     }
 
@@ -320,8 +319,8 @@
       btn.addEventListener("click", () => {
         const on = btn.getAttribute("aria-pressed") !== "true";
         btn.setAttribute("aria-pressed", String(on));
-        if (btn.dataset.toggle === "adaptive") showAdaptive = on;
-        if (btn.dataset.toggle === "shift") showShift = on;
+        if (btn.dataset.toggle === "adaptive") showBrasp = on;
+        if (btn.dataset.toggle === "regions") showRegions = on;
         if (!frame) draw();
       });
     });

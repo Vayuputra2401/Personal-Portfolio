@@ -45,6 +45,8 @@
         <a href="#work">Work</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
+        <a href="#recognition">Recognition</a>
+        <a href="#skills">Skills</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -68,7 +70,7 @@
       <div class="hero-model-ui">
         <p class="hero-model-hint mono">Drag to spin · click for the next one</p>
         <ol class="hero-model-nav" aria-label="Model shape">
-          <li><button data-shape="0"><span class="mono">01</span>Skeleton<span class="hm-note">LAST</span></button></li>
+          <li><button data-shape="0"><span class="mono">01</span>Skeleton<span class="hm-note">Anatomy is Free</span></button></li>
           <li><button data-shape="1"><span class="mono">02</span>Caffeine<span class="hm-note">MoleculeForge</span></button></li>
           <li><button data-shape="2"><span class="mono">03</span>Edge camera<span class="hm-note">Akasha</span></button></li>
           <li><button data-shape="3"><span class="mono">04</span>Bowl<span class="hm-note">Chef.ai</span></button></li>
@@ -335,20 +337,26 @@
       <article class="paper paper--feature" data-graph-root>
         <div class="paper-text">
           <p class="kicker"><span class="badge badge--ochre">Under review</span> ACMM 2026 · with Dr. Gargi Srivastava</p>
-          <h3 class="paper-title">LAST: a Lightweight Adaptive-Shift Transformer for real-time activity recognition</h3>
+          <h3 class="paper-title">Anatomy is Free: zero-parameter structural priors for efficient skeleton action recognition</h3>
           <p>
-            Video transformers recognise actions well and run badly on a phone. LAST drops dense
-            pixels for a sparse skeleton, then recovers the lost context three ways:
+            Skeleton models spend millions of parameters learning what anatomy already tells you.
+            <strong>ShiftFuse-Zero</strong> hard-codes that structure instead, as pure tensor indexing:
           </p>
           <ul class="paper-points">
-            <li><strong>Adaptive graph convolutions</strong> learn joint-to-joint edges the body doesn't have — a waving hand and the head.</li>
-            <li><strong>Temporal shift modules</strong> mix neighbouring frames at zero parameter cost.</li>
-            <li><strong>Linear attention</strong> brings the transformer to O(N), and distillation from VideoMAE V2 keeps the semantics.</li>
+            <li><strong>BRASP</strong> shifts features between body regions. The left and right wrists sit 10+ hops apart in the skeleton graph; BRASP puts one beside the other in a single lookup.</li>
+            <li><strong>SGPShift</strong> routes each channel to a ranked neighbour inside its body part or across a part boundary.</li>
+            <li>Both cost <strong>zero learnable parameters</strong>. The GCN that follows refines a representation that is already shaped like a body.</li>
           </ul>
-          <a class="link-arrow" href="https://github.com/Vayuputra2401/LAST" target="_blank" rel="noopener">Code on GitHub</a>
+          <dl class="paper-stats">
+            <div><dt>94 K</dt><dd>parameters, Nano</dd></div>
+            <div><dt>88.5%</dt><dd>NTU-60 X-Sub, Nano + KD</dd></div>
+            <div><dt>11 ms</dt><dd>desktop CPU · 50 ms on Snapdragon 8 Gen 3</dd></div>
+            <div><dt>92.5%</dt><dd>Large, 1.18 M params, 4.3× fewer FLOPs than EfficientGCN-B4</dd></div>
+          </dl>
+          <a class="link-arrow" href="https://github.com/Vayuputra2401/anatomy-is-free" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
         <figure class="paper-figure">
-          <canvas class="graph-canvas" data-scene="skeleton" tabindex="0" aria-label="3D skeleton illustrating the LAST model. Drag or use arrow keys to rotate."></canvas>
+          <canvas class="graph-canvas" data-scene="skeleton" tabindex="0" aria-label="3D skeleton illustrating Anatomy is Free: BRASP shifts between bilateral joints and body regions. Drag or use arrow keys to rotate."></canvas>
           <div class="graph-controls" role="group" aria-label="Skeleton controls">
             <div class="seg" role="group" aria-label="Action">
               <button data-action="wave" aria-pressed="true">Wave</button>
@@ -356,15 +364,15 @@
               <button data-action="squat" aria-pressed="false">Squat</button>
             </div>
             <div class="seg" role="group" aria-label="Layers">
-              <button data-toggle="adaptive" aria-pressed="true">Adaptive edges</button>
-              <button data-toggle="shift" aria-pressed="false">Temporal shift</button>
+              <button data-toggle="adaptive" aria-pressed="true">BRASP shifts</button>
+              <button data-toggle="regions" aria-pressed="false">Body regions</button>
             </div>
           </div>
-          <figcaption>Drag to orbit. Dashed edges: learned connections, which change with the action (illustrative weights).</figcaption>
+          <figcaption>Drag to orbit. Dashed: BRASP's fixed shifts between left and right limbs — no weights, just indices. They stay the same whatever the body does.</figcaption>
         </figure>
       </article>
 
-      <div class="papers">
+      <div class="papers papers--two">
         <article class="paper">
           <p class="kicker"><span class="badge">Published</span> ICPR 2024</p>
           <h3 class="paper-title">Brain tumour classification and segmentation with a custom CNN, U-Net and XAI</h3>
@@ -376,11 +384,6 @@
           <h3 class="paper-title">Federated learning for privacy-preserving face and activity recognition</h3>
           <p>Adaptive aggregation with pruning and quantisation cut bandwidth by <strong>65%</strong>. Differential privacy and adversarial feature disentanglement hold up against membership-inference attacks on small edge nodes.</p>
           <a class="link-arrow" href="https://github.com/Vayuputra2401/FL-Face" target="_blank" rel="noopener">Code</a>
-        </article>
-        <article class="paper" id="patent">
-          <p class="kicker"><span class="badge badge--ember">Patent granted</span> Nov 2025 · 2025E09468 IN</p>
-          <h3 class="paper-title">Automated physics-informed neural network enhanced by symbolic regression and LLMs, with balanced loss optimisation</h3>
-          <p>A neuro-symbolic architecture from my Siemens work. A balanced loss lets physical constraints and data-driven accuracy pull together instead of against each other across complex dynamical systems.</p>
         </article>
       </div>
 
@@ -469,30 +472,97 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 05 ABOUT ═══════════════ -->
+  <!-- ═══════════════ 05 RECOGNITION ═══════════════ -->
+  <section id="recognition" class="section section--ink" aria-labelledby="recognition-title">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="kicker kicker--light"><span class="num">05</span> Recognition</p>
+        <h2 id="recognition-title" class="section-title">A patent, two national-stage results, and three years of leading teams.</h2>
+      </header>
+
+      <article class="award award--lead" id="patent">
+        <div class="award-meta">
+          <span class="badge badge--ember">Patent granted</span>
+          <p class="mono award-when">Nov 8, 2025 · 2025E09468 IN · Siemens</p>
+        </div>
+        <div class="award-body">
+          <h3 class="award-title">Automated physics-informed neural network enhanced by symbolic regression and LLMs, with balanced loss optimisation</h3>
+          <p>Out of my research at Siemens. A neuro-symbolic architecture that joins PINNs, symbolic regression and LLMs, with a balanced loss that lets physical constraints and data-driven accuracy pull together instead of against each other across complex dynamical systems.</p>
+          <p class="stack mono">PINNs · Symbolic regression · LLMs · Neuro-symbolic AI</p>
+        </div>
+      </article>
+
+      <div class="awards">
+        <article class="award">
+          <p class="award-rank"><span class="award-num">Top 100</span><span class="mono">of 75,000 teams</span></p>
+          <h3 class="award-title">Meta PyTorch OpenEnv × Scaler</h3>
+          <p>AP Clerk: an accounts-payable agent trained with GRPO against a live reward server. Qwen2.5 reached 94.9% format accuracy and 0.72 mean reward across 24 financial tasks.</p>
+          <a class="link-arrow" href="https://github.com/Vayuputra2401/AP-Clerk-Financial-Agent" target="_blank" rel="noopener">GitHub</a>
+        </article>
+        <article class="award">
+          <p class="award-rank"><span class="award-num">National finalist</span><span class="mono">Smart India Hackathon 2024</span></p>
+          <h3 class="award-title">TransformoDocs</h3>
+          <p>Agentic document intelligence with HyDE RAG: 70% less storage, 36% faster conversion. Presented to the national judging panel.</p>
+          <a class="link-arrow" href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener">GitHub</a>
+        </article>
+      </div>
+
+      <ol class="roles">
+        <li><span class="role-name">Founder &amp; CEO</span><span class="role-org">Artemis</span><span class="role-what">Leading a 12-person team building GenAI safety products; product, investors and the road from MVP to business.</span></li>
+        <li><span class="role-name">Team Lead</span><span class="role-org">Smart India Hackathon · 2023, 2024, 2025</span><span class="role-what">Three years running: architecture, rapid prototyping and the final deployment, for national problem statements.</span></li>
+        <li><span class="role-name">Technical Head</span><span class="role-org">E-Cell</span><span class="role-what">Ran a 20+ person tech team that automated registrations and the web stack for national entrepreneurship summits.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 06 SKILLS ═══════════════ -->
+  <section id="skills" class="section" aria-labelledby="skills-title">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="kicker"><span class="num">06</span> Skills</p>
+        <h2 id="skills-title" class="section-title">The tools, roughly in the order I reach for them.</h2>
+      </header>
+      <dl class="skillset">
+        <div>
+          <dt>AI &amp; ML</dt>
+          <dd>PyTorch, TensorFlow, Hugging Face, LoRA / QLoRA, SLM and LLM optimisation, OpenCV, LangGraph, LangChain, CrewAI, agentic RAG, chain-of-thought, LangSmith observability</dd>
+        </div>
+        <div>
+          <dt>Data &amp; cloud</dt>
+          <dd>Apache Spark, Azkaban, BigQuery, GCS, GCP data pipelines, ETL optimisation, MLOps, Docker, AWS SageMaker, MCP servers, Git</dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd>Python, C/C++, TypeScript, JavaScript, Java, SQL (PostgreSQL, BigQuery), HTML, CSS</dd>
+        </div>
+        <div>
+          <dt>Product</dt>
+          <dd>React, React Native, Next.js, Node.js, FastAPI, Flask, MongoDB, WebRTC, Power BI, Kaggle, Colab</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 07 ABOUT ═══════════════ -->
   <section id="about" class="section section--band" aria-labelledby="about-title">
     <div class="wrap about">
       <figure class="about-photo">
         <img src="assets/portrait.webp" alt="Pathikreet Chowdhury, smiling, arms folded, on a garden path" width="560" height="700" loading="lazy">
       </figure>
       <div class="about-text">
-        <p class="kicker"><span class="num">05</span> About</p>
+        <p class="kicker"><span class="num">07</span> About</p>
         <h2 id="about-title" class="section-title">I like the whole stack, from the loss function to the deploy script.</h2>
         <p>
-          I've led a Smart India Hackathon team three years running, and ran a 20-person tech
-          team for a national entrepreneurship summit.
+          I came to engineering through research — symbolic regression, generative models,
+          efficient vision — and I still read papers the way other people read release notes.
+          What I care about is the distance between a number in a results table and a system
+          someone relies on at 2 a.m.
         </p>
         <p>
           Off the keyboard I play on the wing or up front, follow FC Barcelona through everything,
           and play chess internationally. Jim Beam, my cat, reviews most of my code by sitting on it.
         </p>
 
-        <dl class="skills">
-          <div><dt class="mono">Languages</dt><dd>Python, C/C++, TypeScript, JavaScript, Java, SQL</dd></div>
-          <div><dt class="mono">ML</dt><dd>PyTorch, TensorFlow, Hugging Face, LoRA / QLoRA, OpenCV, LangGraph, LangChain, CrewAI, LangSmith</dd></div>
-          <div><dt class="mono">Data &amp; cloud</dt><dd>Spark, Azkaban, BigQuery, GCS, GCP, AWS SageMaker, Docker, MLOps, MCP servers</dd></div>
-          <div><dt class="mono">Product</dt><dd>React, React Native, Next.js, FastAPI, Flask, Node.js, Postgres, MongoDB, WebRTC</dd></div>
-        </dl>
       </div>
     </div>
   </section>
@@ -500,7 +570,7 @@
   <!-- ═══════════════ CONTACT ═══════════════ -->
   <section id="contact" class="section section--ink contact" aria-labelledby="contact-title">
     <div class="wrap">
-      <p class="kicker kicker--light"><span class="num">06</span> Contact</p>
+      <p class="kicker kicker--light"><span class="num">08</span> Contact</p>
       <h2 id="contact-title" class="contact-title">Building something hard?<br><em>Let's talk.</em></h2>
       <p class="contact-sub">Open to ML and data engineering roles, research collaborations, and people who want to build Akasha, Chef.ai or Artemis with me.</p>
       <div class="contact-actions">

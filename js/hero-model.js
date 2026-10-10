@@ -1,7 +1,7 @@
 /**
  * Hero model: one point cloud that morphs between shapes from my work.
  *
- *   01 Skeleton      LAST (activity recognition) — waves while it stands there
+ *   01 Skeleton      Anatomy is Free (skeleton action recognition) — waves hello
  *   02 Caffeine      MoleculeForge
  *   03 Edge camera   Akasha's Eye layer, with a detection box in its frustum
  *   04 Bowl          Chef.ai, with steam rising
@@ -44,7 +44,7 @@
   const SHAPES = [
     {
       name: "Skeleton",
-      note: "LAST · activity recognition",
+      note: "Anatomy is Free · skeleton action recognition",
       lines(t) {
         const P = S.pose("wave", t).map((p) => scale(p, 1.05));
         return S.BONES.map(([i, j]) => ({ pts: [P[i], P[j]], accent: false, ends: true }))

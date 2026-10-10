@@ -34,7 +34,9 @@
   const bar = $(".progress span");
   function onScroll() {
     const y = window.scrollY;
-    nav.classList.toggle("is-solid", y > hero.offsetHeight - 80);
+    const past = y > hero.offsetHeight - 80;
+    nav.classList.toggle("is-solid", past);
+    nav.classList.toggle("is-ink", !past && y > 24);
     if (typeof ScrollTrigger === "undefined") {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
@@ -117,7 +119,7 @@
       riseLines(el, { scrollTrigger: { trigger: el, start: "top 85%", once: true } }));
 
     // Kickers, rows and blocks: a short rise, staggered within each batch.
-    ScrollTrigger.batch(".section-head .kicker, .venture-meta, .venture-body > *, .job, .paper, .project, .about-photo, .about-text > p, .skills > div, .contact-sub, .contact-actions, .socials", {
+    ScrollTrigger.batch(".section-head .kicker, .venture-meta, .venture-body > *, .job, .paper, .project, .award, .roles li, .skillset > div, .about-photo, .about-text > p, .skills > div, .contact-sub, .contact-actions, .socials", {
       start: "top 88%",
       once: true,
       onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 28, duration: 0.9, ease, stagger: 0.08 }),
@@ -150,7 +152,7 @@
     gsap.to(".progress span", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
   } else if (!reduceMotion && "IntersectionObserver" in window) {
     release();
-    const targets = $$(".section-head, .venture, .job, .paper, .project, .about-photo, .about-text, .fact, .contact .wrap > *");
+    const targets = $$(".section-head, .venture, .job, .paper, .project, .award, .roles li, .skillset > div, .about-photo, .about-text, .fact, .contact .wrap > *");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
@@ -321,8 +323,11 @@
     { label: "Artemis", hint: "Venture", run: go("artemis") },
     { label: "Work experience", hint: "Section", run: go("work") },
     { label: "Research & papers", hint: "Section", run: go("research") },
-    { label: "Patent", hint: "Research", run: go("patent") },
+    { label: "Siemens patent", hint: "Recognition", run: go("patent") },
     { label: "Projects", hint: "Section", run: go("projects") },
+    { label: "Anatomy is Free (paper)", hint: "Research", run: go("research") },
+    { label: "Recognition & hackathons", hint: "Section", run: go("recognition") },
+    { label: "Skills", hint: "Section", run: go("skills") },
     { label: "About me", hint: "Section", run: go("about") },
     { label: "Contact", hint: "Section", run: go("contact") },
     { label: "Copy email address", hint: "Action", run: async () => toast((await copy(EMAIL)) ? "Email copied" : EMAIL) },
