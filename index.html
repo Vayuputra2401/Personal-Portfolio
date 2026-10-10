@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pathikreet Chowdhury</title>
-  <meta name="description" content="Pathikreet Chowdhury — ML engineer, researcher and founder. Data engineering at Flipkart, neuro-symbolic research at Siemens, building Akasha.ai, Chef.ai and Artemis.">
+  <meta name="description" content="Pathikreet Chowdhury — data and ML engineer, researcher and founder. Lakehouse engineering at Flipkart, neuro-symbolic agents at Siemens, two papers under review at WACV 2027, building Akasha.ai, Chef.ai and Artemis.">
   <meta name="theme-color" content="#0d0c0b">
 
   <link rel="canonical" href="https://vayuputra2401.github.io/Personal-Portfolio/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Pathikreet Chowdhury — ML engineer, researcher, founder">
-  <meta property="og:description" content="Research that ships: 200 TB data pipelines, a granted patent, three papers, and three products of my own.">
+  <meta property="og:description" content="Research that ships: a 200+ TB lakehouse, Siemens patents, four papers, and three products of my own.">
   <meta property="og:url" content="https://vayuputra2401.github.io/Personal-Portfolio/">
   <meta property="og:image" content="https://vayuputra2401.github.io/Personal-Portfolio/assets/portrait.webp">
   <meta name="twitter:card" content="summary">
@@ -82,8 +82,9 @@
       <p class="kicker kicker--light">ML engineer · Researcher · Founder — Bangalore</p>
       <h1 class="hero-title">Pathikreet<br>Chowdhury</h1>
       <p class="hero-lede">
-        I build AI that holds up outside the notebook. By day, data pipelines over 200&nbsp;TB at
-        Flipkart. Before that, neuro-symbolic research at Siemens that became a granted patent.
+        I build AI that holds up outside the notebook. By day, the lakehouse I built from scratch at
+        Flipkart, serving 200+&nbsp;TB. Before that, neuro-symbolic agents at Siemens that shipped to
+        production and became patents.
         The rest of the time, three products of my own:
         <a href="#akasha">Akasha.ai</a>, <a href="#chefai">Chef.ai</a> and <a href="#artemis">Artemis</a>.
       </p>
@@ -104,15 +105,15 @@
     <div class="wrap facts-grid">
       <div class="fact">
         <span class="fact-num">200+ TB</span>
-        <span class="fact-label">travel data through my Spark pipelines at Cleartrip</span>
+        <span class="fact-label">served from the lakehouse I built at Cleartrip</span>
       </div>
       <div class="fact">
         <span class="fact-num">1 patent</span>
         <span class="fact-label">granted, 2025 — PINNs + symbolic regression + LLMs</span>
       </div>
       <div class="fact">
-        <span class="fact-num">3 papers</span>
-        <span class="fact-label">ICPR 2024, ICIT 2025, WACV under review</span>
+        <span class="fact-num">4 papers</span>
+        <span class="fact-label">ICPR 2024, ICIT 2025, two under review at WACV 2027</span>
       </div>
       <div class="fact">
         <span class="fact-num">Top 100</span>
@@ -178,11 +179,11 @@
         </div>
         <div class="venture-body">
           <p>
-            Point a phone at the fridge: YOLO-Seg finds the ingredients, Gemini reads freshness and
-            cuisine fit, and a LangGraph pipeline matches them against a 7,300-recipe corpus.
-            ChefGPT then stays with you at the stove over WebSocket, with nine tools for cooking
-            steps, meal plans, shopping lists and health goals. Zero custom training — every
-            decision is an agent's.
+            Point a phone at the fridge: YOLO finds the ingredients, Gemini reads freshness and
+            cuisine fit, and a 7-node LangGraph DAG fuses 20 pgvector candidates with 15 freshly
+            generated recipes into a ranked top 10–12, over a 7,298-recipe corpus. ChefGPT then
+            stays with you at the stove: a streaming WebSocket agent with 9 tools, a 4-step
+            tool-calling loop and memory that compresses itself every 15 turns.
           </p>
 
           <div class="dag" data-dag>
@@ -201,7 +202,12 @@
             <p class="dag-detail" data-dag-detail aria-live="polite"></p>
           </div>
 
-          <p class="stack mono">Python 3.12 · FastAPI · LangGraph · Gemini · ONNX Runtime · Postgres + pgvector (HNSW, halfvec) · Redis · Next.js 14 · Cloud Run</p>
+          <dl class="mini-stats">
+            <div><dt>94.6%</dt><dd>of LLM recipe rewrites pass a deterministic hallucination gate; the rest fall back to the original</dd></div>
+            <div><dt>5,938</dt><dd>recipes ingested through a 5-stage pipeline where the LLM only rewrites prose</dd></div>
+            <div><dt>128</dt><dd>tests green in CI; a 4-hour result cache takes repeat latency to near zero</dd></div>
+          </dl>
+          <p class="stack mono">Python 3.12 · FastAPI · LangGraph · Gemini 3.5 Flash · Postgres + pgvector (HNSW, halfvec, 3072-dim) · Redis · YOLO · Next.js 14 · Supabase · Cloud Run</p>
         </div>
       </article>
 
@@ -210,37 +216,41 @@
         <div class="venture-meta">
           <p class="status"><span class="status-dot status-dot--ember"></span>Startup · Founder &amp; CEO</p>
           <h3 class="venture-name">Artemis</h3>
-          <p class="venture-line">A voice-first safety layer for getting home in urban India.</p>
+          <p class="venture-line">On-device AI that notices trouble before you can reach for your phone.</p>
         </div>
         <div class="venture-body">
           <p>
-            Artemis scores every route against real incident data, keeps a live heatmap that decays
-            with age and shifts with time of day, and runs a full SOS protocol: GPS broadcast to
-            trusted contacts every 10 seconds, WhatsApp location share, emergency services.
-            <em>Tribes</em> lets a private group see each other move. I lead a 12-person team
-            taking it from MVP to a business.
+            Every 1.5 seconds, a threat engine on the phone listens and looks: Silero VAD gates a
+            521-class YAMNet audio classifier and 192-dim ECAPA-TDNN speaker embeddings, fused with
+            motion, battery and network signals across 7 named risk patterns. The per-tick stream
+            never leaves the device; one snapshot row does, only when something escalates.
+          </p>
+          <p>
+            The LLM agent helps, but it never decides. A deterministic rule engine gates every SOS,
+            with a 60-second cooldown against false alarms, a 30-second dead-man's-switch heartbeat
+            and live-trip deviation alerts. I lead a 12-person team taking it from MVP to a business.
           </p>
 
           <div class="route" data-route>
             <div class="route-head">
-              <label for="lambda" class="kicker kicker--light">Route cost = time + λ · risk</label>
-              <output class="mono" data-route-out for="lambda"></output>
+              <label for="deviation" class="kicker kicker--light">Live trip · drag off the route</label>
+              <output class="mono" data-route-out for="deviation"></output>
             </div>
-            <svg class="route-map" viewBox="0 0 400 210" role="img" aria-label="Three routes from start to destination, coloured by which one the cost function picks">
-              <g class="route-zones" aria-hidden="true">
-                <circle cx="168" cy="72" r="34"/><circle cx="232" cy="58" r="24"/><circle cx="196" cy="118" r="18"/>
-              </g>
-              <path data-path="0" d="M30 160 C 110 60, 230 40, 370 50"/>
-              <path data-path="1" d="M30 160 C 120 150, 230 110, 370 50"/>
-              <path data-path="2" d="M30 160 C 130 215, 300 205, 370 50"/>
+            <svg class="route-map" viewBox="0 0 400 210" role="img" aria-label="A planned route with a marker showing how far you are from it, and the 75 m and 300 m alert bands">
+              <path class="route-band route-band--far" data-band="300" d="M30 160 C 120 150, 230 110, 370 50"/>
+              <path class="route-band route-band--near" data-band="75" d="M30 160 C 120 150, 230 110, 370 50"/>
+              <path class="route-line" d="M30 160 C 120 150, 230 110, 370 50"/>
               <circle class="route-end" cx="30" cy="160" r="5"/><circle class="route-end" cx="370" cy="50" r="5"/>
-              <text x="30" y="182" class="route-label">You</text><text x="352" y="36" class="route-label">Home</text>
+              <line class="route-tether" data-tether x1="0" y1="0" x2="0" y2="0"/>
+              <circle class="route-you" data-you r="7" cx="0" cy="0"/>
+              <text x="30" y="182" class="route-label">Start</text><text x="352" y="36" class="route-label">Home</text>
             </svg>
-            <input id="lambda" type="range" min="0" max="1" step="0.01" value="0.5" data-route-lambda>
-            <div class="route-scale mono" aria-hidden="true"><span>Fastest</span><span>Balanced</span><span>Safest</span></div>
+            <input id="deviation" type="range" min="0" max="400" step="5" value="40" data-route-dev>
+            <div class="route-scale mono" aria-hidden="true"><span>On route</span><span>75 m</span><span>300 m</span></div>
           </div>
 
-          <p class="stack mono">React Native · TypeScript · Supabase Realtime + RLS · FastAPI · LangGraph · Gemini · Google Directions</p>
+          <p class="stack mono">React Native (Expo) · TypeScript · ONNX Runtime · Silero VAD · YAMNet · ECAPA-TDNN · FastAPI · LangGraph · Supabase · Twilio · Gemini 2.5 Flash</p>
+          <p class="stack mono">TypeScript and Python scoring engines pinned to 36 shared parity vectors across 56 tests, so edge and cloud never drift.</p>
         </div>
       </article>
     </div>
@@ -258,18 +268,18 @@
         <li class="job" data-open="true">
           <button class="job-row" aria-expanded="true">
             <span class="job-org">Flipkart <span class="dim">(Cleartrip)</span></span>
-            <span class="job-role">Data Engineer</span>
+            <span class="job-role">SDE 1 · Data Engineering</span>
             <span class="job-tag mono">Now · Bangalore</span>
             <span class="job-toggle" aria-hidden="true"></span>
           </button>
           <div class="job-body"><div class="job-body-inner">
             <ul>
-              <li>Architect and run Spark + Azkaban ETL on GCP over <strong>200+ TB</strong> of travel data; pipelines now run <strong>30% faster</strong>.</li>
-              <li>Partitioned and clustered BigQuery for analytics: <strong>25% lower</strong> cloud cost, <strong>2×</strong> faster queries.</li>
-              <li>Reworked the GCS data lake for high-concurrency reads at <strong>99.9%</strong> availability for ML and analytics teams.</li>
-              <li>Cut end-to-end ingestion latency by <strong>40%</strong>, moving the booking engine toward near real-time decisions.</li>
+              <li>Built Cleartrip's data lakehouse from scratch on GCP: <strong>Apache Hudi</strong> and <strong>Iceberg</strong> tables over GCS, <strong>Trino</strong> as the federated query engine, Metabase for self-serve BI — now serving <strong>200+ TB</strong> of travel data to analytics and ML.</li>
+              <li>Own CDC ingestion end to end with <strong>Kafka Connect + Debezium</strong>: OLTP changelogs stream into Hudi upsert tables with schema evolution and exactly-once delivery. Source-to-lake latency down <strong>40%</strong>, to near real time.</li>
+              <li>Real-time clickstream through custom Java Kafka consumers into <strong>Apache Doris</strong>: sub-second OLAP on funnels, sessions and booking journeys that used to be overnight batches.</li>
+              <li>Spark ETL on Azkaban, lakehouse table maintenance and BigQuery tuning — and the infrastructure under it, single-handed: sizing, catalog governance, on-call. <strong>30%</strong> faster pipelines, <strong>25%</strong> lower cloud cost, <strong>99.9%</strong> availability.</li>
             </ul>
-            <p class="stack mono">Apache Spark · Azkaban · BigQuery · GCS · GCP</p>
+            <p class="stack mono">Hudi · Iceberg · Trino · Doris · Kafka · Debezium · Spark · Azkaban · BigQuery · Metabase · GCP</p>
           </div></div>
         </li>
         <li class="job">
@@ -281,13 +291,11 @@
           </button>
           <div class="job-body"><div class="job-body-inner">
             <ul>
-              <li>Fused physics-informed neural networks with symbolic regression; <strong>52% fewer outliers</strong> on Cipla and Climatix industrial data.</li>
-              <li>Put LLMs in the loop of multi-agent symbolic regression: <strong>12% faster</strong> inference and better accuracy.</li>
-              <li>Built domain-aware neuro-symbolic agents that pair neural symbolic regression with GenAI for hypothesis generation.</li>
-              <li>Molecular optimisation workflows with NSR + LLMs for more robust chemical property estimates.</li>
-              <li>This work became a <a href="#patent">granted patent</a>.</li>
+              <li>Built <strong>DANA</strong>, a neuro-symbolic LLM agent on a BDI (belief–desire–intention) architecture with LangGraph, for anomaly detection in industrial chillers. Deployed to production and filed as a Siemens patent.</li>
+              <li>Fused physics-informed neural networks with symbolic regression; <strong>52% fewer outliers</strong> on Cipla and Climatix industrial data. This line of work is a <a href="#patent">granted patent</a>.</li>
+              <li>Put LLMs in the loop of multi-agent symbolic regression: <strong>12% faster</strong> inference with better accuracy, extended to molecular optimisation for chemical property estimates.</li>
             </ul>
-            <p class="stack mono">PINNs · Symbolic regression · LLM agents · PyTorch</p>
+            <p class="stack mono">LangGraph · BDI agents · PINNs · Symbolic regression · PyTorch</p>
           </div></div>
         </li>
         <li class="job">
@@ -336,7 +344,7 @@
 
       <article class="paper paper--feature" data-graph-root>
         <div class="paper-text">
-          <p class="kicker"><span class="badge badge--ochre">Under review</span> WACV · with Dr. Gargi Srivastava</p>
+          <p class="kicker"><span class="badge badge--ochre">Under review</span> WACV 2027 · with Dr. Gargi Srivastava</p>
           <h3 class="paper-title">Anatomy is Free: zero-parameter structural priors for efficient skeleton action recognition</h3>
           <p>
             Skeleton models spend millions of parameters learning what anatomy already tells you.
@@ -345,13 +353,13 @@
           <ul class="paper-points">
             <li><strong>BRASP</strong> shifts features between body regions. The left and right wrists sit 10+ hops apart in the skeleton graph; BRASP puts one beside the other in a single lookup.</li>
             <li><strong>SGPShift</strong> routes each channel to a ranked neighbour inside its body part or across a part boundary.</li>
-            <li>Both cost <strong>zero learnable parameters</strong>. The GCN that follows refines a representation that is already shaped like a body.</li>
+            <li>Both add <strong>no weights and no FLOPs</strong>. The GCN that follows refines a representation that is already shaped like a body.</li>
           </ul>
           <dl class="paper-stats">
-            <div><dt>94 K</dt><dd>parameters, Nano</dd></div>
-            <div><dt>88.5%</dt><dd>NTU-60 X-Sub, Nano + KD</dd></div>
-            <div><dt>11 ms</dt><dd>desktop CPU · 50 ms on Snapdragon 8 Gen 3</dd></div>
-            <div><dt>92.5%</dt><dd>Large, 1.18 M params, 4.3× fewer FLOPs than EfficientGCN-B4</dd></div>
+            <div><dt>88.8%</dt><dd>NTU RGB+D 60 X-Sub with 281 K parameters</dd></div>
+            <div><dt>7×</dt><dd>fewer FLOPs than EfficientGCN-B0</dd></div>
+            <div><dt>90.4%</dt><dd>after distillation from VideoMAE V2</dd></div>
+            <div><dt>25 ms</dt><dd>on a desktop CPU</dd></div>
           </dl>
           <a class="link-arrow" href="https://github.com/Vayuputra2401/anatomy-is-free" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
@@ -372,11 +380,52 @@
         </figure>
       </article>
 
+      <article class="paper paper--feature paper--flip" data-inert>
+        <div class="paper-text">
+          <p class="kicker"><span class="badge badge--ochre">Under review</span> WACV 2027 · Applications track</p>
+          <h3 class="paper-title">Aligned but Inert: concept bottlenecks in dense prediction, and how to make them causal</h3>
+          <p>
+            A concept bottleneck for 3D brain-tumour segmentation (BraTS 2024) passes every test the
+            literature uses: routing tracks the clinical concepts at <strong>0.96</strong> alignment.
+            Yet forcing tokens through a different expert changes only <strong>1.1%</strong> of voxel
+            labels. The decoder never consults it.
+          </p>
+          <p>
+            The leak is a residual path through the module and skip connections around it. Blocking
+            them fails; the optimiser compensates. Making the routing an <strong>additive term of the
+            output</strong> works — at the cost of about one Dice point. The paper also ships a
+            three-test diagnostic that tells consulted bottlenecks from ignored ones, with no retraining.
+          </p>
+          <a class="link-arrow" href="https://github.com/Vayuputra2401/AMBETS" target="_blank" rel="noopener">Code on GitHub</a>
+        </div>
+        <figure class="paper-figure inert">
+          <div class="seg" role="group" aria-label="Architecture variant">
+            <button data-variant="0" aria-pressed="true">Natural</button>
+            <button data-variant="1" aria-pressed="false">Gated</button>
+            <button data-variant="2" aria-pressed="false">Direct</button>
+          </div>
+          <div class="inert-chart">
+            <div class="inert-row">
+              <span class="inert-label mono">Causal control</span>
+              <div class="inert-track"><span class="inert-bar inert-bar--accent" data-bar="control"></span></div>
+              <span class="inert-val mono" data-val="control"></span>
+            </div>
+            <div class="inert-row">
+              <span class="inert-label mono">Dice, whole tumour</span>
+              <div class="inert-track"><span class="inert-bar" data-bar="dice"></span></div>
+              <span class="inert-val mono" data-val="dice"></span>
+            </div>
+          </div>
+          <p class="inert-note" data-inert-note aria-live="polite"></p>
+          <figcaption>Label-flip causal control vs. segmentation quality, from the paper's results table. Wilcoxon p = 2.6 × 10⁻²⁹ over 168 matched cases.</figcaption>
+        </figure>
+      </article>
+
       <div class="papers papers--two">
         <article class="paper">
           <p class="kicker"><span class="badge">Published</span> ICPR 2024</p>
           <h3 class="paper-title">Brain tumour classification and segmentation with a custom CNN, U-Net and XAI</h3>
-          <p><strong>99.6%</strong> accuracy on MRI, plus new metrics that put a number on LIME explanations. Grad-CAM fused with interpretability scores so clinicians can check the model's reasons, not just its answer.</p>
+          <p><strong>99.6%</strong> accuracy on MRI, plus new metrics that put a number on LIME and Grad-CAM explanations, so clinicians can check the model's reasons, not just its answer.</p>
           <a class="link-arrow" href="https://github.com/Vayuputra2401/ICPR-XAI-2024" target="_blank" rel="noopener">Code</a>
         </article>
         <article class="paper">
@@ -411,23 +460,33 @@
           <button data-filter="all" aria-pressed="true">All</button>
           <button data-filter="agents" aria-pressed="false">Agents</button>
           <button data-filter="health" aria-pressed="false">Health</button>
+          <button data-filter="vision" aria-pressed="false">Vision</button>
           <button data-filter="science" aria-pressed="false">Science</button>
           <button data-filter="voice" aria-pressed="false">Voice</button>
         </div>
       </header>
 
       <ol class="projects">
-        <li class="project" data-tags="agents">
+        <li class="project" data-tags="agents rl">
           <span class="project-idx mono">01</span>
           <div class="project-main">
-            <h3 class="project-name">AP Clerk</h3>
-            <p>An accounts-payable agent trained with GRPO against a live FastAPI reward server: duplicate invoices, policy escalations, PO/GRN reasoning across 24 financial tasks. Qwen2.5 hit 94.9% format accuracy, 0.72 mean reward. <strong>Top 100 of 75,000 teams</strong> at the Meta PyTorch OpenEnv × Scaler hackathon.</p>
-            <p class="stack mono">GRPO · TRL · Qwen2.5 · FastAPI</p>
+            <h3 class="project-name">AP Commander</h3>
+            <p>A multi-agent RL environment on Meta OpenEnv for accounts-payable three-way matching: a clerk agent with 6 actions, a Fleet AI oversight agent and 3 reactive workplace actors across 24 procedurally generated tasks. Qwen2.5-7B trained with GRPO against live HTTP rewards, no static dataset: mean reward <strong>0.535 → 0.746</strong> (+39%), JSON compliance 91.2%. The shaped reward has anti-gaming graders — mandatory numeric citations, a keyword-density penalty, scores clamped so GRPO's group variance can't collapse. <strong>Top 100 of 75,000 teams.</strong></p>
+            <p class="stack mono">PyTorch · Qwen2.5-7B · GRPO (TRL) · LoRA + 4-bit NF4 · FastAPI · Docker · HF Spaces</p>
           </div>
           <a class="link-arrow" href="https://github.com/Vayuputra2401/AP-Clerk-Financial-Agent" target="_blank" rel="noopener">GitHub</a>
         </li>
-        <li class="project" data-tags="health agents">
+        <li class="project" data-tags="agents vision">
           <span class="project-idx mono">02</span>
+          <div class="project-main">
+            <h3 class="project-name">ReLoop</h3>
+            <p>Closed-loop returns and resale, built in 48 hours for HackOn with Amazon 6.0. Gemini grades the item; SAM2 pixel masks then measure defect area so the grade is auditable, not guessed — over 15% of the surface forces a downgrade. Holding SAM2 as a FastAPI lifespan singleton turned an 8–12 s per-request load into a one-time cost, keeping the LangGraph router (resell / refurbish / donate / recycle) under 10 s. A Bedrock Nova Lite return-risk score runs on every product view in under 2 s.</p>
+            <p class="stack mono">FastAPI · Amazon Bedrock · Gemini 2.5 Flash · SAM2 · LangGraph · DynamoDB · S3 · React</p>
+          </div>
+          <a class="link-arrow" href="https://github.com/Radhika1124/ReLoop" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li class="project" data-tags="health agents">
+          <span class="project-idx mono">03</span>
           <div class="project-main">
             <h3 class="project-name">Eir</h3>
             <p>A federated-learning healthcare platform: hospitals train together without sharing records. LoRA-tuned small models train 45% faster, EasyOCR digitises prescriptions at 94%, and edge inference runs 3.2× faster.</p>
@@ -436,7 +495,7 @@
           <a class="link-arrow" href="https://github.com/Vayuputra2401/Eir" target="_blank" rel="noopener">GitHub</a>
         </li>
         <li class="project" data-tags="voice agents">
-          <span class="project-idx mono">03</span>
+          <span class="project-idx mono">04</span>
           <div class="project-main">
             <h3 class="project-name">LegalVoice.ai</h3>
             <p>Legal help by voice in 8 Indian languages at 92% transcription accuracy. AutoGen agents fill the forms; hybrid-retrieval RAG and QLoRA fine-tuning cut document processing time by 73%.</p>
@@ -445,7 +504,7 @@
           <a class="link-arrow" href="https://github.com/Vayuputra2401/LegalVoice.ai" target="_blank" rel="noopener">GitHub</a>
         </li>
         <li class="project" data-tags="agents">
-          <span class="project-idx mono">04</span>
+          <span class="project-idx mono">05</span>
           <div class="project-main">
             <h3 class="project-name">TransformoDocs</h3>
             <p>Turns scanned paperwork into structured JSON/XML with HyDE and query-decomposition RAG — 70% less storage, 36% faster conversion, 95% of full accuracy on small edge models. <strong>National finalist, Smart India Hackathon 2024.</strong></p>
@@ -454,7 +513,7 @@
           <a class="link-arrow" href="https://github.com/Vayuputra2401/TransformoDocs" target="_blank" rel="noopener">GitHub</a>
         </li>
         <li class="project project--figure" data-tags="science agents" data-graph-root>
-          <span class="project-idx mono">05</span>
+          <span class="project-idx mono">06</span>
           <div class="project-main">
             <h3 class="project-name">MoleculeForge</h3>
             <p>Molecule generation with a VAE and graph convolutions on ZINC, steered by fine-tuned Gemini and checked by self-reflective RAG agents. Discovery loops ran 58% faster; candidate viability rose 42%.</p>
@@ -477,7 +536,7 @@
     <div class="wrap">
       <header class="section-head">
         <p class="kicker kicker--light"><span class="num">05</span> Recognition</p>
-        <h2 id="recognition-title" class="section-title">A patent, two national-stage results, and three years of leading teams.</h2>
+        <h2 id="recognition-title" class="section-title">Patents, two national-stage results, and three years of leading teams.</h2>
       </header>
 
       <article class="award award--lead" id="patent">
@@ -487,7 +546,7 @@
         </div>
         <div class="award-body">
           <h3 class="award-title">Automated physics-informed neural network enhanced by symbolic regression and LLMs, with balanced loss optimisation</h3>
-          <p>Out of my research at Siemens. A neuro-symbolic architecture that joins PINNs, symbolic regression and LLMs, with a balanced loss that lets physical constraints and data-driven accuracy pull together instead of against each other across complex dynamical systems.</p>
+          <p>Out of my research at Siemens, where a second patent — DANA, a neuro-symbolic agent for industrial chillers — is filed. This one is a neuro-symbolic architecture that joins PINNs, symbolic regression and LLMs, with a balanced loss that lets physical constraints and data-driven accuracy pull together instead of against each other across complex dynamical systems.</p>
           <p class="stack mono">PINNs · Symbolic regression · LLMs · Neuro-symbolic AI</p>
         </div>
       </article>
@@ -496,7 +555,7 @@
         <article class="award">
           <p class="award-rank"><span class="award-num">Top 100</span><span class="mono">of 75,000 teams</span></p>
           <h3 class="award-title">Meta PyTorch OpenEnv × Scaler</h3>
-          <p>AP Clerk: an accounts-payable agent trained with GRPO against a live reward server. Qwen2.5 reached 94.9% format accuracy and 0.72 mean reward across 24 financial tasks.</p>
+          <p>AP Commander: a multi-agent RL environment for enterprise finance. Qwen2.5-7B trained with GRPO against live environment rewards lifted mean reward from 0.535 to 0.746.</p>
           <a class="link-arrow" href="https://github.com/Vayuputra2401/AP-Clerk-Financial-Agent" target="_blank" rel="noopener">GitHub</a>
         </article>
         <article class="award">
@@ -524,20 +583,20 @@
       </header>
       <dl class="skillset">
         <div>
+          <dt>Data &amp; lakehouse</dt>
+          <dd>Apache Hudi, Apache Iceberg, Trino, Apache Doris, Apache Spark, Kafka, Kafka Connect, Debezium (CDC), Azkaban, Metabase, BigQuery, GCS, ETL optimisation</dd>
+        </div>
+        <div>
           <dt>AI &amp; ML</dt>
-          <dd>PyTorch, TensorFlow, Hugging Face, LoRA / QLoRA, SLM and LLM optimisation, OpenCV, LangGraph, LangChain, CrewAI, agentic RAG, chain-of-thought, LangSmith observability</dd>
+          <dd>PyTorch, TensorFlow, LLM / SLM optimisation (LoRA, QLoRA, GRPO / TRL), Hugging Face, ONNX Runtime, OpenCV, LangChain, LangGraph, CrewAI, agentic RAG, LangSmith</dd>
         </div>
         <div>
-          <dt>Data &amp; cloud</dt>
-          <dd>Apache Spark, Azkaban, BigQuery, GCS, GCP data pipelines, ETL optimisation, MLOps, Docker, AWS SageMaker, MCP servers, Git</dd>
+          <dt>Cloud &amp; infra</dt>
+          <dd>GCP (Dataproc, GCS, BigQuery), Docker, Kubernetes, AWS SageMaker, MLOps, Git, MCP servers, Grafana</dd>
         </div>
         <div>
-          <dt>Languages</dt>
-          <dd>Python, C/C++, TypeScript, JavaScript, Java, SQL (PostgreSQL, BigQuery), HTML, CSS</dd>
-        </div>
-        <div>
-          <dt>Product</dt>
-          <dd>React, React Native, Next.js, Node.js, FastAPI, Flask, MongoDB, WebRTC, Power BI, Kaggle, Colab</dd>
+          <dt>Languages &amp; product</dt>
+          <dd>Python, Java, C/C++, TypeScript, JavaScript, SQL (Trino, BigQuery, PostgreSQL) · React, React Native, Node.js, FastAPI, Flask, MongoDB, WebRTC</dd>
         </div>
       </dl>
     </div>

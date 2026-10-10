@@ -332,9 +332,16 @@ kbd { font: 500 0.7rem/1 var(--font-mono); opacity: 0.8; }
 .route-head .kicker { margin: 0; }
 .route-head output { font-size: 0.82rem; color: var(--on-ink); }
 .route-map { width: 100%; height: auto; display: block; margin: 0.5rem 0 1rem; }
-.route-zones circle { fill: var(--ember); fill-opacity: 0.12; stroke: var(--ember); stroke-opacity: 0.45; stroke-dasharray: 2 4; }
-.route-map path { fill: none; stroke: var(--ink-line); stroke-width: 3; stroke-linecap: round; transition: stroke .25s, stroke-width .25s; }
-.route-map path.is-best { stroke: var(--on-ink); stroke-width: 4; }
+.route-band { fill: none; stroke-linecap: round; transition: stroke-opacity .25s; }
+.route-band--far { stroke: var(--ember); stroke-opacity: 0.05; }
+.route-band--near { stroke: var(--on-ink); stroke-opacity: 0.06; }
+.route[data-state="warn"] .route-band--near { stroke-opacity: 0.14; }
+.route[data-state="alert"] .route-band--far { stroke-opacity: 0.14; }
+.route-line { fill: none; stroke: var(--on-ink); stroke-width: 3; stroke-linecap: round; }
+.route-tether { stroke: var(--on-ink-muted); stroke-width: 1; stroke-dasharray: 2 3; }
+.route-you { fill: var(--on-ink); stroke: var(--ink-2); stroke-width: 3; transition: fill .2s; }
+.route[data-state="warn"] .route-you { fill: var(--ochre); }
+.route[data-state="alert"] .route-you { fill: var(--ember); }
 .route-end { fill: var(--on-ink); }
 .route-label { font: 500 11px var(--font-mono); fill: var(--on-ink-muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .route input[type="range"] { width: 100%; accent-color: var(--ember); }
@@ -598,3 +605,29 @@ kbd { font: 500 0.7rem/1 var(--font-mono); opacity: 0.8; }
   .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { transition-duration: 0s !important; }
 }
+
+/* Chef.ai numbers */
+.mini-stats { margin: 1.75rem 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink-line); }
+.mini-stats > div { padding: 1rem 1rem 0 0; }
+.mini-stats > div + div { padding-left: 1rem; border-left: 1px solid var(--ink-line); }
+.mini-stats dt { font: 400 2rem/1 var(--font-display); color: var(--on-ink); }
+.mini-stats dd { margin: 0.4rem 0 0; font-size: 0.82rem; line-height: 1.45; color: var(--on-ink-muted); }
+@media (max-width: 640px) {
+  .mini-stats { grid-template-columns: minmax(0, 1fr); }
+  .mini-stats > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--ink-line); }
+  .mini-stats > div { padding-bottom: 1rem; }
+}
+
+/* Aligned but Inert */
+.paper--flip { padding-top: 0; }
+.inert { justify-content: center; gap: 1.25rem; padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); align-self: start; }
+.inert .seg { align-self: flex-start; }
+.inert-chart { display: grid; gap: 1rem; }
+.inert-row { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) 3.5rem; gap: 0.75rem; align-items: center; }
+.inert-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.inert-track { height: 10px; background: var(--bg-2); border-radius: 2px; overflow: hidden; }
+.inert-bar { display: block; height: 100%; background: var(--text); transform-origin: 0 50%; transform: scaleX(0); transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.inert-bar--accent { background: var(--ember); }
+.inert-val { font-size: 0.85rem; text-align: right; font-variant-numeric: tabular-nums; }
+.inert-note { margin: 0; min-height: 3em; font-size: 0.92rem; }
+@media (max-width: 520px) { .inert-row { grid-template-columns: minmax(0, 1fr) 3.5rem; } .inert-label { grid-column: 1 / -1; } }

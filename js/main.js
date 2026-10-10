@@ -232,28 +232,61 @@
     select(0);
   }
 
-  // ── Artemis: route cost ────────────────────────────────────────────────
+  // ── Artemis: live-trip deviation alerts (75 m / 300 m) ─────────────────
   const route = $("[data-route]");
   if (route) {
-    const slider = $("[data-route-lambda]", route);
+    const slider = $("[data-route-dev]", route);
     const out = $("[data-route-out]", route);
-    const paths = $$("path[data-path]", route);
-    // minutes, normalised risk exposure along the route
-    const ROUTES = [
-      { name: "FASTEST", min: 14, risk: 0.8 },
-      { name: "BALANCED", min: 18, risk: 0.4 },
-      { name: "SAFEST", min: 25, risk: 0.1 },
-    ];
+    const line = $(".route-line", route);
+    const you = $("[data-you]", route);
+    const tether = $("[data-tether]", route);
+    const near = $('[data-band="75"]', route);
+    const far = $('[data-band="300"]', route);
+    const L = line.getTotalLength();
+    const at = line.getPointAtLength(L * 0.55);
+    const ahead = line.getPointAtLength(L * 0.55 + 1);
+    // unit normal to the route at the marker
+    let nx = -(ahead.y - at.y), ny = ahead.x - at.x;
+    const n = Math.hypot(nx, ny) || 1;
+    nx /= n; ny /= n;
+    const PX_PER_M = 0.12; // 400 m ≈ 48 px on this map
+    near.style.strokeWidth = String(75 * PX_PER_M * 2);
+    far.style.strokeWidth = String(300 * PX_PER_M * 2);
     const update = () => {
-      const l = parseFloat(slider.value);
-      const costs = ROUTES.map((r) => r.min + l * r.risk * 30);
-      const best = costs.indexOf(Math.min(...costs));
-      paths.forEach((p, i) => p.classList.toggle("is-best", i === best));
-      const r = ROUTES[best];
-      out.textContent = `λ ${l.toFixed(2)} → ${r.name} · ${r.min} min · risk ${r.risk.toFixed(1)}`;
+      const m = +slider.value;
+      const x = at.x + nx * m * PX_PER_M, y = at.y + ny * m * PX_PER_M;
+      you.setAttribute("cx", x); you.setAttribute("cy", y);
+      tether.setAttribute("x1", at.x); tether.setAttribute("y1", at.y);
+      tether.setAttribute("x2", x); tether.setAttribute("y2", y);
+      const state = m >= 300 ? "alert" : m >= 75 ? "warn" : "ok";
+      route.dataset.state = state;
+      out.textContent = `${m} m off route → ${state === "alert" ? "deviation alert to trusted contacts" : state === "warn" ? "check-in prompt" : "all quiet"}`;
     };
     slider.addEventListener("input", update);
     update();
+  }
+
+  // ── Aligned but Inert: causal control vs Dice ──────────────────────────
+  const inert = $("[data-inert]");
+  if (inert) {
+    // From the paper's results table (label-flip control, Dice WT).
+    const V = [
+      { control: 0.001, dice: 0.927, note: "Natural: concepts align at 0.96, yet rerouting flips almost nothing. The decoder ignores the bottleneck." },
+      { control: 0.011, dice: 0.925, note: "Gated: cut the leaks around the module and the optimiser routes around the cut. Still inert." },
+      { control: 0.636, dice: 0.927, note: "Direct: routing becomes an additive term of the output. The model has to consult it — for about one Dice point." },
+    ];
+    const btns = $$("[data-variant]", inert);
+    const show = (k) => {
+      btns.forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.variant === k)));
+      const v = V[k];
+      $('[data-bar="control"]', inert).style.transform = `scaleX(${Math.max(v.control, 0.004)})`;
+      $('[data-bar="dice"]', inert).style.transform = `scaleX(${v.dice})`;
+      $('[data-val="control"]', inert).textContent = v.control.toFixed(3);
+      $('[data-val="dice"]', inert).textContent = v.dice.toFixed(3);
+      $("[data-inert-note]", inert).textContent = v.note;
+    };
+    btns.forEach((b) => b.addEventListener("click", () => show(+b.dataset.variant)));
+    show(0);
   }
 
   // ── work accordion ─────────────────────────────────────────────────────
@@ -326,6 +359,7 @@
     { label: "Siemens patent", hint: "Recognition", run: go("patent") },
     { label: "Projects", hint: "Section", run: go("projects") },
     { label: "Anatomy is Free (paper)", hint: "Research", run: go("research") },
+    { label: "Aligned but Inert (paper)", hint: "Research", run: () => document.querySelector("[data-inert]")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }) },
     { label: "Recognition & hackathons", hint: "Section", run: go("recognition") },
     { label: "Skills", hint: "Section", run: go("skills") },
     { label: "About me", hint: "Section", run: go("about") },
