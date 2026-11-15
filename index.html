@@ -51,6 +51,11 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-actions">
+        <button class="theme-btn" data-theme-toggle type="button" aria-label="Switch to dark theme">
+          <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+          <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          <span class="theme-txt mono" data-theme-label>Dark</span>
+        </button>
         <button class="kbd-btn" data-palette-open aria-label="Open command menu">
           <span class="nav-menu-label">Menu</span><kbd>⌘K</kbd>
         </button>
@@ -65,17 +70,57 @@
   <section id="home" class="hero" aria-label="Introduction">
     <canvas id="hero-fluid" class="hero-canvas" aria-hidden="true"></canvas>
 
-    <div class="hero-model">
-      <canvas tabindex="0" aria-label="Interactive 3D model that morphs between shapes from my work. Drag to spin, click or press the right arrow for the next shape."></canvas>
-      <div class="hero-model-ui">
-        <p class="hero-model-hint mono">Drag to spin · click for the next one</p>
-        <ol class="hero-model-nav" aria-label="Model shape">
-          <li><button data-shape="0"><span class="mono">01</span>Skeleton<span class="hm-note">Anatomy is Free</span></button></li>
-          <li><button data-shape="1"><span class="mono">02</span>Caffeine<span class="hm-note">MoleculeForge</span></button></li>
-          <li><button data-shape="2"><span class="mono">03</span>Edge camera<span class="hm-note">Akasha</span></button></li>
-          <li><button data-shape="3"><span class="mono">04</span>Bowl<span class="hm-note">Chef.ai</span></button></li>
-        </ol>
+    <div class="hero-cube" data-cube>
+      <div class="cube-stage" tabindex="0" role="group" aria-roledescription="3D navigation" aria-label="A cube made of this site's sections. Drag or use the arrow keys to turn it; press Enter to open the face in front." aria-describedby="cube-live">
+        <div class="cube-floor" aria-hidden="true"></div>
+        <div class="cube">
+          <a class="face face--front" href="#building" data-face="0" tabindex="-1">
+            <span class="face-top"><span class="face-num mono">01</span><span class="face-kick mono">Building now</span></span>
+            <span class="face-title">Three products</span>
+            <span class="face-meta mono">Akasha · Chef.ai · Artemis</span>
+            <span class="face-go mono">Open &#8599;</span>
+          </a>
+          <a class="face face--right" href="#work" data-face="1" tabindex="-1">
+            <span class="face-top"><span class="face-num mono">02</span><span class="face-kick mono">Work</span></span>
+            <span class="face-title">Flipkart, Siemens</span>
+            <span class="face-meta mono">200+ TB lakehouse</span>
+            <span class="face-go mono">Open &#8599;</span>
+          </a>
+          <a class="face face--back" href="#research" data-face="2" tabindex="-1">
+            <span class="face-top"><span class="face-num mono">03</span><span class="face-kick mono">Research</span></span>
+            <span class="face-title">Two at WACV</span>
+            <span class="face-meta mono">+ ICPR · ICIT</span>
+            <span class="face-go mono">Open &#8599;</span>
+          </a>
+          <a class="face face--left" href="#projects" data-face="3" tabindex="-1">
+            <span class="face-top"><span class="face-num mono">04</span><span class="face-kick mono">Projects</span></span>
+            <span class="face-title">Built to find out</span>
+            <span class="face-meta mono">AP Commander · ReLoop</span>
+            <span class="face-go mono">Open &#8599;</span>
+          </a>
+          <a class="face face--top" href="#recognition" data-face="4" tabindex="-1">
+            <span class="face-top"><span class="face-num mono">05</span><span class="face-kick mono">Recognition</span></span>
+            <span class="face-title">Patents &amp; wins</span>
+            <span class="face-meta mono">Top 100 / 75,000</span>
+            <span class="face-go mono">Open &#8599;</span>
+          </a>
+          <a class="face face--bottom" href="#contact" data-face="5" tabindex="-1">
+            <span class="face-top"><span class="face-num mono">06</span><span class="face-kick mono">Contact</span></span>
+            <span class="face-title">Let's talk</span>
+            <span class="face-meta mono">Open to hard problems</span>
+            <span class="face-go mono">Open &#8599;</span>
+          </a>
+        </div>
       </div>
+      <p class="cube-live mono" id="cube-live" aria-live="polite"></p>
+      <ol class="cube-nav" aria-label="Turn the cube to a section">
+        <li><button data-cube-go="0" aria-pressed="true"><span class="mono">01</span>Building now</button></li>
+        <li><button data-cube-go="1" aria-pressed="false"><span class="mono">02</span>Work</button></li>
+        <li><button data-cube-go="2" aria-pressed="false"><span class="mono">03</span>Research</button></li>
+        <li><button data-cube-go="3" aria-pressed="false"><span class="mono">04</span>Projects</button></li>
+        <li><button data-cube-go="4" aria-pressed="false"><span class="mono">05</span>Recognition</button></li>
+        <li><button data-cube-go="5" aria-pressed="false"><span class="mono">06</span>Contact</button></li>
+      </ol>
     </div>
 
     <div class="wrap hero-inner">
@@ -566,19 +611,19 @@
       <dl class="skillset">
         <div>
           <dt>Data &amp; lakehouse</dt>
-          <dd>Apache Hudi, Apache Iceberg, Trino, Apache Doris, Apache Spark, Kafka, Kafka Connect, Debezium (CDC), Azkaban, Metabase, BigQuery, GCS, ETL optimisation</dd>
+          <dd class="chips"><span class="chip">Apache Hudi</span><span class="chip">Apache Iceberg</span><span class="chip">Trino</span><span class="chip">Apache Doris</span><span class="chip">Apache Spark</span><span class="chip">Kafka</span><span class="chip">Kafka Connect</span><span class="chip">Debezium (CDC)</span><span class="chip">Azkaban</span><span class="chip">Metabase</span><span class="chip">BigQuery</span><span class="chip">GCS</span><span class="chip">ETL optimisation</span></dd>
         </div>
         <div>
           <dt>AI &amp; ML</dt>
-          <dd>PyTorch, TensorFlow, LLM / SLM optimisation (LoRA, QLoRA, GRPO / TRL), Hugging Face, ONNX Runtime, OpenCV, LangChain, LangGraph, CrewAI, agentic RAG, LangSmith</dd>
+          <dd class="chips"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">LLM / SLM optimisation (LoRA, QLoRA, GRPO / TRL)</span><span class="chip">Hugging Face</span><span class="chip">ONNX Runtime</span><span class="chip">OpenCV</span><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">CrewAI</span><span class="chip">agentic RAG</span><span class="chip">LangSmith</span></dd>
         </div>
         <div>
           <dt>Cloud &amp; infra</dt>
-          <dd>GCP (Dataproc, GCS, BigQuery), Docker, Kubernetes, AWS SageMaker, MLOps, Git, MCP servers, Grafana</dd>
+          <dd class="chips"><span class="chip">GCP (Dataproc, GCS, BigQuery)</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">AWS SageMaker</span><span class="chip">MLOps</span><span class="chip">Git</span><span class="chip">MCP servers</span><span class="chip">Grafana</span></dd>
         </div>
         <div>
           <dt>Languages &amp; product</dt>
-          <dd>Python, Java, C/C++, TypeScript, JavaScript, SQL (Trino, BigQuery, PostgreSQL) · React, React Native, Node.js, FastAPI, Flask, MongoDB, WebRTC</dd>
+          <dd class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C/C++</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">SQL (Trino, BigQuery, PostgreSQL)</span><span class="chip">React</span><span class="chip">React Native</span><span class="chip">Node.js</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">MongoDB</span><span class="chip">WebRTC</span></dd>
         </div>
       </dl>
     </div>
@@ -635,7 +680,7 @@
   <footer class="footer">
     <div class="wrap footer-inner">
       <p>© 2026 Pathikreet Chowdhury</p>
-      <p class="mono dim">Hand-written HTML, CSS and JS. Hero: stable-fluids solver on WebGL2 over ThreeUI's Fluid Field shader (MIT, Meng To), and a point-cloud model on Canvas 2D animated with GSAP.</p>
+      <p class="mono dim">Hand-written HTML, CSS and JS. Hero: stable-fluids solver on WebGL2 over ThreeUI's Fluid Field shader (MIT, Meng To), and a CSS 3D cube of the site's sections.</p>
     </div>
   </footer>
 
@@ -681,7 +726,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" defer></script>
   <script src="js/fluid.js" defer></script>
   <script src="js/graph3d.js" defer></script>
-  <script src="js/hero-model.js" defer></script>
+  <script src="js/cube.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

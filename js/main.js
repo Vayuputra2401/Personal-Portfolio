@@ -91,7 +91,6 @@
     } else {
       intro.from(".hero-title", { autoAlpha: 0, y: 30, duration: 1 }, 0.1);
     }
-    intro.from(".hero-model-ui", { autoAlpha: 0, y: 12, duration: 0.8 }, 1.4);
     intro.from(".hero-lede", { autoAlpha: 0, y: 16, duration: 0.8 }, 0.6)
       .from(".hero-actions > *", { autoAlpha: 0, y: 12, duration: 0.6, stagger: 0.08 }, 0.8)
       .from(".hero-hint", { autoAlpha: 0, duration: 1 }, 1.1);
@@ -399,16 +398,29 @@
   });
 
   // ── theme ──────────────────────────────────────────────────────────────
+  const isDark = () => {
+    const t = document.documentElement.dataset.theme;
+    return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  };
+  function syncThemeButton() {
+    const dark = isDark();
+    $$("[data-theme-toggle]").forEach((b) => {
+      b.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+      const l = $("[data-theme-label]", b);
+      if (l) l.textContent = dark ? "Light" : "Dark";
+    });
+  }
   function toggleTheme() {
     const root = document.documentElement;
-    const dark = root.dataset.theme
-      ? root.dataset.theme === "dark"
-      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const dark = isDark();
     root.dataset.theme = dark ? "light" : "dark";
     try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
     window.dispatchEvent(new Event("themechange"));
-    toast(dark ? "Light theme" : "Dark theme");
+    syncThemeButton();
   }
+  $$("[data-theme-toggle]").forEach((b) => b.addEventListener("click", toggleTheme));
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", syncThemeButton);
+  syncThemeButton();
 
   // ── contact modal (EmailJS) ────────────────────────────────────────────
   const EMAILJS_PUBLIC_KEY = "7BZGP-ZYoJd0QYkxL";

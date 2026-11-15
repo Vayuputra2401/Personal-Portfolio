@@ -355,8 +355,5 @@
     window.addEventListener("resize", () => { resize(); draw(); });
   }
 
-  // Shared with the hero model (js/hero-model.js).
-  window.PortfolioShapes = { pose, BONES, caffeine };
-
   document.querySelectorAll("canvas[data-scene]").forEach(mount);
 })();
