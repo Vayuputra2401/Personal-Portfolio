@@ -128,15 +128,22 @@
   const c = P(74, 196, 0);
   const cat = `<a class="obj" href="#about" data-key="about" aria-label="Jim Beam the cat, asleep: About" data-drop>
     <g transform="translate(${c[0].toFixed(1)} ${c[1].toFixed(1)})">
+      <!-- tabby: grey-brown coat, dark stripes, ringed tail, the "M" on the forehead -->
+      <path class="r-tailO" d="M20 -1 Q40 0 36 -14 Q33 -21 27 -17"/>
+      <path class="r-tail" d="M20 -1 Q40 0 36 -14 Q33 -21 27 -17"/>
+      <path class="r-tailRing" d="M29 -1.5 l1 -4.5 M35 -5 l-4 -2 M35.5 -12 l-4.5 1"/>
       <g class="r-breathe">
         <path class="r-ol r-cat" d="M-24 -4 Q-30 -22 -8 -24 Q16 -26 24 -10 Q28 0 18 2 L-20 2 Q-26 0 -24 -4 Z"/>
-        <path class="r-ol r-cat" d="M22 -2 Q38 -2 34 -14 Q31 -20 26 -16" fill="none" style="fill:none"/>
-        <path class="r-stripe" d="M-6 -23 q2 6 0 10 M2 -24 q2 7 0 11 M10 -22 q2 6 0 9"/>
+        <path class="r-belly" d="M-16 1 Q-4 -6 12 0 Z"/>
+        <path class="r-stripe" d="M-10 -23.5 q3 7 0 12 M-2 -24.5 q3 8 0 13 M6 -24 q3 7 0 12 M14 -21 q3 6 0 10 M20 -15 q2 4 0 7"/>
       </g>
       <g transform="translate(-22 -10)">
         <path class="r-ol r-cat" d="M-12 4 Q-14 -10 -8 -12 L-6 -20 L-1 -13 Q3 -14 6 -13 L10 -20 L11 -11 Q15 -6 12 4 Z"/>
-        <path class="r-ink2" d="M-6 -3 q2 2 4 0 M3 -3 q2 2 4 0"/>
-        <path class="r-pink" d="M-0.5 1 l1.5 1.2 l1.5 -1.2 z"/>
+        <path class="r-pink" d="M-6.5 -13.5 l1 -4 l2.6 3.4 z M8.5 -13.5 l1 -4 l-2.6 3.4 z"/>
+        <path class="r-stripe" d="M-1 -12 l1 4 l1 -3 l1 3 l1 -4 M-11 -2 h4 M-11.5 1 h4 M11 -2 h-4 M11.5 1 h-4"/>
+        <ellipse class="r-muzzle" cx="1" cy="1.5" rx="5.5" ry="3.4"/>
+        <path class="r-ink2" d="M-6 -4 q2 2 4 0 M4 -4 q2 2 4 0"/>
+        <path class="r-pink" d="M-0.5 0 l1.5 1.2 l1.5 -1.2 z"/>
       </g>
       <text class="r-zzz" x="-36" y="-30">z</text><text class="r-zzz r-zzz2" x="-44" y="-42">z</text>
     </g>
