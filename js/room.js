@@ -120,7 +120,7 @@
   const projects = `<a class="obj" href="#projects" data-key="projects" aria-label="Stack of boxes, things I built: Projects" data-drop>
     ${box(176, 18, 0, 54, 50, 40, "r-cbT", "r-cbL", "r-cbR")}${tape(176, 18, 40, 54, 50)}
     ${box(184, 26, 40, 40, 36, 32, "r-cbT", "r-cbL", "r-cbR")}${tape(184, 26, 72, 40, 36)}
-    <g transform="matrix(1 -0.5 0 1 ${P(186, 68, 26)[0].toFixed(1)} ${P(186, 68, 26)[1].toFixed(1)})"><text class="r-cbText">THINGS I BUILT</text></g>
+    <g transform="matrix(1 0.5 0 1 ${P(179, 68, 22)[0].toFixed(1)} ${P(179, 68, 22)[1].toFixed(1)})"><text class="r-cbText">THINGS I BUILT</text></g>
     ${box(200, 74, 0, 30, 28, 22, "r-cbT", "r-cbL", "r-cbR")}${tape(200, 74, 22, 30, 28)}
   </a>`;
 
@@ -157,12 +157,11 @@
       <path class="b-pants b-fo" d="M56 212 Q100 204 144 212 Q172 226 164 248 Q132 262 100 254 Q68 262 36 248 Q28 226 56 212 Z"/>
       ${art.slide(62, 248, false)}${art.slide(138, 248, true)}
       ${art.SHIRT}${art.NECK}
-      <path class="b-skin b-fo" d="M48 182 L60 186 L74 222 L61 226 Z"/>
-      <path class="b-skin b-fo" d="M152 182 L140 186 L126 222 L139 226 Z"/>
-      <rect class="r-ol r-lid" x="60" y="164" width="80" height="56" rx="5"/>
-      <circle class="r-sticker" cx="100" cy="190" r="10"/><text class="r-stickerT" x="100" y="194.5">λ</text>
-      <path class="r-ol r-base" d="M50 220 L150 220 L158 233 L42 233 Z"/>
-      <g class="r-typeL">${art.hand(66, 224)}</g><g class="r-typeR">${art.hand(134, 224)}</g>
+      <g class="r-typeL"><path class="b-skin b-fo" d="M47 181 L60 185 Q70 204 80 214 L71 222 Q57 206 47 181 Z"/></g>
+      <g class="r-typeR"><path class="b-skin b-fo" d="M153 181 L140 185 Q130 204 120 214 L129 222 Q143 206 153 181 Z"/></g>
+      <rect class="r-ol r-lid" x="66" y="190" width="68" height="40" rx="4"/>
+      <circle class="r-sticker" cx="100" cy="209" r="8"/><text class="r-stickerT" x="100" y="213">λ</text>
+      <rect class="r-ol r-base" x="62" y="229" width="76" height="6" rx="2"/>
       ${art.HEAD}`;
     me = `<a class="obj" href="#work" data-key="work" aria-label="Me, typing on a laptop: Work" data-drop data-me>
       ${floorEllipse(146, 150, 40, "r-ol r-cushion")}

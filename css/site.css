@@ -838,7 +838,7 @@ kbd { font: 500 0.7rem/1 var(--font-mono); opacity: 0.8; }
 .r-rug { fill: #e0a24a; } .r-rugIn { fill: none; stroke: #f3eee6; stroke-width: 2; stroke-dasharray: 5 5; }
 .r-cbT { fill: #e2b880; } .r-cbL { fill: #c99a63; } .r-cbR { fill: #b5844f; }
 .r-tape { stroke: #f0dcb4; stroke-width: 5; stroke-linecap: butt; opacity: .9; }
-.r-cbText { font: 500 5.5px var(--font-mono); letter-spacing: .12em; fill: #17120f; }
+.r-cbText { font: 500 4.8px var(--font-mono); letter-spacing: .04em; fill: #17120f; }
 .r-cat { fill: #9d8c76; } .r-stripe { fill: none; stroke: #3f342b; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .r-belly, .r-muzzle { fill: #ddd0bb; }
 .r-tailO { fill: none; stroke: #17120f; stroke-width: 7.4; stroke-linecap: round; }
@@ -853,10 +853,10 @@ kbd { font: 500 0.7rem/1 var(--font-mono); opacity: 0.8; }
 @keyframes r-breathe { 50% { transform: scale(1.04, 1.07); } }
 .r-cushion { fill: #e8572a; } .r-cushionTop { fill: #ff7a4d; }
 .r-lid { fill: #2b2724; } .r-base { fill: #3a3530; }
-.r-sticker { fill: #e8572a; } .r-stickerT { font: 400 13px var(--font-display); fill: #17120f; text-anchor: middle; }
+.r-sticker { fill: #e8572a; } .r-stickerT { font: 400 11px var(--font-display); fill: #17120f; text-anchor: middle; }
 .r-typeL, .r-typeR { animation: r-type .26s ease-in-out infinite alternate; }
 .r-typeR { animation-delay: -.13s; }
-@keyframes r-type { to { transform: translateY(-3px); } }
+@keyframes r-type { to { transform: translateY(-2px); } }
 .r-paper { fill: #fbfbf8; }
 .r-plane > * { transform: scale(1.5); } .r-paper2 { fill: #e2d5c1; }
 .r-plane { offset-path: path("M 470 150 C 420 80, 330 70, 290 120 S 300 230, 400 220 S 520 190, 470 150"); offset-rotate: auto; animation: r-fly 11s linear infinite; }
