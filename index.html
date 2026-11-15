@@ -70,57 +70,19 @@
   <section id="home" class="hero" aria-label="Introduction">
     <canvas id="hero-fluid" class="hero-canvas" aria-hidden="true"></canvas>
 
-    <div class="hero-cube" data-cube>
-      <div class="cube-stage" tabindex="0" role="group" aria-roledescription="3D navigation" aria-label="A cube made of this site's sections. Drag or use the arrow keys to turn it; press Enter to open the face in front." aria-describedby="cube-live">
-        <div class="cube-floor" aria-hidden="true"></div>
-        <div class="cube">
-          <a class="face face--front" href="#building" data-face="0" tabindex="-1">
-            <span class="face-top"><span class="face-num mono">01</span><span class="face-kick mono">Building now</span></span>
-            <span class="face-title">Three products</span>
-            <span class="face-meta mono">Akasha · Chef.ai · Artemis</span>
-            <span class="face-go mono">Open &#8599;</span>
-          </a>
-          <a class="face face--right" href="#work" data-face="1" tabindex="-1">
-            <span class="face-top"><span class="face-num mono">02</span><span class="face-kick mono">Work</span></span>
-            <span class="face-title">Flipkart, Siemens</span>
-            <span class="face-meta mono">200+ TB lakehouse</span>
-            <span class="face-go mono">Open &#8599;</span>
-          </a>
-          <a class="face face--back" href="#research" data-face="2" tabindex="-1">
-            <span class="face-top"><span class="face-num mono">03</span><span class="face-kick mono">Research</span></span>
-            <span class="face-title">Two at WACV</span>
-            <span class="face-meta mono">+ ICPR · ICIT</span>
-            <span class="face-go mono">Open &#8599;</span>
-          </a>
-          <a class="face face--left" href="#projects" data-face="3" tabindex="-1">
-            <span class="face-top"><span class="face-num mono">04</span><span class="face-kick mono">Projects</span></span>
-            <span class="face-title">Built to find out</span>
-            <span class="face-meta mono">AP Commander · ReLoop</span>
-            <span class="face-go mono">Open &#8599;</span>
-          </a>
-          <a class="face face--top" href="#recognition" data-face="4" tabindex="-1">
-            <span class="face-top"><span class="face-num mono">05</span><span class="face-kick mono">Recognition</span></span>
-            <span class="face-title">Patents &amp; wins</span>
-            <span class="face-meta mono">Top 100 / 75,000</span>
-            <span class="face-go mono">Open &#8599;</span>
-          </a>
-          <a class="face face--bottom" href="#contact" data-face="5" tabindex="-1">
-            <span class="face-top"><span class="face-num mono">06</span><span class="face-kick mono">Contact</span></span>
-            <span class="face-title">Let's talk</span>
-            <span class="face-meta mono">Open to hard problems</span>
-            <span class="face-go mono">Open &#8599;</span>
-          </a>
-        </div>
-      </div>
-      <p class="cube-live mono" id="cube-live" aria-live="polite"></p>
-      <ol class="cube-nav" aria-label="Turn the cube to a section">
-        <li><button data-cube-go="0" aria-pressed="true"><span class="mono">01</span>Building now</button></li>
-        <li><button data-cube-go="1" aria-pressed="false"><span class="mono">02</span>Work</button></li>
-        <li><button data-cube-go="2" aria-pressed="false"><span class="mono">03</span>Research</button></li>
-        <li><button data-cube-go="3" aria-pressed="false"><span class="mono">04</span>Projects</button></li>
-        <li><button data-cube-go="4" aria-pressed="false"><span class="mono">05</span>Recognition</button></li>
-        <li><button data-cube-go="5" aria-pressed="false"><span class="mono">06</span>Contact</button></li>
-      </ol>
+    <div class="hero-room">
+      <div data-room></div>
+      <nav aria-label="Sections, also in the room above">
+        <ol class="room-nav">
+          <li><a href="#building" data-for="building"><span class="mono">01</span>Building now</a></li>
+          <li><a href="#work" data-for="work"><span class="mono">02</span>Work</a></li>
+          <li><a href="#research" data-for="research"><span class="mono">03</span>Research</a></li>
+          <li><a href="#projects" data-for="projects"><span class="mono">04</span>Projects</a></li>
+          <li><a href="#recognition" data-for="recognition"><span class="mono">05</span>Recognition</a></li>
+          <li><a href="#contact" data-for="contact"><span class="mono">06</span>Contact</a></li>
+          <li><a href="#about" data-for="about"><span class="mono">07</span>About</a></li>
+        </ol>
+      </nav>
     </div>
 
     <div class="wrap hero-inner">
@@ -680,7 +642,7 @@
   <footer class="footer">
     <div class="wrap footer-inner">
       <p>© 2026 Pathikreet Chowdhury</p>
-      <p class="mono dim">Hand-written HTML, CSS and JS. Hero: stable-fluids solver on WebGL2 over ThreeUI's Fluid Field shader (MIT, Meng To), and a CSS 3D cube of the site's sections.</p>
+      <p class="mono dim">Hand-written HTML, CSS and JS. Hero: stable-fluids solver on WebGL2 over ThreeUI's Fluid Field shader (MIT, Meng To), and an isometric SVG room where every object opens a section.</p>
     </div>
   </footer>
 
@@ -726,8 +688,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" defer></script>
   <script src="js/fluid.js" defer></script>
   <script src="js/graph3d.js" defer></script>
-  <script src="js/cube.js" defer></script>
   <script src="js/buddy.js" defer></script>
+  <script src="js/room.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

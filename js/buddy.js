@@ -2,9 +2,7 @@
  * The little me: an anime-style version of Pathikreet who keeps visitors
  * company. Same drawing as the GitHub README header.
  *
- * - Hero: he sits cross-legged on the section cube and pushes it round; his
- *   arm moves whenever the cube turns, and he hops off when it's tipped onto
- *   its top or bottom.
+ * - Hero: js/room.js puts him in his room (it reuses the parts below).
  * - After the hero he walks along the bottom edge as you scroll (direction
  *   follows the scroll), and when a section arrives he peeks in from the
  *   side or hangs from the top with a one-line tip, then ducks out.
@@ -70,18 +68,6 @@
       <g filter="url(#${id})" transform="translate(7 7)" class="b-shadow">${body}</g><g>${body}</g></svg>`;
   }
 
-  // Sitting cross-legged; right arm reaches down to push the cube.
-  const SITTER = svg("22 0 190 268", `
-    <g class="b-push">
-      <path class="b-skin b-fo" d="M144 182 L156 176 L190 228 L178 236 Z"/>${hand(186, 236)}
-      <path class="b-trim" d="M147 180 L157 175"/>
-    </g>
-    <path class="b-pants b-fo" d="M56 212 Q100 204 144 212 Q172 226 164 248 Q132 262 100 254 Q68 262 36 248 Q28 226 56 212 Z"/>
-    <path class="b-fold" d="M60 232 Q80 240 100 236 Q120 240 140 232 M100 222 v14"/>
-    ${slide(62, 248, false)}${slide(138, 248, true)}
-    <path class="b-skin b-fo" d="M48 182 L60 186 L84 230 L72 236 Z"/>${hand(80, 234)}
-    ${SHIRT}${NECK}${HEAD}`, "A drawing of Pathikreet sitting on the cube, spinning it");
-
   // Walking: separate legs and arms so they can swing.
   const WALKER = svg("30 0 140 332", `
     <g class="b-armR"><path class="b-skin b-fo" d="M139 184 L152 182 L150 226 L139 226 Z"/>${hand(145, 230)}</g>
@@ -91,20 +77,10 @@
     <g class="b-armL"><path class="b-skin b-fo" d="M48 182 L61 184 L61 226 L50 226 Z"/>${hand(55, 230)}</g>
     ${HEAD}`, "A small drawing of Pathikreet walking along with you");
 
+  window.BuddyArt = { HEAD, SHIRT, NECK, hand, slide, svg };
+
   // Peeking: head and two hands gripping the edge (the bottom of the box).
   const PEEKER = svg("36 0 128 162", `${HEAD}${hand(66, 150)}${hand(134, 150)}`, "Pathikreet peeking in");
-
-  // ── hero: sit on the cube ────────────────────────────────────────────────
-  const cubeRoot = document.querySelector("[data-cube]");
-  const stage = cubeRoot && cubeRoot.querySelector(".cube-stage");
-  if (stage) {
-    const sit = document.createElement("div");
-    sit.className = "cube-buddy";
-    sit.setAttribute("aria-hidden", "true");
-    sit.innerHTML = SITTER;
-    stage.appendChild(sit);
-    // cube.js marks the root while it turns (is-turning) or is tipped (is-tilted).
-  }
 
   if (reduceMotion) return;
 
@@ -138,7 +114,7 @@
     contact: { side: "left", text: "Say hi — the form goes straight to my inbox." },
   };
   const TIPS = [
-    "Drag the cube up top — I'll keep spinning it.",
+    "Everything in my room up top is clickable. Try the cat.",
     "Press ⌘K (or /) to jump anywhere.",
     "There's a dark mode toggle up in the nav.",
     "The wind in the hero is a real fluid simulation.",
@@ -167,7 +143,7 @@
     bubble.dataset.side = side;
     bubble.classList.add("is-on");
     const r = anchor.getBoundingClientRect();
-    const bw = Math.min(260, window.innerWidth - 32);
+    const bw = Math.min(window.innerWidth < 760 ? 210 : 260, window.innerWidth - 32);
     let x, y;
     if (side === "right") { x = r.left - bw - 12; y = r.top + r.height / 2 - 40; }
     else if (side === "left") { x = r.right + 12; y = r.top + r.height / 2 - 40; }
@@ -192,7 +168,7 @@
     walker.style.setProperty("--x", `${Math.round(12 + p * (window.innerWidth - w - 24))}px`);
     const inHero = window.scrollY < hero.offsetHeight * 0.6;
     walker.classList.toggle("is-out", inHero || peeking);
-    // Back in the hero, he's sitting on the cube: any peek ducks out at once.
+    // Back in the hero (he's in his room up there): any peek ducks out at once.
     if (inHero && peeking) {
       if (peekTl) peekTl.kill();
       if (window.gsap) window.gsap.set(peek, { autoAlpha: 0 }); else peek.style.opacity = "0";
