@@ -20,13 +20,13 @@
   const PRESSURE_ITERATIONS = 20;
   const PRESSURE_RETAIN = 0.8;
   const VELOCITY_DISSIPATION = 0.22;
-  const DYE_DISSIPATION = 0.85;
+  const DYE_DISSIPATION = 1.6;
   const CURL_STRENGTH = 26;
   const SPLAT_RADIUS = 0.0024;
 
   const POINTER_FORCE = 6000;
   const POINTER_DYE = 0.15;
-  const GUST_DYE = 0.06;
+  const GUST_DYE = 0.045;
   const GUST_INTERVAL_MS = 160;
   const MAX_DT = 1 / 60;
 
@@ -175,11 +175,13 @@ void main() {
   vec3 tone = mix(vec3(0.05, 0.16, 0.40), vec3(0.10, 0.30, 0.50), snoise(uv * 1.5 + uTime * 0.1) * 0.5 + 0.5);
   vec3 color = base + tone * beam * 0.26;
 
-  vec3 dye = texture(uDye, vUv).rgb * uHasDye;
-  color += dye / (1.0 + dye);
-
-  // Keep the copy column legible: darken the left, where the headline sits.
+  // The copy column (left, lower two thirds) must stay legible however long
+  // the page is open: dye is held back there before it is added, then the
+  // whole column is darkened.
   float shade = smoothstep(0.85, 0.05, vUv.x) * smoothstep(1.0, 0.25, vUv.y);
+  vec3 dye = texture(uDye, vUv).rgb * uHasDye;
+  dye *= 1.0 - 0.8 * shade;
+  color += 0.85 * dye / (1.0 + dye);
   color *= 1.0 - 0.5 * shade;
 
   fragColor = vec4(color, 1.0);

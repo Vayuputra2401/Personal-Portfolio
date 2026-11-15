@@ -46,8 +46,22 @@
     return best;
   }
 
+  // The buddy sitting on top reads these: is-turning (his arm pushes) and
+  // is-tilted (cube on its top/bottom face, so he hops off).
+  let prevRy = st.ry, turnTimer = 0;
+  function markMotion() {
+    if (Math.abs(st.ry - prevRy) > 0.04) {
+      root.classList.add("is-turning");
+      clearTimeout(turnTimer);
+      turnTimer = setTimeout(() => root.classList.remove("is-turning"), 160);
+    }
+    prevRy = st.ry;
+    root.classList.toggle("is-tilted", Math.abs(st.rx) > 42);
+  }
+
   function render() {
     cube.style.transform = `translateZ(calc(var(--s) * -0.5)) rotateX(${st.rx}deg) rotateY(${st.ry}deg)`;
+    markMotion();
     const f = frontFace();
     if (f !== front) {
       front = f;

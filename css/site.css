@@ -778,12 +778,116 @@ kbd { font: 500 0.7rem/1 var(--font-mono); opacity: 0.8; }
 .hero-hint { display: none; }
 
 @media (max-width: 900px) {
-  .hero-cube { --s: min(46vw, 200px); left: 0; width: 100%; bottom: auto; height: calc(var(--s) + 10.5rem); padding: 1.5rem 0 0; gap: 2.4rem; }
+  .hero-cube { --s: min(46vw, 200px); left: 0; width: 100%; bottom: auto; height: calc(var(--s) * 1.5 + 10.5rem); padding: calc(var(--s) * .5 + 1.5rem) 0 0; gap: 2.4rem; }
   .cube-live { display: none; }
   .cube-nav { margin-top: .4rem; }
   .cube-nav button { font-size: .7rem; padding: .28rem .5rem; }
-  .hero { padding-top: calc(var(--nav-h) + min(46vw, 200px) + 11rem); }
+  .hero { padding-top: calc(var(--nav-h) + min(46vw, 200px) * 1.5 + 11rem); }
   .face-meta { display: none; }
   .face-title { font-size: calc(var(--s) * .13); }
 }
 @media (prefers-reduced-motion: reduce) { .face, .face-go { transition: none; } }
+
+/* ═════════════════════════════════════════════════════════════════════
+   THE LITTLE ME — anime buddy (js/buddy.js)
+   ═════════════════════════════════════════════════════════════════════ */
+.buddy-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.buddy-svg .b-fo { stroke: var(--buddy-ol, #1a1714); stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+.buddy-svg .b-skin { fill: #c98b5f; }
+.buddy-svg .b-hair { fill: #17120f; }
+.buddy-svg .b-strand { fill: none; stroke: #3a2f28; stroke-width: 1.6; stroke-linecap: round; }
+.buddy-svg .b-shirt { fill: #1b1816; }
+.buddy-svg .b-trim { fill: none; stroke: #f3eee6; stroke-width: 3.2; stroke-linecap: round; }
+.buddy-svg .b-pants { fill: #cdc6ba; }
+.buddy-svg .b-fold { fill: none; stroke: #948b7e; stroke-width: 1.6; stroke-linecap: round; }
+.buddy-svg .b-sole { fill: #17120f; }
+.buddy-svg .b-strap { fill: #f7f4ef; }
+.buddy-svg .b-lens { fill: #fff; fill-opacity: .14; stroke: #17120f; stroke-width: 3; }
+.buddy-svg .b-ink { fill: none; stroke: #17120f; stroke-width: 3; stroke-linecap: round; }
+.buddy-svg .b-white { fill: #fff; }
+.buddy-svg .b-iris { fill: #3a2214; }
+.buddy-svg .b-pupil { fill: #0d0907; }
+.buddy-svg .b-hl { fill: #fff; }
+.buddy-svg .b-nose { fill: none; stroke: #8a5a3a; stroke-width: 1.8; stroke-linecap: round; }
+.buddy-svg .b-blush { fill: #e8572a; opacity: .4; }
+.buddy-svg .b-mouth { fill: #6e2416; }
+.buddy-svg .b-tongue { fill: #d0655a; }
+.buddy-svg .b-teeth { fill: #fff; }
+.buddy-svg .b-script { font: italic 400 15px var(--font-display); fill: #f3eee6; }
+.buddy-svg .b-logo { fill: none; stroke: #f3eee6; stroke-width: 1.4; }
+.buddy-svg .b-finger { fill: none; stroke: #8a5a3a; stroke-width: 1.4; stroke-linecap: round; }
+.buddy-svg .b-eyes { transform-box: fill-box; transform-origin: 50% 50%; animation: b-blink 4.4s infinite; }
+@keyframes b-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.08); } }
+
+/* sitting on the cube */
+.cube-buddy {
+  --buddy-ol: #7c7268;
+  position: absolute; z-index: 3; pointer-events: none;
+  left: 50%; bottom: calc(100% - var(--s) * .16);
+  width: calc(var(--s) * .46);
+  transform: translateX(-46%);
+  transition: transform .35s cubic-bezier(.3, 1.6, .5, 1), opacity .25s;
+  animation: b-drop .7s 2.1s both cubic-bezier(.3, 1.5, .5, 1);
+}
+@keyframes b-drop { from { opacity: 0; translate: 0 -80px; } to { opacity: 1; translate: 0 0; } }
+.cube-buddy .b-push { transform-box: view-box; transform-origin: 148px 180px; }
+.is-turning .cube-buddy .b-push { animation: b-push .32s ease-in-out infinite alternate; }
+@keyframes b-push { from { transform: rotate(-9deg); } to { transform: rotate(8deg); } }
+.cube-buddy .b-head { transform-box: view-box; transform-origin: 100px 140px; animation: b-tilt 5s ease-in-out infinite alternate; }
+@keyframes b-tilt { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.is-tilted .cube-buddy { transform: translate(-46%, -70%) rotate(-12deg); opacity: 0; }
+
+/* walking along the bottom */
+.buddy-walker {
+  --buddy-ol: #1a1714;
+  position: fixed; z-index: 40; left: 0; bottom: -2px;
+  width: 58px; padding: 0; background: none; border: 0; cursor: pointer;
+  transform: translateX(var(--x, 12px));
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s, bottom .35s;
+}
+.buddy-walker.is-out { bottom: -130px; opacity: 0; pointer-events: none; }
+.buddy-flip { display: block; transition: transform .2s; }
+.face-left .buddy-flip { transform: scaleX(-1); }
+.buddy-walker .b-legL, .buddy-walker .b-legR { transform-box: view-box; transform-origin: 100px 216px; }
+.buddy-walker .b-armL { transform-box: view-box; transform-origin: 55px 184px; }
+.buddy-walker .b-armR { transform-box: view-box; transform-origin: 145px 184px; }
+.is-walking .b-legL, .is-walking .b-armR { animation: b-step .42s ease-in-out infinite alternate; }
+.is-walking .b-legR, .is-walking .b-armL { animation: b-step .42s ease-in-out infinite alternate-reverse; }
+.is-walking .buddy-svg { animation: b-bob .21s ease-in-out infinite alternate; }
+@keyframes b-step { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
+@keyframes b-bob { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+
+/* peeking from an edge */
+.buddy-peek { --buddy-ol: #1a1714; position: fixed; z-index: 45; width: 96px; height: 121px; opacity: 0; pointer-events: none; }
+.buddy-peek .peek-inner { display: block; width: 100%; height: 100%; padding: 0; background: none; border: 0; cursor: pointer; pointer-events: auto; }
+.buddy-peek[data-side="right"] { right: 12px; top: 42vh; }
+.buddy-peek[data-side="right"] .peek-inner { transform: rotate(-22deg); }
+.buddy-peek[data-side="left"] { left: 12px; top: 42vh; }
+.buddy-peek[data-side="left"] .peek-inner { transform: rotate(22deg); }
+.buddy-peek[data-side="top"] { top: calc(var(--nav-h) - 4px); margin-left: -48px; }
+.buddy-peek[data-side="top"] .peek-inner { transform: rotate(180deg); }
+.buddy-peek[data-side="right"] { right: -34px; }
+.buddy-peek[data-side="left"] { left: -34px; }
+
+/* speech bubble */
+.buddy-bubble {
+  position: fixed; z-index: 46; left: 0; top: 0;
+  background: var(--bg); color: var(--text);
+  border: 2px solid var(--text); border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--ember);
+  padding: .8rem .95rem .7rem; font-size: .92rem; line-height: 1.45;
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.buddy-bubble.is-on { opacity: 1; pointer-events: auto; }
+.buddy-bubble p { margin: 0 0 .45rem; }
+.buddy-hide { background: none; border: 0; padding: 0; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.buddy-off .buddy-walker, .buddy-off .buddy-peek, .buddy-off .buddy-bubble { display: none; }
+
+@media (max-width: 760px) {
+  .buddy-walker { width: 44px; }
+  .buddy-peek { width: 72px; height: 91px; }
+  .buddy-peek[data-side="top"] { margin-left: -36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .buddy-svg .b-eyes, .cube-buddy .b-head, .cube-buddy { animation: none; }
+}

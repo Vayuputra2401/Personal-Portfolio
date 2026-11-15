@@ -332,6 +332,11 @@
     { label: "Copy email address", hint: "Action", run: async () => toast((await copy(EMAIL)) ? "Email copied" : EMAIL) },
     { label: "Write me a message", hint: "Action", run: () => openModal() },
     { label: "Toggle light / dark", hint: "Theme", run: toggleTheme },
+    { label: "Show / hide the little me", hint: "Buddy", run: () => {
+      const b = window.portfolioBuddy;
+      if (!b) return toast("He only comes out with motion on");
+      if (b.isOff()) { b.show(); toast("He's back"); } else { b.hide(); toast("He went for chai"); }
+    } },
     { label: "GitHub", hint: "Link", run: () => window.open("https://github.com/Vayuputra2401", "_blank", "noopener") },
     { label: "LinkedIn", hint: "Link", run: () => window.open("https://www.linkedin.com/in/pathikreet-chowdhury-489b77234/", "_blank", "noopener") },
   ];
